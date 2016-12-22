@@ -1,3 +1,5 @@
+Business Logic
+
 - Player
 - Recorder
 - SoundLoader
@@ -8,6 +10,8 @@
 - LoopProjectLoader
 - LoopProjectSaver
 
+
+GUI
 
 - LoopRow
   - janz viele Buttons
@@ -24,4 +28,6 @@
   
 - MainView 
   - LoopProjectView
-  - Playleiste
+  - PlayView
+  
+- PlayView

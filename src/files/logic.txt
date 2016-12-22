@@ -1,0 +1,27 @@
+- Player
+- Recorder
+- SoundLoader
+- LoopProject
+  - Loop
+- LoopManager
+- (LoopProjectFactory?)
+- LoopProjectLoader
+- LoopProjectSaver
+
+
+- LoopRow
+  - janz viele Buttons
+  - Titel Label
+  - Open Button
+  - Record Button
+  - Solo Button
+  - Mute Button
+  - Taktgruppe
+    - Soundfelder
+    
+- LoopProjectView
+  - n LoopRows
+  
+- MainView 
+  - LoopProjectView
+  - Playleiste

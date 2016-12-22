@@ -55,6 +55,8 @@ public class LoopManager {
 
 					if (soundFilename != null && !soundFilename.isEmpty()) {
 						audioPlayer.playSound(loop.getSoundFilename());
+					} else {
+						System.out.println("Kein Sound hinterlegt!");
 					}
 				}
 			}

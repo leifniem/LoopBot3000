@@ -1,13 +1,120 @@
+@font-face {
+    src: url("../files/RobotoMono700.ttf");
+}
+
 .root{
-	-fx-background-color: #4A4A4A;
+	-fx-background-color: #222;
 	-fx-padding: 40px;
+	-fx-font-family: 'Roboto Mono';
+	-fx-font-weight: 700;
 }
 
 .button{
 	-fx-border-radius: 10px;
 }
 
+.loop-row,
+.play-bar{
+	-fx-padding: 5px 20px;
+	-fx-spacing: 10px;
+}
+
+.play-bar-buttons{
+	-fx-spacing: 10px;
+	-fx-pref-width: 160px;
+}
+
+.pb-spacer{
+	-fx-pref-width: 65px;
+}
+
+.play-bar-buttons .button{
+	-fx-background-color: #D8D8D8;
+}
+
+.loop-row .label{
+	-fx-text-fill: #D8D8D8;
+	-fx-pref-width: 100px;
+	-fx-min-width: 100px;
+	-fx-max-width: 100px;
+}
+
+#open{
+	-fx-background-color: transparent;
+	-fx-background-image: url(../files/open.png);
+	-fx-background-size: 25px 25px;
+	-fx-background-repeat: no-repeat;
+	-fx-pref-width: 25px;
+	-fx-pref-height: 25px;
+	-fx-min-width: 25px;
+	-fx-max-width: 25px;
+	-fx-min-height: 25px;
+	-fx-max-height: 25px;
+}
+
+#record{
+	-fx-background-color: #896260;
+	-fx-background-radius: 20px;
+	-fx-pref-width: 20px;
+	-fx-pref-height: 20px;
+	-fx-min-width: 20px;
+	-fx-max-width: 20px;
+	-fx-min-height: 20px;
+	-fx-max-height: 20px;
+}
+
+#recording{
+	-fx-background-color: #FF837D;
+	-fx-effect: dropshadow(three-pass-box, #FF837D, 10, 0, 0, 0);
+	-fx-background-radius: 20px;
+	-fx-pref-width: 20px;
+	-fx-pref-height: 20px;
+	-fx-min-width: 20px;
+	-fx-max-width: 20px;
+	-fx-min-height: 20px;
+	-fx-max-height: 20px;
+}
+
+#open{
+	-fx-background-color: transparent;
+	-fx-background-image: url(../files/open.png);
+	-fx-background-size: 25px 25px;
+	-fx-background-repeat: no-repeat;
+	-fx-pref-width: 25px;
+	-fx-pref-height: 25px;
+	-fx-min-width: 25px;
+	-fx-max-width: 25px;
+	-fx-min-height: 25px;
+	-fx-max-height: 25px;
+}
+
 .rect-button{
-	-fx-background: yellow;
 	-fx-border: none;
+	-fx-pref-width: 25px;
+	-fx-pref-height: 25px;
+	-fx-min-width: 25px;
+	-fx-max-width: 25px;
+	-fx-min-height: 25px;
+	-fx-max-height: 25px;
+	-fx-text-fill: #4A4A4A;
+	-fx-background-color: #909092;
+}
+
+.rect-on{
+	-fx-background-color: #D7FBA7;
+	-fx-effect: dropshadow(three-pass-box, #D7FBA7, 10, 0, 0, 0);
+	-fx-text-fill: #889775;	
+}
+
+#play{
+	-fx-background-color: transparent;
+	-fx-background-image: url(../files/play.png);
+	-fx-background-size: 25px 25px;
+	-fx-background-repeat: no-repeat;
+	-fx-pref-width: 25px;
+	-fx-pref-height: 25px;
+	-fx-min-width: 25px;
+	-fx-max-width: 25px;
+	-fx-min-height: 25px;
+	-fx-max-height: 25px;
 }

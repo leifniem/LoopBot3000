@@ -9,7 +9,12 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" 
 	fx:controller="controller.LoopProjectViewController">
 	
-	<fx:include styleClass="LoopRow" fx:id="rowone" source="LoopRow.fxml"/>
+	<fx:include fx:id="rowone" source="LoopRow.fxml"/>
+	<fx:include fx:id="rowtwo" source="LoopRow.fxml"/>
+	<fx:include fx:id="rowthree" source="LoopRow.fxml"/>
+	<fx:include fx:id="rowfour" source="LoopRow.fxml"/>
+	<fx:include fx:id="rowfive" source="LoopRow.fxml"/>
+	<fx:include fx:id="rowsix" source="LoopRow.fxml"/>
 
 </VBox>
 

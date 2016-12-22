@@ -1,20 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <HBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" 
-	fx:controller="controller.LoopRowController" alignment="CENTER" styleClass="loop-row">
-	
+	fx:controller="controller.PlayBarController" alignment="CENTER" styleClass="play-bar">
 	<children>
-		<Label>
-			Test
-		</Label>
-		<Button fx:id="open"/>
-		<Button fx:id="recording"/>
+		
+		<HBox styleClass="play-bar-buttons">
+			<Button fx:id="Load" text="Load"/>
+			<Button fx:id="Save" text="Save"/>
+			<Button fx:id="play"/>
+		</HBox>
 		
 		<!-- Soundfelder -->
 		
@@ -44,12 +41,9 @@
 		<Button fx:id="nummer" styleClass="rect-button" />
 		<Button fx:id="nummer" styleClass="rect-button" />
 		
-		<HBox styleClass="spacer"/>
+		<HBox styleClass="pb-spacer"/>
 		
 		<!-- /Soundfelder -->
-		
-		<Button fx:id="solo" styleClass="rect-button, rect-on" text="S"/>
-		<Button fx:id="mute" styleClass="rect-button" text="M"/>
+
 	</children>
 </HBox>
-

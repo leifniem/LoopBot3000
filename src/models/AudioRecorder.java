@@ -2,6 +2,8 @@ package models;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
@@ -18,32 +20,45 @@ public class AudioRecorder {
 	private final static int FRAME_SIZE_IN_BYTES = 4;
 	private final static int FRAMERATE = 44100;
 	private final static String OUTPUT_PATH = "";
+	private final static int RECORDING_TIMEOUT_IN_SECONDS = 10;
 
-	public void record() {
+	private DataLine.Info info;
+	private TargetDataLine targetLine = null;
+	private boolean isRecording = false;
+	private Timer timeoutTimer;
+
+	public AudioRecorder() {
+		AudioFormat format = getDefaultAudioFormat();
+		info = new DataLine.Info(TargetDataLine.class, format);
+		timeoutTimer = new Timer();
+
+		if (!AudioSystem.isLineSupported(info)) {
+			throw new UnsupportedOperationException("line not supported!");
+		}
+	}
+
+	public void startRecording() {
 		try {
-			AudioFormat format = getDefaultAudioFormat();
-			DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
-
-			if (!AudioSystem.isLineSupported(info)) {
-				System.err.println("Line not supported!");
-			}
-
-			final TargetDataLine targetLine = (TargetDataLine) AudioSystem.getLine(info);
-			targetLine.open();
+			startTargetLine();
+			startRecordingThread();
+			startRecordingTimeoutThread();
+			isRecording = true;
 
 			System.out.println("Start recording...");
-			targetLine.start();
-
-			Thread recordingThread = getRecordingThread(targetLine);
-			recordingThread.start();
-			Thread.sleep(5000);
-			targetLine.stop();
-			targetLine.close();
 		} catch (LineUnavailableException lue) {
 			lue.printStackTrace();
-		} catch (InterruptedException ie) {
-			ie.printStackTrace();
 		}
+	}
+
+	private void startTargetLine() throws LineUnavailableException {
+		targetLine = (TargetDataLine) AudioSystem.getLine(info);
+		targetLine.open();
+		targetLine.start();
+	}
+
+	private void startRecordingThread() {
+		Thread recordingThread = getRecordingThread(targetLine);
+		recordingThread.start();
 	}
 
 	private Thread getRecordingThread(final TargetDataLine targetLine) {
@@ -63,9 +78,27 @@ public class AudioRecorder {
 		return thread;
 	}
 
+	private void startRecordingTimeoutThread() {
+		timeoutTimer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				stopRecording();
+			}
+		}, RECORDING_TIMEOUT_IN_SECONDS * 1000);
+	}
+
 	private AudioFormat getDefaultAudioFormat() {
 		AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, SAMPLERATE, SAMPLE_SIZE_IN_BITS, STEREO,
 				FRAME_SIZE_IN_BYTES, FRAMERATE, false);
 		return format;
+	}
+
+	public void stopRecording() {
+		if (isRecording) {
+			timeoutTimer.cancel();
+			targetLine.stop();
+			targetLine.close();
+			isRecording = false;
+		}
 	}
 }

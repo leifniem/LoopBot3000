@@ -5,18 +5,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Loop {
-	StringProperty name = new SimpleStringProperty();
-	StringProperty soundFilename = new SimpleStringProperty();
-	BooleanProperty isMuted = new SimpleBooleanProperty();
-	ObservableList<Boolean> fields = FXCollections.<Boolean>observableArrayList();
-	
-	public Loop(String name, int dimension){
+	private StringProperty name = new SimpleStringProperty();
+	private StringProperty soundFilename = new SimpleStringProperty();
+	private BooleanProperty isMuted = new SimpleBooleanProperty();
+	private BooleanProperty isSolo = new SimpleBooleanProperty();
+	private ObservableList<Boolean> fields = FXCollections.<Boolean> observableArrayList();
+
+	public Loop(String name, int dimension) {
 		this.name.set(name);
 		initFields(dimension);
 	}
 
 	private void initFields(int dimension) {
-		for(int i = 0; i < dimension; i++){
+		for (int i = 0; i < dimension; i++) {
 			fields.add(false);
 		}
 	}
@@ -31,5 +32,13 @@ public class Loop {
 
 	public BooleanProperty isMutedProperty() {
 		return isMuted;
+	}
+
+	public BooleanProperty isSoloProperty() {
+		return isSolo;
+	}
+
+	public ObservableList<Boolean> getFields() {
+		return fields;
 	}
 }

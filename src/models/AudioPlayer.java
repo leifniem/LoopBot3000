@@ -1,5 +1,6 @@
 package models;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,12 +11,24 @@ public class AudioPlayer {
 	private List<MediaPlayer> mediaPlayers = new LinkedList<MediaPlayer>();
 	
 	public void playSound(String filename){
-		Media media = new Media(filename);
-		MediaPlayer mediaPlayer = new MediaPlayer(media);
+		MediaPlayer mediaPlayer = getNewMediaPlayerFor(filename);
 		mediaPlayers.add(mediaPlayer);
 		mediaPlayer.play();
 		mediaPlayer.setOnEndOfMedia(createRemoveMediaPlayerRunnable(mediaPlayer));
 		mediaPlayer.setOnStopped(createRemoveMediaPlayerRunnable(mediaPlayer));
+	}
+
+	private MediaPlayer getNewMediaPlayerFor(String filename) {
+		String asciiFilename = convertToAsciiFilename(filename);
+		Media media = new Media(asciiFilename);
+		MediaPlayer mediaPlayer = new MediaPlayer(media);
+		return mediaPlayer;
+	}
+
+	private String convertToAsciiFilename(String filename) {
+		File file = new File(filename);
+		String asciiFilename = file.toURI().toASCIIString();
+		return asciiFilename;
 	}
 	
 	public void stopAll(){

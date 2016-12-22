@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import views.*;
 
 public class Launcher extends Application {
 	
@@ -14,12 +13,8 @@ public class Launcher extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/views/MainView.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/views/MainView.fxml"));	
 		
-		//Alternative:
-		//FXMLLoader loader = new FXMLLoader();
-		//Parent root2 = loader.load(new FileInputStream(filepath + "/HelloWorldView.fxml"));
-
 		Scene scene = new Scene(root, 300, 275);
 		stage.setTitle("Loop-Bot 3000");
 		stage.setScene(scene);

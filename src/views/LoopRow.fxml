@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" 
+	fx:controller="controller.LoopRowController" alignment="CENTER">
+	
+	<children>
+		<Label>
+			Test
+		</Label>
+		<Button fx:id="open" text="Open"/>
+		<Button fx:id="record" text="Record"/>
+		
+		<!-- Soundfelder -->
+		
+		<Button fx:id="nummer" styleClass="rect-button" />
+		
+		<!-- /Soundfelder -->
+		
+		<Button fx:id="solo" styleClass="rect-button" text="S"/>
+		<Button fx:id="mute" styleClass="rect-button" text="M"/>
+	</children>
+</HBox>
+

@@ -20,7 +20,7 @@ public class Launcher extends Application {
 		//FXMLLoader loader = new FXMLLoader();
 		//Parent root2 = loader.load(new FileInputStream(filepath + "/HelloWorldView.fxml"));
 
-		Scene scene = new Scene(root, 300, 275);
+		Scene scene = new Scene(root, 1000, 500);
 		stage.setTitle("Loop-Bot 3000");
 		stage.setScene(scene);
 		stage.show();

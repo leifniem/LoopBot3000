@@ -8,11 +8,14 @@
 <?import java.net.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" 
-	fx:controller="controller.MainViewController">
+	fx:controller="controller.MainViewController" alignment="CENTER">
 
 	<stylesheets>
 		<URL value="@styles.css" />
 	</stylesheets>
+	
+	<fx:include fx:id="LoopProjectView" source="LoopProjectView.fxml" />
+	<!-- <fx:include fx:id="Playbar" source="PlayBar.fxml" /> -->
 
 </VBox>
 

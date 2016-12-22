@@ -1,7 +1,13 @@
 .root{
 	-fx-background-color: #4A4A4A;
+	-fx-padding: 40px;
 }
 
 .button{
 	-fx-border-radius: 10px;
+}
+
+.rect-button{
+	-fx-background: yellow;
+	-fx-border: none;
 }

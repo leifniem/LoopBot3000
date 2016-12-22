@@ -1,8 +1,8 @@
 Business Logic
 
-- Player
-- Recorder
-- SoundLoader
+- AudioPlayer
+- AudioRecorder
+- AudioFileLoader
 - LoopProject
   - Loop
 - LoopManager

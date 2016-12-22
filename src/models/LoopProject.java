@@ -7,13 +7,37 @@ import javafx.collections.ObservableList;
 public class LoopProject {
 	private StringProperty name = new SimpleStringProperty();
 	private ObservableList<Loop> loops = FXCollections.<Loop>observableArrayList();
+	private IntegerProperty numberOfBeats = new SimpleIntegerProperty();
+	private IntegerProperty noteValue = new SimpleIntegerProperty();
+	private IntegerProperty tempo = new SimpleIntegerProperty();
 	
-	public LoopProject(){
-		
+	public LoopProject(int numberOfBeats, int noteValue, int tempo){
+		this.numberOfBeats.set(numberOfBeats);
+		this.noteValue.set(noteValue);
+		this.tempo.set(tempo);
+		//initial Loop
+		addLoop("Default", numberOfBeats, noteValue);
+	}
+	
+	public void addLoop(String name, int numberOfBeats, int noteValue){
+		Loop loop = new Loop(name, numberOfBeats, noteValue);
+		loops.add(loop);
 	}
 	
 	public StringProperty nameProperty(){
 		return name;
+	}
+	
+	public IntegerProperty numberOfBeatsProperty(){
+		return numberOfBeats;
+	}
+	
+	public IntegerProperty noteValueProperty(){
+		return noteValue;
+	}
+	
+	public IntegerProperty tempoProperty(){
+		return tempo;
 	}
 	
 	public ObservableList<Loop> getLoops(){
@@ -35,5 +59,15 @@ public class LoopProject {
 	private Loop getSoloLoop(){
 		Loop soloLoop = loops.filtered(x -> x.isSoloProperty().get()).get(0);
 		return soloLoop;
+	}
+	
+	/**
+	 * Calculates the duration of a single sound in milliseconds
+	 * duration = tempo of the loop divided by 60 (seconds of a minute)
+	 */
+	public float getDurationOfSingleSoundInMS(){
+		final float milliseconds = 1000f;
+		float result = (tempoProperty().get() * milliseconds) / 60f;
+		return result;
 	}
 }

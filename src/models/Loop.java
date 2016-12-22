@@ -6,14 +6,16 @@ import javafx.collections.ObservableList;
 
 public class Loop {
 	private StringProperty name = new SimpleStringProperty();
-	private StringProperty soundFilename = new SimpleStringProperty();
+	private String soundFilename;
 	private BooleanProperty isMuted = new SimpleBooleanProperty();
 	private BooleanProperty isSolo = new SimpleBooleanProperty();
+	
 	private ObservableList<Boolean> fields = FXCollections.<Boolean> observableArrayList();
 
-	public Loop(String name, int dimension) {
+	public Loop(String name, int numberOfBeats, int noteValue) {
 		this.name.set(name);
-		initFields(dimension);
+		//Wie werden die Felder in der GUI generiert? Hier kommt sicher noch eine Aenderung!
+		initFields(numberOfBeats * noteValue);
 	}
 
 	private void initFields(int dimension) {
@@ -21,13 +23,13 @@ public class Loop {
 			fields.add(false);
 		}
 	}
+	
+	public String getSoundFilename(){
+		return soundFilename;
+	}
 
 	public StringProperty nameProperty() {
 		return name;
-	}
-
-	public StringProperty soundFilenameProperty() {
-		return soundFilename;
 	}
 
 	public BooleanProperty isMutedProperty() {

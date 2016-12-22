@@ -16,6 +16,9 @@ public class Loop {
 		this.name.set(name);
 		//Wie werden die Felder in der GUI generiert? Hier kommt sicher noch eine Aenderung!
 		initFields(numberOfBeats * noteValue);
+		
+		//test purposes...
+		//soundFilename = "D:\\Programmierung\\MagefightColNew\\Eleminja\\Eleminja\\Assets\\ElemNinjaAssets\\Prefabs\\Bullets\\yaay.MP3";
 	}
 
 	private void initFields(int dimension) {

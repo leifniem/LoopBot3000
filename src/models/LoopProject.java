@@ -25,6 +25,7 @@ public class LoopProject {
 		for (int i = noteValue - 1; i < numberOfBeats * noteValue; i += noteValue) {
 			loop.getFields().set(i, true);
 		}
+		
 		loops.add(loop);
 	}
 
@@ -77,7 +78,7 @@ public class LoopProject {
 	 */
 	public float getDurationOfSingleSoundInMS() {
 		final float milliseconds = 1000f;
-		float result = (tempo.get() * milliseconds) / 60f / noteValue.get();
-		return result;
+		float resultInSeconds =  60f / tempo.get() / noteValue.get();
+		return resultInSeconds * milliseconds;
 	}
 }

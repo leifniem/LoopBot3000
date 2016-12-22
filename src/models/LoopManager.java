@@ -6,6 +6,10 @@ import java.util.TimerTask;
 import javafx.beans.property.*;
 
 public class LoopManager {
+	private final static int DEFAULT_NUMBER_OF_BEATS = 4;
+	private final static int DEFAULT_NOTE_VALUE = 4;
+	private final static int DEFAULT_TEMP = 120;
+
 	private AudioPlayer audioPlayer;
 	private LoopProject loopProject;
 	private Timer playTimer;
@@ -20,7 +24,7 @@ public class LoopManager {
 	}
 
 	public void createDefaultLoopProject() {
-		loopProject = new LoopProject(4, 4, 120);
+		loopProject = new LoopProject(DEFAULT_NUMBER_OF_BEATS, DEFAULT_NOTE_VALUE, DEFAULT_TEMP);
 	}
 
 	public BooleanProperty isPlayingProperty() {

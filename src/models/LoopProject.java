@@ -16,7 +16,16 @@ public class LoopProject {
 		this.noteValue.set(noteValue);
 		this.tempo.set(tempo);
 		//initial Loop
-		addLoop("Default", numberOfBeats, noteValue);
+		addInitialLoop(numberOfBeats, noteValue);
+	}
+	
+	private void addInitialLoop(int numberOfBeats, int noteValue){
+		Loop loop = new Loop("Default", numberOfBeats, noteValue);
+		// setzt jede letzte Note eines beats auf true
+		for(int i = noteValue-1; i < numberOfBeats*noteValue; i+=noteValue){
+			loop.getFields().set(i, true);
+		}
+		loops.add(loop);
 	}
 	
 	public void addLoop(String name, int numberOfBeats, int noteValue){

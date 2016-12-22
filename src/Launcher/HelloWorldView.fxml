@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
+	fx:controller="Launcher.HelloWorldController">
+
+	<stylesheets>
+		<URL value="@styles.css" />
+	</stylesheets>
+
+	<fx:define>
+		<Label fx:id="defaultLabel" text="Default Label" />
+	</fx:define>
+
+	<Label fx:id="helloWorldLabel" text="Hello World" />
+
+	<!-- Button mit Event Handler -->
+	<Button styleClass="testclass" fx:id="doSomethingButton" text="Do something!" onAction="#doSomethingFunny" />
+
+	<!-- reference to an id -->
+	<HBox>
+		<fx:reference source="defaultLabel" />
+	</HBox>
+
+	<!-- Binding an ein Element innerhalb der fxml Datei -->
+	<Label text="${helloWorldLabel.text}" />
+
+	<!-- "Normales" Binding -->
+	<Label fx:id="codeBindedLabel" />
+
+	<!-- SubView -->
+	<fx:include source="HelloWorldSubView.fxml" fx:id="subview" />
+</VBox>
+

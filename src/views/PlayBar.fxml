@@ -7,10 +7,10 @@
 	fx:controller="controller.PlayBarController" alignment="CENTER" styleClass="play-bar">
 	<children>
 		
-		<HBox styleClass="play-bar-buttons">
+		<HBox styleClass="play-bar-buttons" alignment="CENTER_RIGHT">
 			<Button fx:id="Load" text="Load"/>
 			<Button fx:id="Save" text="Save"/>
-			<Button fx:id="play"/>
+			<Button fx:id="play" styleClass="play-on"/>
 		</HBox>
 		
 		<!-- Soundfelder -->

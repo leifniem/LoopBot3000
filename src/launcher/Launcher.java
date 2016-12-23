@@ -15,7 +15,11 @@ public class Launcher extends Application {
 	public void start(Stage stage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/views/MainView.fxml"));	
 		
-		Scene scene = new Scene(root, 300, 275);
+		//Alternative:
+		//FXMLLoader loader = new FXMLLoader();
+		//Parent root2 = loader.load(new FileInputStream(filepath + "/HelloWorldView.fxml"));
+
+		Scene scene = new Scene(root, 1000, 500);
 		stage.setTitle("Loop-Bot 3000");
 		stage.setScene(scene);
 		stage.show();

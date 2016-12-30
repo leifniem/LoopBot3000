@@ -6,50 +6,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<!-- <HBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" 
-	fx:controller="controller.LoopRowController" alignment="CENTER" styleClass="loop-row"> -->
-
 <fx:root type="HBox" xmlns="http://javafx.com/javafx/2.2"
 	xmlns:fx="http://javafx.com/fxml" alignment="CENTER" styleClass="loop-row">
-	
+
 	<Label fx:id="nameLabel" text="test" />
 	<Button fx:id="chooseFileButton" />
 	<Button fx:id="recordButton" />
-
-	<!-- Soundfelder -->
-
-	<Button fx:id="nummer" styleClass="rect-button" />
-	<Button fx:id="nummer" styleClass="rect-button" />
-	<Button fx:id="nummer" styleClass="rect-button" />
-	<Button fx:id="nummer" styleClass="rect-button" />
-
-	<HBox styleClass="spacer" />
-
-	<Button fx:id="nummer" styleClass="rect-button" />
-	<Button fx:id="nummer" styleClass="rect-button" />
-	<Button fx:id="nummer" styleClass="rect-button" />
-	<Button fx:id="nummer" styleClass="rect-button" />
-
-	<HBox styleClass="spacer" />
-
-	<Button fx:id="nummer" styleClass="rect-button" />
-	<Button fx:id="nummer" styleClass="rect-button" />
-	<Button fx:id="nummer" styleClass="rect-button" />
-	<Button fx:id="nummer" styleClass="rect-button" />
-
-	<HBox styleClass="spacer" />
-
-	<Button fx:id="nummer" styleClass="rect-button" />
-	<Button fx:id="nummer" styleClass="rect-button" />
-	<Button fx:id="nummer" styleClass="rect-button" />
-	<Button fx:id="nummer" styleClass="rect-button" />
-
-	<HBox styleClass="spacer" />
-
-	<!-- /Soundfelder -->
-
-	<Button fx:id="soloButton" styleClass="rect-button, rect-on" text="S" />
+	<HBox fx:id="soundFieldContainer" styleClass="loop-row" />
+	<Button fx:id="soloButton" styleClass="rect-button, rect-on"
+		text="S" />
 	<Button fx:id="muteButton" styleClass="rect-button" text="M" />
 </fx:root>
-<!-- </HBox> -->
 

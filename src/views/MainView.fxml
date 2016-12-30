@@ -15,6 +15,5 @@
 	
 	<fx:include fx:id="loopProjectView" source="LoopProjectView.fxml" />
 	<fx:include fx:id="playbar" source="PlayBar.fxml" />
-
 </VBox>
 

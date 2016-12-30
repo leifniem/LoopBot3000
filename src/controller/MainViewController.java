@@ -19,7 +19,7 @@ public class MainViewController {
 	@FXML
 	private void initialize(){
 		loopProjectViewController.setLoopProject(loopManager.getLoopProject());
-		loopManager.getLoopProject().addLoop("Test", 4, 4);
-		loopManager.getLoopProject().addLoop("Test2", 4, 4);
+		loopManager.getLoopProject().addLoop("Test");
+		loopManager.getLoopProject().addLoop("Test2");
 	}
 }

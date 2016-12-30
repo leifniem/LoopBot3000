@@ -27,8 +27,8 @@ public class LoopProject {
 		loops.add(loop);
 	}
 
-	public void addLoop(String name, int numberOfBeats, int noteValue) {
-		Loop loop = new Loop(name, numberOfBeats, noteValue);
+	public void addLoop(String name) {
+		Loop loop = new Loop(name, numberOfBeats.get(), noteValue.get());
 		loops.add(loop);
 	}
 

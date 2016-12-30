@@ -13,8 +13,8 @@
 		<URL value="@styles.css" />
 	</stylesheets>
 	
-	<fx:include fx:id="LoopProjectView" source="LoopProjectView.fxml" />
-	<fx:include fx:id="Playbar" source="PlayBar.fxml" />
+	<fx:include fx:id="loopProjectView" source="LoopProjectView.fxml" />
+	<fx:include fx:id="playbar" source="PlayBar.fxml" />
 
 </VBox>
 

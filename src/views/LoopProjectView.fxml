@@ -11,4 +11,3 @@
 	
 	<VBox fx:id="loopRowContainer" />
 </VBox>
-

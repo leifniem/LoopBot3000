@@ -15,8 +15,6 @@ public class LoopProject {
 		this.numberOfBeats.set(numberOfBeats);
 		this.noteValue.set(noteValue);
 		this.tempo.set(tempo);
-		// initial Loop
-		addInitialLoop(numberOfBeats, noteValue);
 	}
 
 	private void addInitialLoop(int numberOfBeats, int noteValue) {

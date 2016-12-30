@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import models.Loop;
 
 public class LoopRow extends HBox {
 	@FXML
@@ -19,7 +20,9 @@ public class LoopRow extends HBox {
 	@FXML
 	private Button muteButton;
 	
-	public LoopRow() {
+	private Loop loop;
+	
+	public LoopRow(Loop loop) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/LoopRowView.fxml"));
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
@@ -29,5 +32,9 @@ public class LoopRow extends HBox {
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
 		}
+	}
+	
+	public Loop getLoop(){
+		return loop;
 	}
 }

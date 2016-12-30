@@ -75,4 +75,8 @@ public class LoopManager {
 			currentNote = 0;
 		}
 	}
+	
+	public LoopProject getLoopProject(){
+		return loopProject;
+	}
 }

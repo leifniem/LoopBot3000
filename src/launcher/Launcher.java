@@ -1,8 +1,10 @@
 package launcher;
+import controller.LoopRow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Launcher extends Application {
@@ -13,11 +15,7 @@ public class Launcher extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/views/MainView.fxml"));	
-		
-		//Alternative:
-		//FXMLLoader loader = new FXMLLoader();
-		//Parent root2 = loader.load(new FileInputStream(filepath + "/HelloWorldView.fxml"));
+		VBox root = FXMLLoader.load(getClass().getResource("/views/MainView.fxml"));	
 
 		Scene scene = new Scene(root, 1000, 500);
 		stage.setTitle("Loop-Bot 3000");

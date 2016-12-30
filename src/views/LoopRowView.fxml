@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!-- <HBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" 
+	fx:controller="controller.LoopRowController" alignment="CENTER" styleClass="loop-row"> -->
+
+<fx:root type="HBox" xmlns="http://javafx.com/javafx/2.2"
+	xmlns:fx="http://javafx.com/fxml" alignment="CENTER" styleClass="loop-row">
+	
+	<Label text="test" />
+	<Button fx:id="open" />
+	<Button fx:id="recording" />
+
+	<!-- Soundfelder -->
+
+	<Button fx:id="nummer" styleClass="rect-button" />
+	<Button fx:id="nummer" styleClass="rect-button" />
+	<Button fx:id="nummer" styleClass="rect-button" />
+	<Button fx:id="nummer" styleClass="rect-button" />
+
+	<HBox styleClass="spacer" />
+
+	<Button fx:id="nummer" styleClass="rect-button" />
+	<Button fx:id="nummer" styleClass="rect-button" />
+	<Button fx:id="nummer" styleClass="rect-button" />
+	<Button fx:id="nummer" styleClass="rect-button" />
+
+	<HBox styleClass="spacer" />
+
+	<Button fx:id="nummer" styleClass="rect-button" />
+	<Button fx:id="nummer" styleClass="rect-button" />
+	<Button fx:id="nummer" styleClass="rect-button" />
+	<Button fx:id="nummer" styleClass="rect-button" />
+
+	<HBox styleClass="spacer" />
+
+	<Button fx:id="nummer" styleClass="rect-button" />
+	<Button fx:id="nummer" styleClass="rect-button" />
+	<Button fx:id="nummer" styleClass="rect-button" />
+	<Button fx:id="nummer" styleClass="rect-button" />
+
+	<HBox styleClass="spacer" />
+
+	<!-- /Soundfelder -->
+
+	<Button fx:id="solo" styleClass="rect-button, rect-on" text="S" />
+	<Button fx:id="mute" styleClass="rect-button" text="M" />
+</fx:root>
+<!-- </HBox> -->
+

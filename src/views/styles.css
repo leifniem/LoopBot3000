@@ -51,7 +51,7 @@
 	-fx-max-height: 20px;
 }
 
-#recording{
+#recordButton{
 	-fx-background-color: #FF837D;
 	-fx-effect: dropshadow(three-pass-box, #FF837D, 10, 0, 0, 0);
 	-fx-background-radius: 20px;
@@ -63,7 +63,7 @@
 	-fx-max-height: 20px;
 }
 
-#open{
+#chooseFileButton{
 	-fx-background-color: transparent;
 	-fx-background-image: url(../files/open.png);
 	-fx-background-size: 25px 25px;

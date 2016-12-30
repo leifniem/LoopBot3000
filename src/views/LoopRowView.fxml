@@ -12,9 +12,9 @@
 <fx:root type="HBox" xmlns="http://javafx.com/javafx/2.2"
 	xmlns:fx="http://javafx.com/fxml" alignment="CENTER" styleClass="loop-row">
 	
-	<Label text="test" />
-	<Button fx:id="open" />
-	<Button fx:id="recording" />
+	<Label fx:id="nameLabel" text="test" />
+	<Button fx:id="chooseFileButton" />
+	<Button fx:id="recordButton" />
 
 	<!-- Soundfelder -->
 
@@ -48,8 +48,8 @@
 
 	<!-- /Soundfelder -->
 
-	<Button fx:id="solo" styleClass="rect-button, rect-on" text="S" />
-	<Button fx:id="mute" styleClass="rect-button" text="M" />
+	<Button fx:id="soloButton" styleClass="rect-button, rect-on" text="S" />
+	<Button fx:id="muteButton" styleClass="rect-button" text="M" />
 </fx:root>
 <!-- </HBox> -->
 

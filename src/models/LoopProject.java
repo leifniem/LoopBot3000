@@ -13,7 +13,7 @@ public class LoopProject {
 		this.timeSignature = new TimeSignature(numberOfBeats, noteValue, tempo);
 	}
 
-	private void addInitialLoop() {
+	public void addDefaultLoop() {
 		Loop loop = new Loop("Default", timeSignature);
 		int numberOfBeats = timeSignature.getNumberOfBeats();
 		int noteValue = timeSignature.getNoteValue();

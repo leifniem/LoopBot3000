@@ -35,7 +35,8 @@ public class LoopManager {
 		if (loopProject != null && !isPlaying.get()) {
 			TimeSignature timeSignature = loopProject.getTimeSignature();
 			float durationOfSingleSoundInMS = timeSignature.getDurationOfSingleSoundInMS();
-			playTimer.scheduleAtFixedRate(createPlayLoopSoundsTask(), 0, (long) durationOfSingleSoundInMS);
+			int startingDelay = 0;
+			playTimer.scheduleAtFixedRate(createPlayLoopSoundsTask(), startingDelay, (long) durationOfSingleSoundInMS);
 			isPlaying.set(true);
 		}
 	}
@@ -48,7 +49,6 @@ public class LoopManager {
 					playLoopIfNecessary(loop);
 				}
 
-				
 				int amountOfNotes = loopProject.getTimeSignature().getAmountOfNotes();
 				currentNote = (currentNote + 1) % amountOfNotes;
 			}
@@ -77,8 +77,8 @@ public class LoopManager {
 			currentNote = 0;
 		}
 	}
-	
-	public LoopProject getLoopProject(){
+
+	public LoopProject getLoopProject() {
 		return loopProject;
 	}
 }

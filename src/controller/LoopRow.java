@@ -2,6 +2,9 @@ package controller;
 
 import java.io.IOException;
 
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -10,6 +13,9 @@ import models.Loop;
 import models.TimeSignature;
 
 public class LoopRow extends HBox {
+	private final static String RECT_BUTTON_STYLE_CLASS = "rect-button";
+	private final static String RECT_BUTTON_ACTIVE_STYLE_CLASS = "rect-on";
+	
 	@FXML
 	private Label nameLabel;
 	@FXML
@@ -45,8 +51,10 @@ public class LoopRow extends HBox {
 		TimeSignature timeSignature = loop.getTimeSignature();
 		
 		for (int currentBeat = 0; currentBeat < timeSignature.getNumberOfBeats(); currentBeat++) {
-			for (int currentNote = 0; currentNote < timeSignature.getNoteValue(); currentNote++) {
-				Button button = createRectButton("" + currentBeat * currentNote);
+			for (int currentNoteInBeat = 0; currentNoteInBeat < timeSignature.getNoteValue(); currentNoteInBeat++) {
+				int currentNote = currentBeat * timeSignature.getNoteValue() + currentNoteInBeat;
+				boolean active = loop.getFields().get(currentNote).get();
+				Button button = createRectButton("" + currentNote, active);
 				soundFieldContainer.getChildren().add(button);
 			}
 
@@ -56,10 +64,32 @@ public class LoopRow extends HBox {
 		}
 	}
 
-	private Button createRectButton(String id) {
+	private Button createRectButton(String id, boolean active) {
 		Button button = new Button();
 		button.setId(id);
-		button.getStyleClass().add("rect-button");
+		button.getStyleClass().add(RECT_BUTTON_STYLE_CLASS);
+		
+		if(active){
+			button.getStyleClass().add(RECT_BUTTON_ACTIVE_STYLE_CLASS);
+		}
+
+		button.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent e) {
+				Button button = (Button)e.getSource();
+				int buttonId = Integer.parseInt(button.getId());
+				boolean buttonIsActive = loop.getFields().get(buttonId).get();
+				ObservableList<String> styleClass = button.getStyleClass();
+				
+				if(buttonIsActive){
+					styleClass.remove(RECT_BUTTON_ACTIVE_STYLE_CLASS);
+				} else {
+					styleClass.add(RECT_BUTTON_ACTIVE_STYLE_CLASS);
+				}
+				loop.getFields().get(buttonId).set(!buttonIsActive);
+			}
+		});
+		
 		return button;
 	}
 

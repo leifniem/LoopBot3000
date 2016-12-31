@@ -26,6 +26,6 @@ public class MainViewController {
 				timeSignature.getNoteValue());
 		loopProjectViewController.setLoopProject(loopProject);
 		loopManager.getLoopProject().addLoop("Test");
-		loopManager.getLoopProject().addLoop("Test2");
+		loopManager.getLoopProject().addDefaultLoop();
 	}
 }

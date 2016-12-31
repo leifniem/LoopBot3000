@@ -11,7 +11,7 @@ public class Loop {
 	private BooleanProperty isSolo = new SimpleBooleanProperty();
 	private TimeSignature timeSignature;
 	
-	private ObservableList<Boolean> fields = FXCollections.<Boolean> observableArrayList();
+	private ObservableList<BooleanProperty> fields = FXCollections.<BooleanProperty> observableArrayList();
 
 	public Loop(String name, TimeSignature timeSignature) {
 		this.name.set(name);
@@ -26,7 +26,7 @@ public class Loop {
 	private void initFields() {
 		int amountOfNotes = timeSignature.getAmountOfNotes();
 		for (int i = 0; i < amountOfNotes; i++) {
-			fields.add(false);
+			fields.add(new SimpleBooleanProperty(false));
 		}
 	}
 	
@@ -46,7 +46,7 @@ public class Loop {
 		return isSolo;
 	}
 
-	public ObservableList<Boolean> getFields() {
+	public ObservableList<BooleanProperty> getFields() {
 		return fields;
 	}
 	

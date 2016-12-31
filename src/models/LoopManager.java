@@ -54,7 +54,7 @@ public class LoopManager {
 			}
 
 			private void playLoopIfNecessary(Loop loop) {
-				boolean shouldPlay = loop.getFields().get(currentNote);
+				boolean shouldPlay = loop.getFields().get(currentNote).get();
 
 				if (shouldPlay) {
 					String soundFilename = loop.getSoundFilename();

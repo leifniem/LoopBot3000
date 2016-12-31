@@ -21,19 +21,15 @@ public class LoopProjectViewController {
 
 	@FXML
 	private void initialize() {
-		//createDummyLoopRows();	
-	}
-
-	private void createDummyLoopRows() {
-		loopRowContainer.getChildren().add(new LoopRow(new Loop("test1", 4, 4)));
-		loopRowContainer.getChildren().add(new LoopRow(new Loop("test1", 4, 4)));
-		loopRowContainer.getChildren().add(new LoopRow(new Loop("test1", 4, 4)));
-		loopRowContainer.getChildren().add(new LoopRow(new Loop("test1", 4, 4)));
+	
 	}
 
 	public void setLoopProject(LoopProject loopProject) {
 		this.loopProject = loopProject;
-	
+		addChangeListenerToLoopProject();
+	}
+
+	private void addChangeListenerToLoopProject() {
 		loopProject.getLoops().addListener(new ListChangeListener<Loop>() {
 			@Override
 			public void onChanged(ListChangeListener.Change<? extends Loop> change) {

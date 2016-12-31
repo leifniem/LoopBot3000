@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import models.Loop;
+import models.TimeSignature;
 
 public class LoopRow extends HBox {
 	@FXML
@@ -41,8 +42,10 @@ public class LoopRow extends HBox {
 	}
 
 	private void generateSoundFieldsForTimeSignature() {
-		for (int currentBeat = 0; currentBeat < loop.getNumberOfBeats(); currentBeat++) {
-			for (int currentNote = 0; currentNote < loop.getNoteValue(); currentNote++) {
+		TimeSignature timeSignature = loop.getTimeSignature();
+		
+		for (int currentBeat = 0; currentBeat < timeSignature.getNumberOfBeats(); currentBeat++) {
+			for (int currentNote = 0; currentNote < timeSignature.getNoteValue(); currentNote++) {
 				Button button = createRectButton("" + currentBeat * currentNote);
 				soundFieldContainer.getChildren().add(button);
 			}

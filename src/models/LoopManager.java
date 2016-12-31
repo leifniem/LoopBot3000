@@ -33,7 +33,8 @@ public class LoopManager {
 
 	public void play() {
 		if (loopProject != null && !isPlaying.get()) {
-			float durationOfSingleSoundInMS = loopProject.getDurationOfSingleSoundInMS();
+			TimeSignature timeSignature = loopProject.getTimeSignature();
+			float durationOfSingleSoundInMS = timeSignature.getDurationOfSingleSoundInMS();
 			playTimer.scheduleAtFixedRate(createPlayLoopSoundsTask(), 0, (long) durationOfSingleSoundInMS);
 			isPlaying.set(true);
 		}
@@ -47,7 +48,8 @@ public class LoopManager {
 					playLoopIfNecessary(loop);
 				}
 
-				int amountOfNotes = loopProject.numberOfBeatsProperty().get() * loopProject.noteValueProperty().get();
+				
+				int amountOfNotes = loopProject.getTimeSignature().getAmountOfNotes();
 				currentNote = (currentNote + 1) % amountOfNotes;
 			}
 

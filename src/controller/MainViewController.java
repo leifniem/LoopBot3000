@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.*;
 import models.LoopManager;
 import models.LoopProject;
+import models.TimeSignature;
 
 public class MainViewController {
 	@FXML
@@ -20,8 +21,9 @@ public class MainViewController {
 	@FXML
 	private void initialize() {
 		LoopProject loopProject = loopManager.getLoopProject();
-		playbarController.generateSoundFieldsForTimeSignature(loopProject.numberOfBeatsProperty().get(),
-				loopProject.noteValueProperty().get());
+		TimeSignature timeSignature = loopProject.getTimeSignature();
+		playbarController.generateSoundFieldsForTimeSignature(timeSignature.getNumberOfBeats(),
+				timeSignature.getNoteValue());
 		loopProjectViewController.setLoopProject(loopProject);
 		loopManager.getLoopProject().addLoop("Test");
 		loopManager.getLoopProject().addLoop("Test2");

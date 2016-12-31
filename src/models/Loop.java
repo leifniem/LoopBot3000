@@ -10,23 +10,22 @@ public class Loop {
 	private BooleanProperty isMuted = new SimpleBooleanProperty();
 	private BooleanProperty isSolo = new SimpleBooleanProperty();
 	private TimeSignature timeSignature;
-	
-	private ObservableList<BooleanProperty> fields = FXCollections.<BooleanProperty> observableArrayList();
+	private ObservableList<BooleanProperty> noteStatus = FXCollections.<BooleanProperty> observableArrayList();
 
 	public Loop(String name, TimeSignature timeSignature) {
 		this.name.set(name);
 		this.timeSignature = timeSignature;
 		//Wie werden die Felder in der GUI generiert? Hier kommt sicher noch eine Aenderung!
-		initFields();
+		initNoteStatus();
 		
 		//test purposes...
 		//soundFilename = "D:\\Programmierung\\MagefightColNew\\Eleminja\\Eleminja\\Assets\\ElemNinjaAssets\\Prefabs\\Bullets\\yaay.MP3";
 	}
 
-	private void initFields() {
+	private void initNoteStatus() {
 		int amountOfNotes = timeSignature.getAmountOfNotes();
 		for (int i = 0; i < amountOfNotes; i++) {
-			fields.add(new SimpleBooleanProperty(false));
+			noteStatus.add(new SimpleBooleanProperty(false));
 		}
 	}
 	
@@ -46,8 +45,8 @@ public class Loop {
 		return isSolo;
 	}
 
-	public ObservableList<BooleanProperty> getFields() {
-		return fields;
+	public ObservableList<BooleanProperty> getNoteStatus() {
+		return noteStatus;
 	}
 	
 	public TimeSignature getTimeSignature(){

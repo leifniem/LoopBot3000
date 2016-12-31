@@ -23,7 +23,7 @@ public class LoopRow extends HBox {
 	@FXML
 	private Button recordButton;
 	@FXML
-	private HBox soundFieldContainer;
+	private HBox noteStatusContainer;
 	@FXML
 	private Button soloButton;
 	@FXML
@@ -44,23 +44,23 @@ public class LoopRow extends HBox {
 			throw new RuntimeException(exception);
 		}
 
-		generateSoundFieldsForTimeSignature();
+		generateNoteStatusButtonsForTimeSignature();
 	}
 
-	private void generateSoundFieldsForTimeSignature() {
+	private void generateNoteStatusButtonsForTimeSignature() {
 		TimeSignature timeSignature = loop.getTimeSignature();
 		
 		for (int currentBeat = 0; currentBeat < timeSignature.getNumberOfBeats(); currentBeat++) {
 			for (int currentNoteInBeat = 0; currentNoteInBeat < timeSignature.getNoteValue(); currentNoteInBeat++) {
 				int currentNote = currentBeat * timeSignature.getNoteValue() + currentNoteInBeat;
-				boolean active = loop.getFields().get(currentNote).get();
+				boolean active = loop.getNoteStatus().get(currentNote).get();
 				Button button = createRectButton("" + currentNote, active);
-				soundFieldContainer.getChildren().add(button);
+				noteStatusContainer.getChildren().add(button);
 			}
 
 			HBox spacer = new HBox();
 			spacer.getStyleClass().add("spacer");
-			soundFieldContainer.getChildren().add(spacer);
+			noteStatusContainer.getChildren().add(spacer);
 		}
 	}
 
@@ -78,7 +78,7 @@ public class LoopRow extends HBox {
 			public void handle(ActionEvent e) {
 				Button button = (Button)e.getSource();
 				int buttonId = Integer.parseInt(button.getId());
-				boolean buttonIsActive = loop.getFields().get(buttonId).get();
+				boolean buttonIsActive = loop.getNoteStatus().get(buttonId).get();
 				ObservableList<String> styleClass = button.getStyleClass();
 				
 				if(buttonIsActive){
@@ -86,7 +86,7 @@ public class LoopRow extends HBox {
 				} else {
 					styleClass.add(RECT_BUTTON_ACTIVE_STYLE_CLASS);
 				}
-				loop.getFields().get(buttonId).set(!buttonIsActive);
+				loop.getNoteStatus().get(buttonId).set(!buttonIsActive);
 			}
 		});
 		

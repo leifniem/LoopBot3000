@@ -12,28 +12,28 @@ public class PlayBarController {
 	@FXML
 	private Button playButton;
 	@FXML
-	private HBox soundFieldContainer;
+	private HBox noteStatusContainer;
 	
 	public PlayBarController() {
 		
 	}
 	
-	public void generateSoundFieldsForTimeSignature(int numberOfBeats, int noteValue) {
+	public void generateNoteStatusButtonsForTimeSignature(int numberOfBeats, int noteValue) {
 		for (int currentBeat = 0; currentBeat < numberOfBeats; currentBeat++) {
 			for (int currentNote = 0; currentNote < noteValue; currentNote++) {
 				Button button = createRectButton("" + currentBeat * currentNote);
-				soundFieldContainer.getChildren().add(button);
+				noteStatusContainer.getChildren().add(button);
 			}
 
 			HBox spacer = new HBox();
 			spacer.getStyleClass().add("spacer");
-			soundFieldContainer.getChildren().add(spacer);
+			noteStatusContainer.getChildren().add(spacer);
 		}
 		
 
 		HBox spacer = new HBox();
 		spacer.getStyleClass().add("pb-spacer");
-		soundFieldContainer.getChildren().add(spacer);
+		noteStatusContainer.getChildren().add(spacer);
 	}
 	
 	private Button createRectButton(String id) {

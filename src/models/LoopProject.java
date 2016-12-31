@@ -20,7 +20,7 @@ public class LoopProject {
 		
 		// setzt jede letzte Note eines beats auf true
 		for (int i = noteValue - 1; i < numberOfBeats * noteValue; i += noteValue) {
-			loop.getFields().get(i).set(true);
+			loop.getNoteStatus().get(i).set(true);
 		}
 		
 		loops.add(loop);

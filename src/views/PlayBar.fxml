@@ -14,6 +14,6 @@
 			<Button fx:id="playButton" styleClass="play-on" />
 		</HBox>
 
-		<HBox fx:id="soundFieldContainer" styleClass="play-bar"/>
+		<HBox fx:id="noteStatusContainer" styleClass="play-bar"/>
 	</children>
 </HBox>

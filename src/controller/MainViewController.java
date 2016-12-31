@@ -22,7 +22,7 @@ public class MainViewController {
 	private void initialize() {
 		LoopProject loopProject = loopManager.getLoopProject();
 		TimeSignature timeSignature = loopProject.getTimeSignature();
-		playbarController.generateSoundFieldsForTimeSignature(timeSignature.getNumberOfBeats(),
+		playbarController.generateNoteStatusButtonsForTimeSignature(timeSignature.getNumberOfBeats(),
 				timeSignature.getNoteValue());
 		loopProjectViewController.setLoopProject(loopProject);
 		loopManager.getLoopProject().addLoop("Test");

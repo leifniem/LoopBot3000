@@ -12,7 +12,7 @@
 	<Label fx:id="nameLabel" text="test" />
 	<Button fx:id="chooseFileButton" />
 	<Button fx:id="recordButton" />
-	<HBox fx:id="soundFieldContainer" styleClass="loop-row" />
+	<HBox fx:id="noteStatusContainer" styleClass="loop-row" />
 	<Button fx:id="soloButton" styleClass="rect-button, rect-on"
 		text="S" />
 	<Button fx:id="muteButton" styleClass="rect-button" text="M" />

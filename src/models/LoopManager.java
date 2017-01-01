@@ -13,8 +13,8 @@ public class LoopManager {
 	private AudioPlayer audioPlayer;
 	private LoopProject loopProject;
 	private Timer playTimer;
-	private int currentNote;
-
+	
+	private IntegerProperty currentNote = new SimpleIntegerProperty();
 	private BooleanProperty isPlaying = new SimpleBooleanProperty();
 
 	public LoopManager() {
@@ -33,6 +33,14 @@ public class LoopManager {
 	
 	public boolean isPlayling(){
 		return isPlaying.get();
+	}
+	
+	public IntegerProperty currentNoteProperty(){
+		return currentNote;
+	}
+	
+	public int getCurrentNote(){
+		return currentNote.get();
 	}
 
 	public void play() {
@@ -55,11 +63,12 @@ public class LoopManager {
 				}
 
 				int amountOfNotes = loopProject.getTimeSignature().getAmountOfNotes();
-				currentNote = (currentNote + 1) % amountOfNotes;
+				int nextNote = (currentNote.get() + 1) % amountOfNotes;
+				currentNote.set(nextNote);
 			}
 
 			private void playLoopIfNecessary(Loop loop) {
-				boolean shouldPlay = loop.getNoteStatus().get(currentNote).get();
+				boolean shouldPlay = loop.getNoteStatus().get(currentNote.get()).get();
 
 				if (shouldPlay) {
 					String soundFilename = loop.getSoundFilename();
@@ -79,7 +88,7 @@ public class LoopManager {
 			playTimer.cancel();
 			audioPlayer.stopAll();
 			isPlaying.set(false);
-			currentNote = 0;
+			currentNote.set(0);
 		}
 	}
 

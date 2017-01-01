@@ -1,8 +1,11 @@
 package controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import models.LoopManager;
@@ -10,6 +13,8 @@ import models.LoopProject;
 import models.TimeSignature;
 
 public class PlayBarController {
+	private final static String RECT_BUTTON_ACTIVE_STYLE_CLASS = "rect-on";
+	
 	@FXML
 	private Button loadButton;
 	@FXML
@@ -22,9 +27,12 @@ public class PlayBarController {
 	private LoopManager loopManager;
 
 	public void generateNoteStatusButtonsForTimeSignature(int numberOfBeats, int noteValue) {
+		TimeSignature timeSignature = loopManager.getLoopProject().getTimeSignature();
+		
 		for (int currentBeat = 0; currentBeat < numberOfBeats; currentBeat++) {
-			for (int currentNote = 0; currentNote < noteValue; currentNote++) {
-				Button button = createRectButton("" + currentBeat * currentNote);
+			for (int currentNoteInBeat = 0; currentNoteInBeat < noteValue; currentNoteInBeat++) {
+				int currentNote = currentBeat * timeSignature.getNoteValue() + currentNoteInBeat;
+				Button button = createRectButton("" + currentNote);
 				noteStatusContainer.getChildren().add(button);
 			}
 
@@ -50,7 +58,11 @@ public class PlayBarController {
 		LoopProject loopProject = loopManager.getLoopProject();
 		TimeSignature timeSignature = loopProject.getTimeSignature();
 		generateNoteStatusButtonsForTimeSignature(timeSignature.getNumberOfBeats(), timeSignature.getNoteValue());
+		setPlayButtonAction(loopManager);
+		addCurrentNoteDisplayListener(loopManager);
+	}
 
+	private void setPlayButtonAction(LoopManager loopManager) {
 		playButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
@@ -58,6 +70,24 @@ public class PlayBarController {
 					loopManager.stop();
 				} else {
 					loopManager.play();
+				}
+			}
+		});
+	}
+
+	private void addCurrentNoteDisplayListener(LoopManager loopManager) {
+		loopManager.currentNoteProperty().addListener(new ChangeListener<Number>(){
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number previousNote, Number nextNote) {
+				for(Node node : noteStatusContainer.getChildren()){
+					if(node instanceof Button){
+						if(Integer.parseInt(node.getId()) == (int)previousNote){
+							node.getStyleClass().remove(RECT_BUTTON_ACTIVE_STYLE_CLASS);
+						}
+						if(loopManager.isPlayling() && Integer.parseInt(node.getId()) == (int)nextNote){
+							node.getStyleClass().add(RECT_BUTTON_ACTIVE_STYLE_CLASS);
+						}
+					}
 				}
 			}
 		});

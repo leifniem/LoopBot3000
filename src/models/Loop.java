@@ -15,11 +15,10 @@ public class Loop {
 	public Loop(String name, TimeSignature timeSignature) {
 		this.name.set(name);
 		this.timeSignature = timeSignature;
-		//Wie werden die Felder in der GUI generiert? Hier kommt sicher noch eine Aenderung!
 		initNoteStatus();
 		
 		//test purposes...
-		//soundFilename = "D:\\Programmierung\\MagefightColNew\\Eleminja\\Eleminja\\Assets\\ElemNinjaAssets\\Prefabs\\Bullets\\yaay.MP3";
+		soundFilename = "bin/files/Bass-Drum-1.wav";
 	}
 
 	private void initNoteStatus() {

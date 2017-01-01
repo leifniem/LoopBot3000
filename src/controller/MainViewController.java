@@ -20,12 +20,24 @@ public class MainViewController {
 
 	@FXML
 	private void initialize() {
+		initLoopProjectView();
+		initPlaybar();
+		addLoopsForTestPurposes();
+	}
+
+	private void initLoopProjectView() {
 		LoopProject loopProject = loopManager.getLoopProject();
-		TimeSignature timeSignature = loopProject.getTimeSignature();
-		playbarController.generateNoteStatusButtonsForTimeSignature(timeSignature.getNumberOfBeats(),
-				timeSignature.getNoteValue());
 		loopProjectViewController.setLoopProject(loopProject);
+	}
+
+	private void addLoopsForTestPurposes() {
 		loopManager.getLoopProject().addLoop("Test");
 		loopManager.getLoopProject().addDefaultLoop();
+	}
+
+	private void initPlaybar() {
+		LoopProject loopProject = loopManager.getLoopProject();
+		TimeSignature timeSignature = loopProject.getTimeSignature();
+		playbarController.init(loopManager);
 	}
 }

@@ -30,12 +30,17 @@ public class LoopManager {
 	public BooleanProperty isPlayingProperty() {
 		return isPlaying;
 	}
+	
+	public boolean isPlayling(){
+		return isPlaying.get();
+	}
 
 	public void play() {
 		if (loopProject != null && !isPlaying.get()) {
 			TimeSignature timeSignature = loopProject.getTimeSignature();
 			float durationOfSingleSoundInMS = timeSignature.getDurationOfSingleSoundInMS();
 			int startingDelay = 0;
+			playTimer = new Timer();
 			playTimer.scheduleAtFixedRate(createPlayLoopSoundsTask(), startingDelay, (long) durationOfSingleSoundInMS);
 			isPlaying.set(true);
 		}

@@ -31,7 +31,7 @@ public class LoopManager {
 		return isPlaying;
 	}
 	
-	public boolean isPlayling(){
+	public boolean isPlaying(){
 		return isPlaying.get();
 	}
 	
@@ -55,14 +55,15 @@ public class LoopManager {
 	}
 
 	private TimerTask createPlayLoopSoundsTask() {
+		int amountOfNotes = loopProject.getTimeSignature().getAmountOfNotes();
+		
 		return new TimerTask() {
 			@Override
 			public void run() {
 				for (Loop loop : loopProject.getLoops()) {
 					playLoopIfNecessary(loop);
 				}
-
-				int amountOfNotes = loopProject.getTimeSignature().getAmountOfNotes();
+				
 				int nextNote = (currentNote.get() + 1) % amountOfNotes;
 				currentNote.set(nextNote);
 			}
@@ -74,7 +75,7 @@ public class LoopManager {
 					String soundFilename = loop.getSoundFilename();
 
 					if (soundFilename != null && !soundFilename.isEmpty()) {
-						audioPlayer.playSound(loop.getSoundFilename());
+						audioPlayer.playSound(soundFilename);
 					} else {
 						System.out.println("Kein Sound hinterlegt!");
 					}

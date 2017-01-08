@@ -66,7 +66,7 @@ public class PlayBarController {
 		playButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				if (loopManager.isPlayling()) {
+				if (loopManager.isPlaying()) {
 					loopManager.stop();
 				} else {
 					loopManager.play();
@@ -84,7 +84,7 @@ public class PlayBarController {
 						if(Integer.parseInt(node.getId()) == (int)previousNote){
 							node.getStyleClass().remove(RECT_BUTTON_ACTIVE_STYLE_CLASS);
 						}
-						if(loopManager.isPlayling() && Integer.parseInt(node.getId()) == (int)nextNote){
+						if(loopManager.isPlaying() && Integer.parseInt(node.getId()) == (int)nextNote){
 							node.getStyleClass().add(RECT_BUTTON_ACTIVE_STYLE_CLASS);
 						}
 					}

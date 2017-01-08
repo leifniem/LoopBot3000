@@ -69,7 +69,7 @@ public class LoopManager {
 			}
 
 			private void playLoopIfNecessary(Loop loop) {
-				boolean shouldPlay = loop.getNoteStatus().get(currentNote.get()).get();
+				boolean shouldPlay = loop.isMutedProperty().get() && loop.getNoteStatus().get(currentNote.get()).get();
 
 				if (shouldPlay) {
 					String soundFilename = loop.getSoundFilename();

@@ -18,7 +18,7 @@ public class Loop {
 		initNoteStatus();
 		
 		//test purposes...
-		soundFilename = "bin/files/Bass-Drum-1.wav";
+		//soundFilename = "bin/files/Bass-Drum-1.wav";
 	}
 
 	private void initNoteStatus() {

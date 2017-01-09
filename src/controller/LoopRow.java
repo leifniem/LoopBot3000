@@ -54,6 +54,7 @@ public class LoopRow extends HBox {
 			}
 			
 		});
+		nameLabel.textProperty().bind(loop.nameProperty());
 		generateNoteStatusButtonsForTimeSignature();
 	}
 
@@ -107,6 +108,7 @@ public class LoopRow extends HBox {
 		File audio = AudioFileLoader.askUserToLoadAudioFile();
 		if(audio != null){
 			this.loop.setSoundFile(audio.getAbsolutePath());
+			this.loop.nameProperty().set(audio.getName());
 		}
 	}
 

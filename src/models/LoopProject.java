@@ -26,11 +26,6 @@ public class LoopProject {
 		loops.add(loop);
 	}
 
-	public void addLoop(String name) {
-		Loop loop = new Loop(name, timeSignature);
-		loops.add(loop);
-	}
-
 	public StringProperty nameProperty() {
 		return name;
 	}
@@ -58,5 +53,9 @@ public class LoopProject {
 	
 	public TimeSignature getTimeSignature(){
 		return timeSignature;
+	}
+
+	public void addLoop(Loop loop) {
+		loops.add(loop);
 	}
 }

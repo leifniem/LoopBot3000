@@ -31,7 +31,8 @@ public class MainViewController {
 	}
 
 	private void addLoopsForTestPurposes() {
-		loopManager.getLoopProject().addLoop("Test");
+		loopManager.getLoopProject().addDefaultLoop();
+		loopManager.getLoopProject().addDefaultLoop();
 		loopManager.getLoopProject().addDefaultLoop();
 	}
 

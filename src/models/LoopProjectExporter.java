@@ -50,11 +50,16 @@ public class LoopProjectExporter {
 		loopProject.nameProperty().set(simpleLoopProject.getName());
 		
 		for(SimpleLoop simpleLoop : simpleLoopProject.getLoops()){
-			Loop loop = new Loop(simpleLoop.getName(), timeSignature);
-			loop.setSoundFile(simpleLoop.getSoundFilename());
+			Loop loop = generateLoopForSimpleLoop(timeSignature, simpleLoop);
 			loopProject.addLoop(loop);
 		}
 		
 		return loopProject;
+	}
+
+	private static Loop generateLoopForSimpleLoop(TimeSignature timeSignature, SimpleLoop simpleLoop) {
+		Loop loop = new Loop(simpleLoop.getName(), timeSignature);
+		loop.setSoundFile(simpleLoop.getSoundFilename());
+		return loop;
 	}
 }

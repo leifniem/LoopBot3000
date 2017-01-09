@@ -132,6 +132,29 @@ public class AudioRecorder {
 
 		return maxNumber + 1;
 	}
+	
+	private String getNewestRecording() {
+		int maxNumber = 0;
+		File folder = getRecordingFolderPath();
+		String filename = "";
+
+		for (final File fileEntry : folder.listFiles()) {
+			if (fileEntry.isFile()) {
+				String[] splittedFileName = fileEntry.getName().split("\\.");
+
+				if (isRecordedFile(splittedFileName)) {
+					int number = Integer.parseInt(splittedFileName[1]);
+
+					if (number > maxNumber) {
+						maxNumber = number;
+						filename = fileEntry.getAbsolutePath();
+					}
+				}
+			}
+		}
+
+		return filename;
+	}
 
 	private boolean isRecordedFile(String[] splittedFileName) {
 		return splittedFileName.length == 3 && splittedFileName[0].equals(RECORDING_PREFIX)

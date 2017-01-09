@@ -26,6 +26,10 @@ public class LoopManager {
 	public void createDefaultLoopProject() {
 		loopProject = new LoopProject(DEFAULT_NUMBER_OF_BEATS, DEFAULT_NOTE_VALUE, DEFAULT_TEMP);
 	}
+	
+	public void setLoopProject(LoopProject loopProject){
+		this.loopProject = loopProject;
+	}
 
 	public BooleanProperty isPlayingProperty() {
 		return isPlaying;

@@ -6,14 +6,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" 
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
 	fx:controller="controller.MainViewController" alignment="CENTER">
 
 	<stylesheets>
 		<URL value="@styles.css" />
 	</stylesheets>
-	
+
 	<fx:include fx:id="loopProjectView" source="LoopProjectView.fxml" />
-	<fx:include fx:id="playbar" source="PlayBar.fxml" />
+
+	<HBox styleClass="play-bar-buttons" alignment="CENTER_RIGHT">
+		<Button fx:id="loadButton" text="Load" />
+		<Button fx:id="saveButton" text="Save" />
+		<fx:include fx:id="playbar" source="PlayBar.fxml" />
+	</HBox>
 </VBox>
 

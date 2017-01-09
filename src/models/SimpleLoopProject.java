@@ -2,6 +2,7 @@ package models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SimpleLoopProject implements Serializable{
 	private static final long serialVersionUID = 7248543067960648347L;
@@ -10,12 +11,14 @@ public class SimpleLoopProject implements Serializable{
 	private int numberOfBeats;
 	private int noteValue;
 	private int tempo;
-	private ArrayList<SimpleLoop> loops = new ArrayList<SimpleLoop>();
+	private List<SimpleLoop> loops;
 	
 	public SimpleLoopProject(){
+		loops = new ArrayList<SimpleLoop>();
 	}
 	
 	public SimpleLoopProject(LoopProject loopProject){
+		loops = new ArrayList<SimpleLoop>();
 		setName(loopProject.nameProperty().get());
 		TimeSignature timeSignature = loopProject.getTimeSignature();
 		setNumberOfBeats(timeSignature.getNumberOfBeats());
@@ -60,7 +63,11 @@ public class SimpleLoopProject implements Serializable{
 		this.tempo = tempo;
 	}
 	
-	public ArrayList<SimpleLoop> getLoops(){
+	public List<SimpleLoop> getLoops(){
 		return loops;
+	}
+	
+	public void setLoops(List<SimpleLoop> loops){
+		this.loops = loops;
 	}
 }

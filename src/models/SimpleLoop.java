@@ -2,6 +2,8 @@ package models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
 import javafx.beans.property.BooleanProperty;
 
 public class SimpleLoop implements Serializable{
@@ -11,7 +13,7 @@ public class SimpleLoop implements Serializable{
 	private String soundFilename;
 	private boolean isMuted;
 	private boolean isSolo;
-	private ArrayList<Boolean> noteStatus = new ArrayList<Boolean>();
+	private List<Boolean> noteStatus = new ArrayList<Boolean>();
 
 	public SimpleLoop(){
 	}
@@ -57,5 +59,13 @@ public class SimpleLoop implements Serializable{
 
 	public void setSolo(boolean isSolo) {
 		this.isSolo = isSolo;
+	}
+	
+	public List<Boolean> getNoteStatus(){
+		return noteStatus;
+	}
+	
+	public void setNoteStatus(List<Boolean> noteStatus){
+		this.noteStatus = noteStatus;
 	}
 }

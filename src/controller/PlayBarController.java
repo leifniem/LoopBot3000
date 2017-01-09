@@ -10,15 +10,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import models.LoopManager;
 import models.LoopProject;
+import models.LoopProjectExporter;
 import models.TimeSignature;
 
 public class PlayBarController {
 	private final static String RECT_BUTTON_ACTIVE_STYLE_CLASS = "rect-on";
 	
-	@FXML
-	private Button loadButton;
-	@FXML
-	private Button saveButton;
 	@FXML
 	private Button playButton;
 	@FXML
@@ -27,6 +24,7 @@ public class PlayBarController {
 	private LoopManager loopManager;
 
 	public void generateNoteStatusButtonsForTimeSignature(int numberOfBeats, int noteValue) {
+		noteStatusContainer.getChildren().clear();
 		TimeSignature timeSignature = loopManager.getLoopProject().getTimeSignature();
 		
 		for (int currentBeat = 0; currentBeat < numberOfBeats; currentBeat++) {

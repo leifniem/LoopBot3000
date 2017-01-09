@@ -7,13 +7,7 @@
 	fx:controller="controller.PlayBarController" alignment="CENTER"
 	styleClass="play-bar">
 	<children>
-
-		<HBox styleClass="play-bar-buttons" alignment="CENTER_RIGHT">
-			<Button fx:id="loadButton" text="Load" />
-			<Button fx:id="saveButton" text="Save" />
-			<Button fx:id="playButton" styleClass="play-on" />
-		</HBox>
-
+		<Button fx:id="playButton" styleClass="play-on" />
 		<HBox fx:id="noteStatusContainer" styleClass="play-bar"/>
 	</children>
 </HBox>

@@ -19,13 +19,16 @@ public class LoopProjectViewController {
 
 	}
 
-	@FXML
-	private void initialize() {
-	
-	}
-
-	public void setLoopProject(LoopProject loopProject) {
+	public void initLoopProjectContainer(LoopProject loopProject) {
 		this.loopProject = loopProject;
+		
+		loopRowContainer.getChildren().clear();
+		for (Loop loop : loopProject.getLoops()) {
+			LoopRow loopRow = new LoopRow(loop);
+			loopRows.add(loopRow);
+			loopRowContainer.getChildren().add(loopRow);
+		}
+		
 		addChangeListenerToLoopProject();
 	}
 

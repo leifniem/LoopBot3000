@@ -60,6 +60,12 @@ public class LoopProjectExporter {
 	private static Loop generateLoopForSimpleLoop(TimeSignature timeSignature, SimpleLoop simpleLoop) {
 		Loop loop = new Loop(simpleLoop.getName(), timeSignature);
 		loop.setSoundFile(simpleLoop.getSoundFilename());
+		
+		for(int i = 0; i < simpleLoop.getNoteStatus().size(); i++){
+			boolean active = simpleLoop.getNoteStatus().get(i);
+			loop.getNoteStatus().get(i).set(active);
+		}
+		
 		return loop;
 	}
 }

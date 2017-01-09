@@ -60,12 +60,10 @@ public class LoopRow extends HBox {
 
 	private void addActionToChooseFileButton() {
 		chooseFileButton.setOnAction(new EventHandler<ActionEvent>(){
-
 			@Override
 			public void handle(ActionEvent event) {
 				loadSample();
 			}
-			
 		});
 	}
 

@@ -8,14 +8,18 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class AudioPlayer {
+	private final static int SOUND_LIMIT = 20;
+	
 	private List<MediaPlayer> mediaPlayers = new LinkedList<MediaPlayer>();
 	
 	public void playSound(String filename){
-		MediaPlayer mediaPlayer = getNewMediaPlayerFor(filename);
-		mediaPlayers.add(mediaPlayer);
-		mediaPlayer.play();
-		mediaPlayer.setOnEndOfMedia(createRemoveMediaPlayerRunnable(mediaPlayer));
-		mediaPlayer.setOnStopped(createRemoveMediaPlayerRunnable(mediaPlayer));
+		if(mediaPlayers.size() < SOUND_LIMIT){
+			MediaPlayer mediaPlayer = getNewMediaPlayerFor(filename);
+			mediaPlayers.add(mediaPlayer);
+			mediaPlayer.play();
+			mediaPlayer.setOnEndOfMedia(createRemoveMediaPlayerRunnable(mediaPlayer));
+			mediaPlayer.setOnStopped(createRemoveMediaPlayerRunnable(mediaPlayer));	
+		}
 	}
 
 	private MediaPlayer getNewMediaPlayerFor(String filename) {

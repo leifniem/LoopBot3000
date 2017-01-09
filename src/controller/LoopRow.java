@@ -39,6 +39,14 @@ public class LoopRow extends HBox {
 	public LoopRow(Loop loop) {
 		this.loop = loop;
 
+		loadFxml();		
+		addActionToChooseFileButton();
+		addEventsToRecordButton(loop);
+		nameLabel.textProperty().bind(loop.nameProperty());
+		generateNoteStatusButtonsForTimeSignature();
+	}
+
+	private void loadFxml() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/LoopRowView.fxml"));
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
@@ -48,7 +56,9 @@ public class LoopRow extends HBox {
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
 		}
-		
+	}
+
+	private void addActionToChooseFileButton() {
 		chooseFileButton.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -57,8 +67,10 @@ public class LoopRow extends HBox {
 			}
 			
 		});
-		recordButton.setOnMousePressed(new EventHandler<MouseEvent>(){
+	}
 
+	private void addEventsToRecordButton(Loop loop) {
+		recordButton.setOnMousePressed(new EventHandler<MouseEvent>(){
 			@Override
 			public void handle(MouseEvent event) {
 				rec.startRecording();
@@ -66,16 +78,12 @@ public class LoopRow extends HBox {
 			
 		});
 		recordButton.setOnMouseReleased(new EventHandler<MouseEvent>(){
-
 			@Override
 			public void handle(MouseEvent event) {
 				rec.stopRecording();
 				loop.setSoundFile(rec.getNewestRecording());
 			}
-		
 		});
-		nameLabel.textProperty().bind(loop.nameProperty());
-		generateNoteStatusButtonsForTimeSignature();
 	}
 
 	private void generateNoteStatusButtonsForTimeSignature() {

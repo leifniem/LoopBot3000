@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.collections.ObservableList;
@@ -9,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import models.AudioFileLoader;
 import models.Loop;
 import models.TimeSignature;
 
@@ -43,7 +45,15 @@ public class LoopRow extends HBox {
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
 		}
+		
+		chooseFileButton.setOnAction(new EventHandler<ActionEvent>(){
 
+			@Override
+			public void handle(ActionEvent event) {
+				loadSample();
+			}
+			
+		});
 		generateNoteStatusButtonsForTimeSignature();
 	}
 
@@ -91,6 +101,13 @@ public class LoopRow extends HBox {
 		});
 		
 		return button;
+	}
+	
+	public void loadSample(){
+		File audio = AudioFileLoader.askUserToLoadAudioFile();
+		if(audio != null){
+			this.loop.setSoundFile(audio.getAbsolutePath());
+		}
 	}
 
 	public Loop getLoop() {

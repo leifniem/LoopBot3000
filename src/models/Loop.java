@@ -31,6 +31,10 @@ public class Loop {
 	public String getSoundFilename(){
 		return soundFilename;
 	}
+	
+	public void setSoundFile(String soundPath){
+		this.soundFilename = soundPath;
+	}
 
 	public StringProperty nameProperty() {
 		return name;

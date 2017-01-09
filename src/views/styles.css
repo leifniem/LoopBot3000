@@ -4,29 +4,29 @@
 
 .root{
 	-fx-background-color: #222;
-	-fx-padding: 40.0px;
+	-fx-padding: 40px;
 	-fx-font-family: 'Roboto Mono';
 	-fx-font-weight: 700;
 }
 
 .button{
-	-fx-border-radius: 10.0px;
+	-fx-border-radius: 10px;
 }
 
 .loop-row,
 .play-bar{
-	-fx-padding: 5.0px 20.0px;
-	-fx-spacing: 10.0px;
+	-fx-padding: 5px 20px;
+	-fx-spacing: 10px;
 }
 
 .play-bar-buttons{
-	-fx-spacing: 10.0px;
-	-fx-pref-width: 160.0px;
+	-fx-spacing: 10px;
+	-fx-pref-width: 160px;
 	-fx-align: right;
 }
 
 .pb-spacer{
-	-fx-pref-width: 55.0px;
+	-fx-pref-width: 55px;
 }
 
 .play-bar-buttons .button{
@@ -35,79 +35,79 @@
 
 .loop-row .label{
 	-fx-text-fill: #D8D8D8;
-	-fx-pref-width: 100.0px;
-	-fx-min-width: 100.0px;
-	-fx-max-width: 100.0px;
+	-fx-pref-width: 100px;
+	-fx-min-width: 100px;
+	-fx-max-width: 100px;
 }
 
 #record{
 	-fx-background-color: #896260;
-	-fx-background-radius: 20.0px;
-	-fx-pref-width: 20.0px;
-	-fx-pref-height: 20.0px;
-	-fx-min-width: 20.0px;
-	-fx-max-width: 20.0px;
-	-fx-min-height: 20.0px;
-	-fx-max-height: 20.0px;
+	-fx-background-radius: 20px;
+	-fx-pref-width: 20px;
+	-fx-pref-height: 20px;
+	-fx-min-width: 20px;
+	-fx-max-width: 20px;
+	-fx-min-height: 20px;
+	-fx-max-height: 20px;
 }
 
 #recordButton{
 	-fx-background-color: #FF837D;
-	-fx-effect: dropshadow(three-pass-box, #FF837D, 10.0, 0.0, 0.0, 0.0);
-	-fx-background-radius: 20.0px;
-	-fx-pref-width: 20.0px;
-	-fx-pref-height: 20.0px;
-	-fx-min-width: 20.0px;
-	-fx-max-width: 20.0px;
-	-fx-min-height: 20.0px;
-	-fx-max-height: 20.0px;
+	-fx-effect: dropshadow(three-pass-box, #FF837D, 10, 0, 0, 0);
+	-fx-background-radius: 20px;
+	-fx-pref-width: 20px;
+	-fx-pref-height: 20px;
+	-fx-min-width: 20px;
+	-fx-max-width: 20px;
+	-fx-min-height: 20px;
+	-fx-max-height: 20px;
 }
 
 #chooseFileButton{
 	-fx-background-color: transparent;
 	-fx-background-image: url(../files/open.png);
-	-fx-background-size: 25.0px 25.0px;
+	-fx-background-size: 25px 25px;
 	-fx-background-repeat: no-repeat;
-	-fx-pref-width: 25.0px;
-	-fx-pref-height: 25.0px;
-	-fx-min-width: 25.0px;
-	-fx-max-width: 25.0px;
-	-fx-min-height: 25.0px;
-	-fx-max-height: 25.0px;
+	-fx-pref-width: 25px;
+	-fx-pref-height: 25px;
+	-fx-min-width: 25px;
+	-fx-max-width: 25px;
+	-fx-min-height: 25px;
+	-fx-max-height: 25px;
 }
 
 .rect-button{
 	-fx-border: none;
-	-fx-pref-width: 25.0px;
-	-fx-pref-height: 25.0px;
-	-fx-min-width: 25.0px;
-	-fx-max-width: 25.0px;
-	-fx-min-height: 25.0px;
-	-fx-max-height: 25.0px;
+	-fx-pref-width: 25px;
+	-fx-pref-height: 25px;
+	-fx-min-width: 25px;
+	-fx-max-width: 25px;
+	-fx-min-height: 25px;
+	-fx-max-height: 25px;
 	-fx-text-fill: #4A4A4A;
 	-fx-background-color: #909092;
 }
 
 .rect-on{
 	-fx-background-color: #D7FBA7;
-	-fx-effect: dropshadow(three-pass-box, #D7FBA7, 10.0, 0.0, 0.0, 0.0);
+	-fx-effect: dropshadow(three-pass-box, #D7FBA7, 10, 0, 0, 0);
 	-fx-text-fill: #889775;	
 }
 
 #playButton{
 	-fx-background-color: #D8D8D8;
 	-fx-shape: "M5,5 C5,2.24 6.9,1.19 9.24,2.645 L24.765,12.35 C27.1,13.8 27.1,16.19 24.765,17.647 L9.24,27.35 C6.9,28.81 5,27.77 5,25 L5,5 Z";
-	-fx-background-size: 25.0px 25.0px;
+	-fx-background-size: 25px 25px;
 	-fx-background-repeat: no-repeat;
-	-fx-pref-width: 20.0px;
-	-fx-min-width: 20.0px;
-	-fx-max-width: 20.0px;
-	-fx-pref-height: 25.0px;
-	-fx-min-height: 25.0px;
-	-fx-max-height: 25.0px;
+	-fx-pref-width: 20px;
+	-fx-min-width: 20px;
+	-fx-max-width: 20px;
+	-fx-pref-height: 25px;
+	-fx-min-height: 25px;
+	-fx-max-height: 25px;
 }
 
 .play-on{
 	-fx-background-color: #FFF;
-	-fx-effect: dropshadow(three-pass-box, #FFF, 10.0, 0.0, 0.0, 0.0);
+	-fx-effect: dropshadow(three-pass-box, #FFF, 10, 0, 0, 0);
 }

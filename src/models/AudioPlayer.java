@@ -1,6 +1,7 @@
 package models;
 
 import java.io.File;
+import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +13,12 @@ public class AudioPlayer {
 	
 	private List<MediaPlayer> mediaPlayers = new LinkedList<MediaPlayer>();
 	
-	public void playSound(String filename){
+	public void playShortSound(String filename){
+		MediaPlayer mediaPlayer = getNewMediaPlayerFor(filename);
+		mediaPlayer.play();
+	}
+	
+	public void playLongSound(String filename){
 		if(mediaPlayers.size() < SOUND_LIMIT){
 			MediaPlayer mediaPlayer = getNewMediaPlayerFor(filename);
 			mediaPlayers.add(mediaPlayer);
@@ -23,16 +29,9 @@ public class AudioPlayer {
 	}
 
 	private MediaPlayer getNewMediaPlayerFor(String filename) {
-		String asciiFilename = convertToAsciiFilename(filename);
-		Media media = new Media(asciiFilename);
+		Media media = new Media(filename);
 		MediaPlayer mediaPlayer = new MediaPlayer(media);
 		return mediaPlayer;
-	}
-
-	private String convertToAsciiFilename(String filename) {
-		File file = new File(filename);
-		String asciiFilename = file.toURI().toASCIIString();
-		return asciiFilename;
 	}
 	
 	public void stopAll(){

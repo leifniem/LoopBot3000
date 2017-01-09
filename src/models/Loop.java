@@ -1,5 +1,8 @@
 package models;
 
+import java.io.File;
+import java.net.URI;
+
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,6 +10,7 @@ import javafx.collections.ObservableList;
 public class Loop {
 	private StringProperty name = new SimpleStringProperty();
 	private String soundFilename;
+	private String asciiFilename;
 	private BooleanProperty isMuted = new SimpleBooleanProperty();
 	private BooleanProperty isSolo = new SimpleBooleanProperty();
 	private TimeSignature timeSignature;
@@ -16,9 +20,6 @@ public class Loop {
 		this.name.set(name);
 		this.timeSignature = timeSignature;
 		initNoteStatus();
-		
-		//test purposes...
-		//soundFilename = "bin/files/Bass-Drum-1.wav";
 	}
 
 	private void initNoteStatus() {
@@ -32,8 +33,19 @@ public class Loop {
 		return soundFilename;
 	}
 	
-	public void setSoundFile(String soundPath){
-		this.soundFilename = soundPath;
+	public String getAsciiFilename(){
+		return asciiFilename;
+	}
+	
+	public void setSoundFile(String soundFilename){
+		this.soundFilename = soundFilename;
+		asciiFilename = convertToAsciiFilename(soundFilename);
+	}
+	
+	private String convertToAsciiFilename(String filename){
+		File file = new File(filename);
+		String result = file.toURI().toASCIIString();
+		return result;
 	}
 
 	public StringProperty nameProperty() {

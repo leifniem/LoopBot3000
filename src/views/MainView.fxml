@@ -15,7 +15,7 @@
 
 	<fx:include fx:id="loopProjectView" source="LoopProjectView.fxml" />
 
-	<HBox styleClass="play-bar-buttons" alignment="CENTER_RIGHT">
+	<HBox styleClass="play-bar-buttons" alignment="CENTER">
 		<Button fx:id="loadButton" text="Load" />
 		<Button fx:id="saveButton" text="Save" />
 		<fx:include fx:id="playbar" source="PlayBar.fxml" />

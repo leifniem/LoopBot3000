@@ -8,9 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import models.LoopManager;
+import models.LoopPlayer;
 import models.LoopProject;
-import models.LoopProjectExporter;
 import models.TimeSignature;
 
 public class PlayBarController {
@@ -21,12 +20,12 @@ public class PlayBarController {
 	@FXML
 	private HBox noteStatusContainer;
 
-	private LoopManager loopManager;
+	private LoopPlayer loopPlayer;
+	private TimeSignature timeSignature;
 
 	public void generateNoteStatusButtonsForTimeSignature(int numberOfBeats, int noteValue) {
 		noteStatusContainer.getChildren().clear();
-		TimeSignature timeSignature = loopManager.getLoopProject().getTimeSignature();
-		
+
 		for (int currentBeat = 0; currentBeat < numberOfBeats; currentBeat++) {
 			for (int currentNoteInBeat = 0; currentNoteInBeat < noteValue; currentNoteInBeat++) {
 				int currentNote = currentBeat * timeSignature.getNoteValue() + currentNoteInBeat;
@@ -51,16 +50,15 @@ public class PlayBarController {
 		return button;
 	}
 
-	public void init(LoopManager loopManager) {
-		this.loopManager = loopManager;
-		LoopProject loopProject = loopManager.getLoopProject();
-		TimeSignature timeSignature = loopProject.getTimeSignature();
+	public void init(LoopProject loopProject) {
+		loopPlayer = new LoopPlayer(loopProject);
+		timeSignature = loopProject.getTimeSignature();
 		generateNoteStatusButtonsForTimeSignature(timeSignature.getNumberOfBeats(), timeSignature.getNoteValue());
-		setPlayButtonAction(loopManager);
-		addCurrentNoteDisplayListener(loopManager);
+		setPlayButtonAction(loopPlayer);
+		addCurrentNoteDisplayListener(loopPlayer);
 	}
 
-	private void setPlayButtonAction(LoopManager loopManager) {
+	private void setPlayButtonAction(LoopPlayer loopManager) {
 		playButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
@@ -73,7 +71,7 @@ public class PlayBarController {
 		});
 	}
 
-	private void addCurrentNoteDisplayListener(LoopManager loopManager) {
+	private void addCurrentNoteDisplayListener(LoopPlayer loopManager) {
 		loopManager.currentNoteProperty().addListener(new ChangeListener<Number>(){
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number previousNote, Number nextNote) {

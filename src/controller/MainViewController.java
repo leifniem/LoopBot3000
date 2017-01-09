@@ -5,12 +5,16 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
-import models.LoopManager;
+import models.LoopPlayer;
 import models.LoopProject;
 import models.LoopProjectExporter;
 import models.TimeSignature;
 
 public class MainViewController {
+	private final static int DEFAULT_NUMBER_OF_BEATS = 4;
+	private final static int DEFAULT_NOTE_VALUE = 4;
+	private final static int DEFAULT_TEMP = 120;
+	
 	@FXML
 	private LoopProjectViewController loopProjectViewController;
 	@FXML
@@ -20,10 +24,18 @@ public class MainViewController {
 	@FXML
 	private Button saveButton;
 
-	private LoopManager loopManager;
+	private LoopProject loopProject;
 
 	public MainViewController() {
-		loopManager = new LoopManager();
+		createDefaultLoopProject();
+	}
+	
+	public void createDefaultLoopProject() {
+		loopProject = new LoopProject(DEFAULT_NUMBER_OF_BEATS, DEFAULT_NOTE_VALUE, DEFAULT_TEMP);
+	}
+	
+	public void setLoopProject(LoopProject loopProject){
+		this.loopProject = loopProject;
 	}
 
 	@FXML
@@ -34,15 +46,14 @@ public class MainViewController {
 		saveButton.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent arg0) {
-				LoopProjectExporter.exportLoopProject(loopManager.getLoopProject());
+				LoopProjectExporter.exportLoopProject(loopProject);
 			}
 		});
 		
 		loadButton.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent arg0) {
-				LoopProject loopProject = LoopProjectExporter.importLoopProject();
-				loopManager.setLoopProject(loopProject);
+				loopProject = LoopProjectExporter.importLoopProject();
 				initLoopProjectView();
 				initPlaybar();
 			}
@@ -52,19 +63,16 @@ public class MainViewController {
 	}
 
 	private void initLoopProjectView() {
-		LoopProject loopProject = loopManager.getLoopProject();
 		loopProjectViewController.initLoopProjectContainer(loopProject);
 	}
 
 	private void addLoopsForTestPurposes() {
-		loopManager.getLoopProject().addDefaultLoop();
-		loopManager.getLoopProject().addDefaultLoop();
-		loopManager.getLoopProject().addDefaultLoop();
+		loopProject.addDefaultLoop();
+		loopProject.addDefaultLoop();
+		loopProject.addDefaultLoop();
 	}
 
 	private void initPlaybar() {
-		LoopProject loopProject = loopManager.getLoopProject();
-		TimeSignature timeSignature = loopProject.getTimeSignature();
-		playbarController.init(loopManager);
+		playbarController.init(loopProject);
 	}
 }

@@ -9,14 +9,17 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import models.AudioFileLoader;
+import models.AudioRecorder;
 import models.Loop;
 import models.TimeSignature;
 
 public class LoopRow extends HBox {
 	private final static String RECT_BUTTON_STYLE_CLASS = "rect-button";
 	private final static String RECT_BUTTON_ACTIVE_STYLE_CLASS = "rect-on";
+	private final AudioRecorder rec = new AudioRecorder();
 	
 	@FXML
 	private Label nameLabel;
@@ -53,6 +56,23 @@ public class LoopRow extends HBox {
 				loadSample();
 			}
 			
+		});
+		recordButton.setOnMousePressed(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				rec.startRecording();
+			}
+			
+		});
+		recordButton.setOnMouseReleased(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				rec.stopRecording();
+				loop.setSoundFile(rec.getNewestRecording());
+			}
+		
 		});
 		nameLabel.textProperty().bind(loop.nameProperty());
 		generateNoteStatusButtonsForTimeSignature();

@@ -21,7 +21,7 @@ public class AudioRecorder {
 	private final static int STEREO = 2;
 	private final static int FRAME_SIZE_IN_BYTES = 4;
 	private final static int FRAMERATE = 44100;
-	private final static String OUTPUT_PATH = "";
+	private final static String OUTPUT_PATH = "tempRecordings/";
 	private final static int RECORDING_TIMEOUT_IN_SECONDS = 10;
 	private final static String RECORDING_PREFIX = "recording";
 	private final static String OUTPUT_FORMAT = "wav";
@@ -133,7 +133,7 @@ public class AudioRecorder {
 		return maxNumber + 1;
 	}
 	
-	private String getNewestRecording() {
+	public String getNewestRecording() {
 		int maxNumber = 0;
 		File folder = getRecordingFolderPath();
 		String filename = "";

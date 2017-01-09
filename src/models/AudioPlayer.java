@@ -8,7 +8,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class AudioPlayer {
-	private final static int SOUND_LIMIT = 20;
+	private final static int SOUND_LIMIT = 16;
 	
 	private List<MediaPlayer> mediaPlayers = new LinkedList<MediaPlayer>();
 	

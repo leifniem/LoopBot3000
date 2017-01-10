@@ -18,6 +18,8 @@ public class Launcher extends Application {
 		VBox root = FXMLLoader.load(getClass().getResource("/views/MainView.fxml"));	
 
 		Scene scene = new Scene(root, 1000, 500);
+		//hier könnte der InputManager initialisiert werden!
+		
 		addOnCloseRequestHandlerToPrimaryStage(stage);
 		stage.setTitle("Loop-Bot 3000");
 		stage.setScene(scene);

@@ -1,17 +1,12 @@
 package controller;
 
-import java.io.File;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.*;
-import models.FileManager;
-import models.LoopPlayer;
 import models.LoopProject;
 import models.LoopProjectExporter;
-import models.TimeSignature;
 
 public class MainViewController {
 	private final static int DEFAULT_NUMBER_OF_BEATS = 4;
@@ -51,24 +46,16 @@ public class MainViewController {
 
 		saveButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent arg0) {
-				File file = FileManager.askUserToSaveXMLFile();
-				if(file != null){
-					LoopProjectExporter.exportLoopProject(loopProject, file.getAbsolutePath());
-				}
+			public void handle(ActionEvent event) {
+				LoopProjectExporter.askUserToExportLoopProject(loopProject);
 			}
 		});
 
 		loadButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				File file = FileManager.askUserToLoadXMLFile();
-				if (file != null) {
-					loopProject = LoopProjectExporter.importLoopProject(file.getAbsolutePath());
-					initLoopProjectView();
-					initPlaybar();
-				}
-			}
+				importLoopProject();
+			}	
 		});
 
 		addLoopButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -82,6 +69,12 @@ public class MainViewController {
 
 		addLoopsForTestPurposes();
 	}
+	
+	public void importLoopProject() {
+		loopProject = LoopProjectExporter.askUserToImportLoopProject();
+		initLoopProjectView();
+		initPlaybar();
+	}
 
 	private void initLoopProjectView() {
 		loopProjectViewController.initLoopProjectContainer(loopProject);
@@ -93,5 +86,9 @@ public class MainViewController {
 
 	private void initPlaybar() {
 		playbarController.init(loopProject);
+	}
+
+	public LoopProject getLoopProject() {
+		return loopProject;
 	}
 }

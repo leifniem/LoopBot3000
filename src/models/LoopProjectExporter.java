@@ -4,11 +4,31 @@ import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class LoopProjectExporter {
+	
+	public static LoopProject askUserToImportLoopProject(){
+		LoopProject result = null;
+		File file = FileManager.askUserToLoadXMLFile();
+		
+		if (file != null) {
+			result = LoopProjectExporter.importLoopProject(file.getAbsolutePath());	
+		}
+		
+		return result;
+	}
+	
+	public static void askUserToExportLoopProject(LoopProject loopProject){
+		File file = FileManager.askUserToSaveXMLFile();
+		if (file != null) {
+			exportLoopProject(loopProject, file.getAbsolutePath());
+		}
+	}
+	
 	public static void exportLoopProject(LoopProject loopProject, String filepath) {
 		try {
 			SimpleLoopProject simpleLoopProject = new SimpleLoopProject(loopProject);

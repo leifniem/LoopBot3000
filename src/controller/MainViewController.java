@@ -1,10 +1,13 @@
 package controller;
 
+import java.io.File;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import models.FileLoader;
 import models.LoopPlayer;
 import models.LoopProject;
 import models.LoopProjectExporter;
@@ -15,7 +18,7 @@ public class MainViewController {
 	private final static int DEFAULT_NOTE_VALUE = 4;
 	private final static int DEFAULT_TEMP = 120;
 	private final static int MAX_LOOPS = 9;
-	
+
 	@FXML
 	private LoopProjectViewController loopProjectViewController;
 	@FXML
@@ -32,12 +35,12 @@ public class MainViewController {
 	public MainViewController() {
 		createDefaultLoopProject();
 	}
-	
+
 	public void createDefaultLoopProject() {
 		loopProject = new LoopProject(DEFAULT_NUMBER_OF_BEATS, DEFAULT_NOTE_VALUE, DEFAULT_TEMP);
 	}
-	
-	public void setLoopProject(LoopProject loopProject){
+
+	public void setLoopProject(LoopProject loopProject) {
 		this.loopProject = loopProject;
 	}
 
@@ -45,32 +48,35 @@ public class MainViewController {
 	private void initialize() {
 		initLoopProjectView();
 		initPlaybar();
-		
-		saveButton.setOnAction(new EventHandler<ActionEvent>(){
+
+		saveButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				LoopProjectExporter.exportLoopProject(loopProject);
 			}
 		});
-		
-		loadButton.setOnAction(new EventHandler<ActionEvent>(){
+
+		loadButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				loopProject = LoopProjectExporter.importLoopProject();
-				initLoopProjectView();
-				initPlaybar();
+				File file = FileLoader.askUserToLoadXMLFile();
+				if (file != null) {
+					loopProject = LoopProjectExporter.importLoopProject(file.getAbsolutePath());
+					initLoopProjectView();
+					initPlaybar();
+				}
 			}
 		});
-		
-		addLoopButton.setOnAction(new EventHandler<ActionEvent>(){
+
+		addLoopButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if(loopProject.getLoops().size() < MAX_LOOPS){
+				if (loopProject.getLoops().size() < MAX_LOOPS) {
 					loopProject.addEmptyLoop();
 				}
 			}
 		});
-		
+
 		addLoopsForTestPurposes();
 	}
 

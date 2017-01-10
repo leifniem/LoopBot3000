@@ -12,7 +12,7 @@ public class LoopProjectExporter {
 	public static void exportLoopProject(LoopProject loopProject) {
 		try {
 			SimpleLoopProject simpleLoopProject = new SimpleLoopProject(loopProject);
-			FileOutputStream fos = new FileOutputStream("blubb.xml");
+			FileOutputStream fos = new FileOutputStream("blubb.lp");
 			BufferedOutputStream bos = new BufferedOutputStream(fos);
 			XMLEncoder encoder = new XMLEncoder(bos);
 			encoder.writeObject(simpleLoopProject);
@@ -22,11 +22,11 @@ public class LoopProjectExporter {
 		}
 	}
 
-	public static LoopProject importLoopProject() {
+	public static LoopProject importLoopProject(String filepath) {
 		LoopProject loopProject = null;
 		
 		try {
-			FileInputStream fis = new FileInputStream("blubb.xml");
+			FileInputStream fis = new FileInputStream(filepath);
 			BufferedInputStream bis = new BufferedInputStream(fis);
 			XMLDecoder decoder = new XMLDecoder(bis);
 			SimpleLoopProject simpleLoopProject = (SimpleLoopProject) decoder.readObject();

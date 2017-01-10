@@ -13,17 +13,17 @@ public class Loop {
 	private String asciiFilename;
 	private BooleanProperty isMuted = new SimpleBooleanProperty();
 	private BooleanProperty isSolo = new SimpleBooleanProperty();
-	private TimeSignature timeSignature;
+	private LoopProject loopProject;
 	private ObservableList<BooleanProperty> noteStatus = FXCollections.<BooleanProperty> observableArrayList();
 
-	public Loop(String name, TimeSignature timeSignature) {
+	public Loop(String name, LoopProject loopProject) {
 		this.name.set(name);
-		this.timeSignature = timeSignature;
+		this.loopProject = loopProject;
 		initNoteStatus();
 	}
 
 	private void initNoteStatus() {
-		int amountOfNotes = timeSignature.getAmountOfNotes();
+		int amountOfNotes = loopProject.getTimeSignature().getAmountOfNotes();
 		for (int i = 0; i < amountOfNotes; i++) {
 			noteStatus.add(new SimpleBooleanProperty(false));
 		}
@@ -39,7 +39,9 @@ public class Loop {
 	
 	public void setSoundFile(String soundFilename){
 		this.soundFilename = soundFilename;
-		asciiFilename = convertToAsciiFilename(soundFilename);
+		if(soundFilename != null && !soundFilename.isEmpty()){
+			asciiFilename = convertToAsciiFilename(soundFilename);			
+		}
 	}
 	
 	private String convertToAsciiFilename(String filename){
@@ -65,6 +67,12 @@ public class Loop {
 	}
 	
 	public TimeSignature getTimeSignature(){
-		return timeSignature;
+		return loopProject.getTimeSignature();
+	}
+	
+	public void remove(){
+		if(loopProject.getLoops().size() > 1){
+			loopProject.removeLoop(this);			
+		}
 	}
 }

@@ -5,6 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class LoopProject {
+	private final static String DEFAULT_LOOP_NAME = "Empty";
+	
 	private StringProperty name = new SimpleStringProperty();
 	private ObservableList<Loop> loops = FXCollections.<Loop> observableArrayList();
 	private TimeSignature timeSignature;
@@ -14,7 +16,7 @@ public class LoopProject {
 	}
 
 	public void addDefaultLoop() {
-		Loop loop = new Loop("Default", timeSignature);
+		Loop loop = new Loop(DEFAULT_LOOP_NAME, this);
 		int numberOfBeats = timeSignature.getNumberOfBeats();
 		int noteValue = timeSignature.getNoteValue();
 		
@@ -27,7 +29,7 @@ public class LoopProject {
 	}
 	
 	public void addEmptyLoop() {
-		Loop loop = new Loop("Empty", timeSignature);
+		Loop loop = new Loop(DEFAULT_LOOP_NAME, this);
 		loops.add(loop);
 	}
 

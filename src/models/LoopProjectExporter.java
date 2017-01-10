@@ -45,20 +45,19 @@ public class LoopProjectExporter {
 		int numberOfBeats = simpleLoopProject.getNumberOfBeats();
 		int noteValue = simpleLoopProject.getNoteValue();
 		int tempo = simpleLoopProject.getTempo();
-		TimeSignature timeSignature = new TimeSignature(numberOfBeats, noteValue, tempo);
 		loopProject = new LoopProject(numberOfBeats, noteValue, tempo);
 		loopProject.nameProperty().set(simpleLoopProject.getName());
 		
 		for(SimpleLoop simpleLoop : simpleLoopProject.getLoops()){
-			Loop loop = generateLoopForSimpleLoop(timeSignature, simpleLoop);
+			Loop loop = generateLoopForSimpleLoop(loopProject, simpleLoop);
 			loopProject.addLoop(loop);
 		}
 		
 		return loopProject;
 	}
 
-	private static Loop generateLoopForSimpleLoop(TimeSignature timeSignature, SimpleLoop simpleLoop) {
-		Loop loop = new Loop(simpleLoop.getName(), timeSignature);
+	private static Loop generateLoopForSimpleLoop(LoopProject loopProject, SimpleLoop simpleLoop) {
+		Loop loop = new Loop(simpleLoop.getName(), loopProject);
 		loop.setSoundFile(simpleLoop.getSoundFilename());
 		
 		for(int i = 0; i < simpleLoop.getNoteStatus().size(); i++){

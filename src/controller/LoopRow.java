@@ -33,6 +33,8 @@ public class LoopRow extends HBox {
 	private Button soloButton;
 	@FXML
 	private Button muteButton;
+	@FXML
+	private Button removeButton;
 
 	private Loop loop;
 
@@ -42,6 +44,12 @@ public class LoopRow extends HBox {
 		loadFxml();		
 		addActionToChooseFileButton();
 		addEventsToRecordButton(loop);
+		removeButton.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				loop.remove();
+			}
+		});
 		nameLabel.textProperty().bind(loop.nameProperty());
 		generateNoteStatusButtonsForTimeSignature();
 	}

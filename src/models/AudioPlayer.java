@@ -1,26 +1,12 @@
 package models;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class AudioPlayer {
-	private final static int SOUND_LIMIT = 16;
+	private final static int SOUND_LIMIT = 24;
 
 	private List<MediaPlayer> mediaPlayers = new LinkedList<MediaPlayer>();
 

@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.nio.file.Paths;
 
 public class LoopProjectExporter {
 	
@@ -78,13 +79,26 @@ public class LoopProjectExporter {
 
 	private static Loop generateLoopForSimpleLoop(LoopProject loopProject, SimpleLoop simpleLoop) {
 		Loop loop = new Loop(simpleLoop.getName(), loopProject);
-		loop.setSoundFile(simpleLoop.getSoundFilename());
 		
+		if(fileExists(simpleLoop.getSoundFilename())){
+			loop.setSoundFile(simpleLoop.getSoundFilename());
+		} else {
+			loop.nameProperty().set("Empty");
+		}
+
 		for(int i = 0; i < simpleLoop.getNoteStatus().size(); i++){
 			boolean active = simpleLoop.getNoteStatus().get(i);
 			loop.getNoteStatus().get(i).set(active);
 		}
 		
 		return loop;
+	}
+	
+	private static boolean fileExists(String soundFilename){
+		File f = new File(soundFilename);
+		if(f.exists() && !f.isDirectory()) { 
+			return true;
+		}
+		return false;
 	}
 }

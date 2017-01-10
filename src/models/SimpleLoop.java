@@ -16,6 +16,7 @@ public class SimpleLoop implements Serializable{
 	private List<Boolean> noteStatus = new ArrayList<Boolean>();
 
 	public SimpleLoop(){
+		soundFilename = "";
 	}
 	
 	public SimpleLoop(Loop loop){

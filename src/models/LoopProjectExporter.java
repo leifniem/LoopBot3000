@@ -9,10 +9,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class LoopProjectExporter {
-	public static void exportLoopProject(LoopProject loopProject) {
+	public static void exportLoopProject(LoopProject loopProject, String filepath) {
 		try {
 			SimpleLoopProject simpleLoopProject = new SimpleLoopProject(loopProject);
-			FileOutputStream fos = new FileOutputStream("blubb.lp");
+			FileOutputStream fos = new FileOutputStream(filepath);
 			BufferedOutputStream bos = new BufferedOutputStream(fos);
 			XMLEncoder encoder = new XMLEncoder(bos);
 			encoder.writeObject(simpleLoopProject);

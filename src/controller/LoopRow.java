@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import models.FileLoader;
+import models.FileManager;
 import models.AudioRecorder;
 import models.Loop;
 import models.TimeSignature;
@@ -139,7 +139,7 @@ public class LoopRow extends HBox {
 	}
 	
 	public void loadSample(){
-		File audio = FileLoader.askUserToLoadAudioFile();
+		File audio = FileManager.askUserToLoadAudioFile();
 		if(audio != null){
 			this.loop.setSoundFile(audio.getAbsolutePath());
 			this.loop.nameProperty().set(audio.getName());

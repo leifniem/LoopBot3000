@@ -7,7 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
-import models.FileLoader;
+import models.FileManager;
 import models.LoopPlayer;
 import models.LoopProject;
 import models.LoopProjectExporter;
@@ -52,14 +52,17 @@ public class MainViewController {
 		saveButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				LoopProjectExporter.exportLoopProject(loopProject);
+				File file = FileManager.askUserToSaveXMLFile();
+				if(file != null){
+					LoopProjectExporter.exportLoopProject(loopProject, file.getAbsolutePath());
+				}
 			}
 		});
 
 		loadButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				File file = FileLoader.askUserToLoadXMLFile();
+				File file = FileManager.askUserToLoadXMLFile();
 				if (file != null) {
 					loopProject = LoopProjectExporter.importLoopProject(file.getAbsolutePath());
 					initLoopProjectView();

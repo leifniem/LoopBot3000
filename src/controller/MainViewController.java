@@ -14,6 +14,7 @@ public class MainViewController {
 	private final static int DEFAULT_NUMBER_OF_BEATS = 4;
 	private final static int DEFAULT_NOTE_VALUE = 4;
 	private final static int DEFAULT_TEMP = 120;
+	private final static int MAX_LOOPS = 9;
 	
 	@FXML
 	private LoopProjectViewController loopProjectViewController;
@@ -23,6 +24,8 @@ public class MainViewController {
 	private Button loadButton;
 	@FXML
 	private Button saveButton;
+	@FXML
+	private Button addLoopButton;
 
 	private LoopProject loopProject;
 
@@ -59,6 +62,15 @@ public class MainViewController {
 			}
 		});
 		
+		addLoopButton.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				if(loopProject.getLoops().size() < MAX_LOOPS){
+					loopProject.addEmptyLoop();
+				}
+			}
+		});
+		
 		addLoopsForTestPurposes();
 	}
 
@@ -67,8 +79,6 @@ public class MainViewController {
 	}
 
 	private void addLoopsForTestPurposes() {
-		loopProject.addDefaultLoop();
-		loopProject.addDefaultLoop();
 		loopProject.addDefaultLoop();
 	}
 

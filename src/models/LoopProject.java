@@ -25,6 +25,11 @@ public class LoopProject {
 		
 		loops.add(loop);
 	}
+	
+	public void addEmptyLoop() {
+		Loop loop = new Loop("Empty", timeSignature);
+		loops.add(loop);
+	}
 
 	public StringProperty nameProperty() {
 		return name;
@@ -57,5 +62,9 @@ public class LoopProject {
 
 	public void addLoop(Loop loop) {
 		loops.add(loop);
+	}
+	
+	public void removeLoop(Loop loop){
+		loops.remove(loop);
 	}
 }

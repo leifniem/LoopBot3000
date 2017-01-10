@@ -18,6 +18,7 @@
 	<HBox styleClass="play-bar-buttons" alignment="CENTER">
 		<Button fx:id="loadButton" text="Load" />
 		<Button fx:id="saveButton" text="Save" />
+		<Button fx:id="addLoopButton" text="+" />
 		<fx:include fx:id="playbar" source="PlayBar.fxml" />
 	</HBox>
 </VBox>

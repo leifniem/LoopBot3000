@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
-	fx:controller="controller.MainViewController" alignment="CENTER_LEFT">
+	fx:controller="controller.MainViewController" alignment="CENTER">
 
 	<stylesheets>
 		<URL value="@styles.css" />

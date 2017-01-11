@@ -21,6 +21,7 @@ public class LoopRow extends HBox {
 	private final static String RECT_BUTTON_STYLE_CLASS = "rect-button";
 	private final static String RECT_BUTTON_ACTIVE_STYLE_CLASS = "rect-on";
 	private final static String MUTE_BUTTON_ACTIVE_STYLE_CLASS = "mute-on";
+	private final static String SOLO_BUTTON_ACTIVE_STYLE_CLASS = "solo-on";
 	
 	private final AudioRecorder rec = new AudioRecorder();
 	
@@ -48,6 +49,7 @@ public class LoopRow extends HBox {
 		chooseFileButton.setOnAction(e -> loadSample());
 		addEventsToRecordButton();
 		muteButton.setOnAction(e -> switchMute());
+		soloButton.setOnAction(e -> switchSolo());
 		removeButton.setOnAction(e -> loop.remove());
 		nameLabel.textProperty().bind(loop.nameProperty());
 		generateNoteStatusButtonsForTimeSignature();
@@ -56,6 +58,11 @@ public class LoopRow extends HBox {
 	private void switchMute() {
 		loop.isMutedProperty().set(!loop.isMutedProperty().get());
 		StyleHelper.applyStyleClass(loop.isMutedProperty().get(), muteButton, MUTE_BUTTON_ACTIVE_STYLE_CLASS);
+	}
+	
+	private void switchSolo() {
+		loop.isSoloProperty().set(!loop.isSoloProperty().get());
+		StyleHelper.applyStyleClass(loop.isSoloProperty().get(), soloButton, SOLO_BUTTON_ACTIVE_STYLE_CLASS);
 	}
 
 	private void loadFxml() {

@@ -8,6 +8,7 @@
 	-fx-font-size: 16px;
 	-fx-font-family: 'Roboto Mono';
 	-fx-font-weight: 700;
+	fx-align: center;
 }
 
 .button{
@@ -75,10 +76,6 @@
 	-fx-effect: dropshadow(three-pass-box, #FF837D, 10, 0, 0, 0);
 }
 
-.button:pressed{
-	-fx-effect: dropshadow(three-pass-box, #D7FBA7, 10, 0, 0, 0);
-}
-
 #chooseFileButton{
 	-fx-background-color: transparent;
 	-fx-background-image: url(../files/open.png);
@@ -128,4 +125,16 @@
 .play-on{
 	-fx-background-color: #FFF;
 	-fx-effect: dropshadow(three-pass-box, #FFF, 10, 0, 0, 0);
+}
+
+.solo-on{
+	-fx-background-color: #F6E49C;
+	-fx-effect: dropshadow(three-pass-box, #F6E49C, 10, 0, 0, 0);
+	-fx-text-fill: #B7A974;
+}
+
+.mute-on{
+	-fx-background-color: #FF977D;
+	-fx-effect: dropshadow(three-pass-box, #FF977D, 10, 0, 0, 0);
+	-fx-text-fill: #BE705D;
 }

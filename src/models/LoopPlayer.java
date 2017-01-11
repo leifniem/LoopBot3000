@@ -64,10 +64,8 @@ public class LoopPlayer {
 				boolean shouldPlay = !loop.isMutedProperty().get() && loop.getNoteStatus().get(currentNote.get()).get();
 
 				if (shouldPlay) {
-					String asciiFilename = loop.getAsciiFilename();
-
-					if (asciiFilename != null && !asciiFilename.isEmpty()) {
-						audioPlayer.playShortSound(asciiFilename);
+					if (loop.getSoundMedia() != null) {
+						audioPlayer.playShortSound(loop.getSoundMedia());
 					} else {
 						System.out.println("Kein Sound hinterlegt!");
 					}

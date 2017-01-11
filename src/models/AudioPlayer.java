@@ -10,7 +10,7 @@ public class AudioPlayer {
 
 	private List<MediaPlayer> mediaPlayers = new LinkedList<MediaPlayer>();
 
-	public void playShortSound(String filename){
+	public void playShortSound(Media media){
 		/*
 		new Thread(new Runnable() {
 			@Override
@@ -35,7 +35,7 @@ public class AudioPlayer {
 		}).start();
 		*/
 
-		MediaPlayer mediaPlayer = getNewMediaPlayerFor(filename);
+		MediaPlayer mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.play();
 	}
 

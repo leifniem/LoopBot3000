@@ -6,11 +6,12 @@ import java.net.URI;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.media.Media;
 
 public class Loop {
 	private StringProperty name = new SimpleStringProperty();
 	private String soundFilename;
-	private String asciiFilename;
+	private Media soundMedia;
 	private BooleanProperty isMuted = new SimpleBooleanProperty();
 	private BooleanProperty isSolo = new SimpleBooleanProperty();
 	private LoopProject loopProject;
@@ -33,14 +34,11 @@ public class Loop {
 		return soundFilename;
 	}
 	
-	public String getAsciiFilename(){
-		return asciiFilename;
-	}
-	
 	public void setSoundFile(String soundFilename){
 		this.soundFilename = soundFilename;
 		if(soundFilename != null && !soundFilename.isEmpty()){
-			asciiFilename = convertToAsciiFilename(soundFilename);			
+			String asciiFilename = convertToAsciiFilename(soundFilename);
+			soundMedia = new Media(asciiFilename);
 		}
 	}
 	
@@ -74,5 +72,9 @@ public class Loop {
 		if(loopProject.getLoops().size() > 1){
 			loopProject.removeLoop(this);			
 		}
+	}
+	
+	public Media getSoundMedia(){
+		return soundMedia;
 	}
 }

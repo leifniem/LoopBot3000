@@ -2,6 +2,9 @@ package models;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -9,33 +12,26 @@ public class AudioPlayer {
 	private final static int SOUND_LIMIT = 24;
 
 	private List<MediaPlayer> mediaPlayers = new LinkedList<MediaPlayer>();
+	private static ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
-	public void playShortSound(Media media){
+	public void playShortSound(Media media) {
 		/*
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Clip clip = AudioSystem.getClip();
-					//InputStream inputStream = new FileInputStream(filename);
-					File file = new File(filename);
-					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-					clip.open(audioInputStream);
-					clip.start();
-				} catch (LineUnavailableException e) {
-					e.printStackTrace();
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (UnsupportedAudioFileException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}).start();
-		*/
+		 * new Thread(new Runnable() {
+		 * 
+		 * @Override public void run() { try { Clip clip =
+		 * AudioSystem.getClip(); //InputStream inputStream = new
+		 * FileInputStream(filename); File file = new File(filename);
+		 * AudioInputStream audioInputStream =
+		 * AudioSystem.getAudioInputStream(file); clip.open(audioInputStream);
+		 * clip.start(); } catch (LineUnavailableException e) {
+		 * e.printStackTrace(); } catch (FileNotFoundException e) {
+		 * e.printStackTrace(); } catch (UnsupportedAudioFileException e) {
+		 * e.printStackTrace(); } catch (IOException e) { e.printStackTrace(); }
+		 * } }).start();
+		 */
 
 		MediaPlayer mediaPlayer = new MediaPlayer(media);
+		mediaPlayer.setOnEndOfMedia(() -> pool.execute(mediaPlayer::dispose));
 		mediaPlayer.play();
 	}
 

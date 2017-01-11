@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javafx.beans.property.*;
+import javafx.scene.media.MediaPlayer;
 
 public class LoopPlayer {
 	private AudioPlayer audioPlayer;
@@ -58,6 +59,10 @@ public class LoopPlayer {
 				
 				int nextNote = (currentNote.get() + 1) % amountOfNotes;
 				currentNote.set(nextNote);
+				
+				if(nextNote == 0){
+					audioPlayer = new AudioPlayer();
+				}
 			}
 
 			private void playLoopIfNecessary(Loop loop) {

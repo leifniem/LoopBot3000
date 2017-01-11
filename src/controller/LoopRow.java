@@ -127,7 +127,8 @@ public class LoopRow extends HBox {
 				ObservableList<String> styleClass = button.getStyleClass();
 				
 				if(buttonIsActive){
-					styleClass.remove(RECT_BUTTON_ACTIVE_STYLE_CLASS);
+					if(styleClass.contains(RECT_BUTTON_ACTIVE_STYLE_CLASS))
+						styleClass.remove(RECT_BUTTON_ACTIVE_STYLE_CLASS);
 				} else {
 					styleClass.add(RECT_BUTTON_ACTIVE_STYLE_CLASS);
 				}

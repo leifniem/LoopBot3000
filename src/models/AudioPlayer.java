@@ -15,21 +15,6 @@ public class AudioPlayer {
 	private static ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
 	public void playShortSound(Media media) {
-		/*
-		 * new Thread(new Runnable() {
-		 * 
-		 * @Override public void run() { try { Clip clip =
-		 * AudioSystem.getClip(); //InputStream inputStream = new
-		 * FileInputStream(filename); File file = new File(filename);
-		 * AudioInputStream audioInputStream =
-		 * AudioSystem.getAudioInputStream(file); clip.open(audioInputStream);
-		 * clip.start(); } catch (LineUnavailableException e) {
-		 * e.printStackTrace(); } catch (FileNotFoundException e) {
-		 * e.printStackTrace(); } catch (UnsupportedAudioFileException e) {
-		 * e.printStackTrace(); } catch (IOException e) { e.printStackTrace(); }
-		 * } }).start();
-		 */
-
 		MediaPlayer mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.setOnEndOfMedia(() -> pool.execute(mediaPlayer::dispose));
 		mediaPlayer.play();

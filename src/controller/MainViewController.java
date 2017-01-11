@@ -55,7 +55,7 @@ public class MainViewController {
 			@Override
 			public void handle(ActionEvent arg0) {
 				importLoopProject();
-			}	
+			}
 		});
 
 		addLoopButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -69,11 +69,14 @@ public class MainViewController {
 
 		addLoopsForTestPurposes();
 	}
-	
+
 	public void importLoopProject() {
-		loopProject = LoopProjectExporter.askUserToImportLoopProject();
-		initLoopProjectView();
-		initPlaybar();
+		LoopProject importedLoopProject = LoopProjectExporter.askUserToImportLoopProject();
+		if (importedLoopProject != null) {
+			loopProject = importedLoopProject;
+			initLoopProjectView();
+			initPlaybar();
+		}
 	}
 
 	private void initLoopProjectView() {

@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ import models.TimeSignature;
 public class PlayBarController {
 	private final static String RECT_BUTTON_ACTIVE_STYLE_CLASS = "rect-on";
 	private final static String PLAY_BUTTON_ACTIVE_STYLE_CLASS = "play-on";
-	
+
 	@FXML
 	private Button playButton;
 	@FXML
@@ -74,13 +75,18 @@ public class PlayBarController {
 	}
 
 	private void addCurrentNoteDisplayListener(LoopPlayer loopManager) {
-		loopManager.currentNoteProperty().addListener(new ChangeListener<Number>(){
+		loopManager.currentNoteProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number previousNote, Number nextNote) {
-				for(Node node : noteStatusContainer.getChildren()){
-					if(node instanceof Button){
-						boolean isCurrentButton = Integer.parseInt(node.getId()) == (int)previousNote;
-						StyleHelper.applyStyleClass(isCurrentButton, node, RECT_BUTTON_ACTIVE_STYLE_CLASS);
+				for (Node node : noteStatusContainer.getChildren()) {
+					if (node instanceof Button) {
+						boolean isCurrentButton = Integer.parseInt(node.getId()) == (int) previousNote;
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								StyleHelper.applyStyleClass(isCurrentButton, node, RECT_BUTTON_ACTIVE_STYLE_CLASS);
+							}
+						});
 					}
 				}
 			}

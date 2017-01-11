@@ -119,7 +119,7 @@ public class LoopRow extends HBox {
 				Button button = (Button)e.getSource();
 				int buttonId = Integer.parseInt(button.getId());
 				boolean buttonIsActive = loop.getNoteStatus().get(buttonId).get();
-				StyleHelper.applyStyleClass(buttonIsActive, button, RECT_BUTTON_ACTIVE_STYLE_CLASS);
+				StyleHelper.applyStyleClass(!buttonIsActive, button, RECT_BUTTON_ACTIVE_STYLE_CLASS);
 				
 				loop.getNoteStatus().get(buttonId).set(!buttonIsActive);
 			}

@@ -22,19 +22,16 @@ public class AudioRecorder {
 	private final static int FRAME_SIZE_IN_BYTES = 4;
 	private final static int FRAMERATE = 44100;
 	private final static String OUTPUT_PATH = "tempRecordings/";
-	private final static int RECORDING_TIMEOUT_IN_SECONDS = 10;
 	private final static String RECORDING_PREFIX = "recording";
 	private final static String OUTPUT_FORMAT = "wav";
 
 	private DataLine.Info info;
 	private TargetDataLine targetLine = null;
 	private boolean isRecording = false;
-	private Timer timeoutTimer;
 
 	public AudioRecorder() {
 		AudioFormat format = getDefaultAudioFormat();
 		info = new DataLine.Info(TargetDataLine.class, format);
-		timeoutTimer = new Timer();
 
 		if (!AudioSystem.isLineSupported(info)) {
 			throw new UnsupportedOperationException("line not supported!");
@@ -45,7 +42,6 @@ public class AudioRecorder {
 		try {
 			startTargetLine();
 			startRecordingThread();
-			startRecordingTimeoutThread();
 			isRecording = true;
 
 			System.out.println("Start recording...");
@@ -88,15 +84,6 @@ public class AudioRecorder {
 		return OUTPUT_PATH + RECORDING_PREFIX + "." + getNextRecordingNumber() + "." + OUTPUT_FORMAT;
 	}
 
-	private void startRecordingTimeoutThread() {
-		timeoutTimer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				stopRecording();
-			}
-		}, RECORDING_TIMEOUT_IN_SECONDS * 1000);
-	}
-
 	private AudioFormat getDefaultAudioFormat() {
 		AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, SAMPLERATE, SAMPLE_SIZE_IN_BITS, STEREO,
 				FRAME_SIZE_IN_BYTES, FRAMERATE, false);
@@ -105,7 +92,6 @@ public class AudioRecorder {
 
 	public void stopRecording() {
 		if (isRecording) {
-			timeoutTimer.cancel();
 			targetLine.stop();
 			targetLine.close();
 			isRecording = false;

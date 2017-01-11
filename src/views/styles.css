@@ -4,6 +4,9 @@
 
 .root{
 	-fx-background-color: #222;
+	-fx-background-image: url(../files/hintergrund.jpg);
+	-fx-background-size: 500px 700px;
+	-fx-background-repeat: repeat;
 	-fx-padding: 40px;
 	-fx-font-size: 16px;
 	-fx-font-family: 'Roboto Mono';

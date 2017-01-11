@@ -14,6 +14,7 @@ import models.TimeSignature;
 
 public class PlayBarController {
 	private final static String RECT_BUTTON_ACTIVE_STYLE_CLASS = "rect-on";
+	private final static String PLAY_BUTTON_ACTIVE_STYLE_CLASS = "play-on";
 	
 	@FXML
 	private Button playButton;
@@ -67,6 +68,7 @@ public class PlayBarController {
 				} else {
 					loopManager.play();
 				}
+				StyleHelper.applyStyleClass(loopManager.isPlaying(), playButton, PLAY_BUTTON_ACTIVE_STYLE_CLASS);
 			}
 		});
 	}

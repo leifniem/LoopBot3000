@@ -59,10 +59,6 @@ public class LoopPlayer {
 				
 				int nextNote = (currentNote.get() + 1) % amountOfNotes;
 				currentNote.set(nextNote);
-				
-				if(nextNote == 0){
-					audioPlayer = new AudioPlayer();
-				}
 			}
 
 			private void playLoopIfNecessary(Loop loop) {

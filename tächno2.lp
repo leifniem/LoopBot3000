@@ -5,7 +5,7 @@
    <void method="add">
     <object class="models.SimpleLoop" id="SimpleLoop0">
      <void property="name">
-      <string>CS_Noise D-08.wav</string>
+      <string>Noise 08</string>
      </void>
      <void property="noteStatus">
       <void method="add">
@@ -65,7 +65,7 @@
    <void method="add">
     <object class="models.SimpleLoop" id="SimpleLoop1">
      <void property="name">
-      <string>CS_VocoBitC_Noise-19.wav</string>
+      <string>Noise 19</string>
      </void>
      <void property="noteStatus">
       <void method="add">
@@ -125,7 +125,7 @@
    <void method="add">
     <object class="models.SimpleLoop" id="SimpleLoop2">
      <void property="name">
-      <string>CS_VocoBitC_Hit-07.wav</string>
+      <string>Hit 07</string>
      </void>
      <void property="noteStatus">
       <void method="add">

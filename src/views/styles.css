@@ -40,8 +40,11 @@
 	-fx-background-color: #D8D8D8;
 }
 
-.row .label{
+.row .text-field{
 	-fx-text-fill: #D8D8D8;
+	-fx-border: none;
+	-fx-border-color: transparent;
+	-fx-background-color: transparent;
 }
 
 .solo-mute-delete{

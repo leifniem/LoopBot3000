@@ -11,7 +11,7 @@
 	xmlns:fx="http://javafx.com/fxml" styleClass="row">
 
 	<HBox styleClass="prepend">
-		<Label fx:id="nameLabel" text="test" />
+		<TextField fx:id="nameText" text="test" />
 		<Pane HBox.hgrow="ALWAYS" />
 		<Button fx:id="chooseFileButton"/>
 	</HBox>

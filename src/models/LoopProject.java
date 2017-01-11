@@ -53,8 +53,8 @@ public class LoopProject {
 		}
 	}
 
-	private Loop getSoloLoop() {
-		Loop soloLoop = loops.filtered(x -> x.isSoloProperty().get()).get(0);
+	public int getSoloLoop() {
+		int soloLoop = loops.filtered(x -> x.isSoloProperty().get()).size();
 		return soloLoop;
 	}
 	

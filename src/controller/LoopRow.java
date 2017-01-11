@@ -26,7 +26,7 @@ public class LoopRow extends HBox {
 	private final AudioRecorder rec = new AudioRecorder();
 	
 	@FXML
-	private Label nameLabel;
+	private TextField nameText;
 	@FXML
 	private Button chooseFileButton;
 	@FXML
@@ -51,7 +51,7 @@ public class LoopRow extends HBox {
 		muteButton.setOnAction(e -> switchMute());
 		soloButton.setOnAction(e -> switchSolo());
 		removeButton.setOnAction(e -> loop.remove());
-		nameLabel.textProperty().bind(loop.nameProperty());
+		nameText.textProperty().bindBidirectional(loop.nameProperty());
 		generateNoteStatusButtonsForTimeSignature();
 	}
 

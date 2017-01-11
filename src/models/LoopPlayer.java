@@ -62,8 +62,14 @@ public class LoopPlayer {
 			}
 
 			private void playLoopIfNecessary(Loop loop) {
-				boolean shouldPlay = !loop.isMutedProperty().get() && loop.getNoteStatus().get(currentNote.get()).get();
-
+				boolean shouldPlay;
+				
+				if(loopProject.getSoloLoop() > 0){
+					shouldPlay = loop.isSoloProperty().get() && loop.getNoteStatus().get(currentNote.get()).get();
+				}else{
+					shouldPlay = !loop.isMutedProperty().get() && loop.getNoteStatus().get(currentNote.get()).get();
+				}
+				
 				if (shouldPlay) {
 					if (loop.getSoundMedia() != null) {
 						audioPlayer.playShortSound(loop.getSoundMedia());

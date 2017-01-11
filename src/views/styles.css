@@ -5,6 +5,7 @@
 .root{
 	-fx-background-color: #222;
 	-fx-padding: 40px;
+	-fx-font-size: 16px;
 	-fx-font-family: 'Roboto Mono';
 	-fx-font-weight: 700;
 }
@@ -13,31 +14,37 @@
 	-fx-border-radius: 10px;
 }
 
+.row{
+	-fx-padding: 5px 0px;
+}
+
+.play-bar,
 .loop-row,
-.play-bar{
-	-fx-padding: 5px 20px;
+.solo-mute-delete{
 	-fx-spacing: 10px;
 }
 
-.play-bar-buttons{
+.project-buttons{
 	-fx-spacing: 10px;
+}
+
+.prepend{
 	-fx-pref-width: 160px;
-	-fx-align: right;
+	-fx-max-width: 160px;
+	-fx-min-width: 160px;
 }
 
-.pb-spacer{
-	-fx-pref-width: 55px;
-}
-
-.play-bar-buttons .button{
+.project-buttons .button,
+#addLoopButton{
 	-fx-background-color: #D8D8D8;
 }
 
-.loop-row .label{
+.row .label{
 	-fx-text-fill: #D8D8D8;
-	-fx-pref-width: 100px;
-	-fx-min-width: 100px;
-	-fx-max-width: 100px;
+}
+
+.solo-mute-delete{
+	-fx-padding:0px 0px 0px 20px; 
 }
 
 #record{
@@ -53,18 +60,19 @@
 
 #recordButton{
 	-fx-background-color: #FF837D;
-	-fx-effect: dropshadow(three-pass-box, #FF837D, 10, 0, 0, 0);
 	-fx-background-radius: 20px;
-	-fx-pref-width: 20px;
+	-fx-background-size: 25px 25px;
+	-fx-pref-width: 50px;
 	-fx-pref-height: 20px;
-	-fx-min-width: 20px;
-	-fx-max-width: 20px;
+	-fx-min-width: 50px;
+	-fx-max-width: 50px;
 	-fx-min-height: 20px;
 	-fx-max-height: 20px;
+	-fx-background-insets: 0px 15px;
 }
 
 #recordButton:pressed{
-	-fx-effect: dropshadow(three-pass-box, #D7FBA7, 10, 0, 0, 0);
+	-fx-effect: dropshadow(three-pass-box, #FF837D, 10, 0, 0, 0);
 }
 
 .button:pressed{
@@ -93,6 +101,7 @@
 	-fx-min-height: 25px;
 	-fx-max-height: 25px;
 	-fx-text-fill: #4A4A4A;
+	-fx-font-size: 12px;
 	-fx-background-color: #909092;
 }
 
@@ -107,12 +116,13 @@
 	-fx-shape: "M5,5 C5,2.24 6.9,1.19 9.24,2.645 L24.765,12.35 C27.1,13.8 27.1,16.19 24.765,17.647 L9.24,27.35 C6.9,28.81 5,27.77 5,25 L5,5 Z";
 	-fx-background-size: 25px 25px;
 	-fx-background-repeat: no-repeat;
-	-fx-pref-width: 20px;
-	-fx-min-width: 20px;
-	-fx-max-width: 20px;
+	-fx-pref-width: 50px;
+	-fx-min-width: 50px;
+	-fx-max-width: 50px;
 	-fx-pref-height: 25px;
 	-fx-min-height: 25px;
 	-fx-max-height: 25px;
+	-fx-background-insets: 0px 15px;
 }
 
 .play-on{

@@ -65,6 +65,7 @@ public class AudioPlayer {
 		Runnable result = new Runnable() {
 			@Override
 			public void run() {
+				mediaPlayer.dispose();
 				mediaPlayers.remove(mediaPlayer);
 			}
 		};

@@ -78,7 +78,8 @@ public class PlayBarController {
 				for(Node node : noteStatusContainer.getChildren()){
 					if(node instanceof Button){
 						if(Integer.parseInt(node.getId()) == (int)previousNote){
-							node.getStyleClass().remove(RECT_BUTTON_ACTIVE_STYLE_CLASS);
+							if(node.getStyleClass().contains(RECT_BUTTON_ACTIVE_STYLE_CLASS))
+								node.getStyleClass().remove(RECT_BUTTON_ACTIVE_STYLE_CLASS);
 						}
 						if(loopManager.isPlaying() && Integer.parseInt(node.getId()) == (int)nextNote){
 							node.getStyleClass().add(RECT_BUTTON_ACTIVE_STYLE_CLASS);

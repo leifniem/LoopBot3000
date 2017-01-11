@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -19,6 +20,8 @@ import models.TimeSignature;
 public class LoopRow extends HBox {
 	private final static String RECT_BUTTON_STYLE_CLASS = "rect-button";
 	private final static String RECT_BUTTON_ACTIVE_STYLE_CLASS = "rect-on";
+	private final static String MUTE_BUTTON_ACTIVE_STYLE_CLASS = "mute-on";
+	
 	private final AudioRecorder rec = new AudioRecorder();
 	
 	@FXML
@@ -42,16 +45,27 @@ public class LoopRow extends HBox {
 		this.loop = loop;
 
 		loadFxml();		
-		addActionToChooseFileButton();
-		addEventsToRecordButton(loop);
-		removeButton.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event) {
-				loop.remove();
-			}
-		});
+		chooseFileButton.setOnAction(e -> loadSample());
+		addEventsToRecordButton();
+		muteButton.setOnAction(e -> switchMute());
+		removeButton.setOnAction(e -> loop.remove());
 		nameLabel.textProperty().bind(loop.nameProperty());
 		generateNoteStatusButtonsForTimeSignature();
+	}
+
+	private void switchMute() {
+		loop.isMutedProperty().set(!loop.isMutedProperty().get());
+		applyStyleClass(loop.isMutedProperty().get(), muteButton, MUTE_BUTTON_ACTIVE_STYLE_CLASS);
+	}
+
+	private void applyStyleClass(boolean check, Node node, String styleClassName) {
+		ObservableList<String> styleClass = node.getStyleClass();
+		if(check){
+			if(styleClass.contains(styleClassName))
+				styleClass.remove(styleClassName);
+		} else {
+			styleClass.add(styleClassName);
+		}
 	}
 
 	private void loadFxml() {
@@ -66,30 +80,14 @@ public class LoopRow extends HBox {
 		}
 	}
 
-	private void addActionToChooseFileButton() {
-		chooseFileButton.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event) {
-				loadSample();
-			}
-		});
+	private void addEventsToRecordButton() {
+		recordButton.setOnMousePressed(e -> rec.startRecording());
+		recordButton.setOnMouseReleased(e -> stopRecordingAndApplySoundFile(loop));
 	}
-
-	private void addEventsToRecordButton(Loop loop) {
-		recordButton.setOnMousePressed(new EventHandler<MouseEvent>(){
-			@Override
-			public void handle(MouseEvent event) {
-				rec.startRecording();
-			}
-			
-		});
-		recordButton.setOnMouseReleased(new EventHandler<MouseEvent>(){
-			@Override
-			public void handle(MouseEvent event) {
-				rec.stopRecording();
-				loop.setSoundFile(rec.getNewestRecording());
-			}
-		});
+	
+	private void stopRecordingAndApplySoundFile(Loop loop) {
+		rec.stopRecording();
+		loop.setSoundFile(rec.getNewestRecording());
 	}
 
 	private void generateNoteStatusButtonsForTimeSignature() {
@@ -124,14 +122,8 @@ public class LoopRow extends HBox {
 				Button button = (Button)e.getSource();
 				int buttonId = Integer.parseInt(button.getId());
 				boolean buttonIsActive = loop.getNoteStatus().get(buttonId).get();
-				ObservableList<String> styleClass = button.getStyleClass();
+				applyStyleClass(buttonIsActive, button, RECT_BUTTON_ACTIVE_STYLE_CLASS);
 				
-				if(buttonIsActive){
-					if(styleClass.contains(RECT_BUTTON_ACTIVE_STYLE_CLASS))
-						styleClass.remove(RECT_BUTTON_ACTIVE_STYLE_CLASS);
-				} else {
-					styleClass.add(RECT_BUTTON_ACTIVE_STYLE_CLASS);
-				}
 				loop.getNoteStatus().get(buttonId).set(!buttonIsActive);
 			}
 		});

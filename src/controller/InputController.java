@@ -1,11 +1,5 @@
 package controller;
 
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import models.LoopPlayer;
-import models.LoopProjectExporter;
-
 public class InputController {
 	public InputController() {
 		/*controller.getScene().setOnKeyTyped(new EventHandler<KeyEvent>() {

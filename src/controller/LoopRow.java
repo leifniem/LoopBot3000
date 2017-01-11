@@ -2,18 +2,15 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
-
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import models.FileManager;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import models.AudioRecorder;
+import models.FileManager;
 import models.Loop;
 import models.TimeSignature;
 

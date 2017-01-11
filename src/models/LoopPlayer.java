@@ -2,9 +2,7 @@ package models;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
 import javafx.beans.property.*;
-import javafx.scene.media.MediaPlayer;
 
 public class LoopPlayer {
 	private AudioPlayer audioPlayer;

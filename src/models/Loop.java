@@ -1,8 +1,6 @@
 package models;
 
 import java.io.File;
-import java.net.URI;
-
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

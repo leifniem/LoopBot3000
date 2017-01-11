@@ -7,18 +7,21 @@
 <?import javafx.scene.text.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
-	fx:controller="controller.MainViewController" alignment="CENTER">
+	fx:controller="controller.MainViewController" alignment="CENTER_LEFT">
 
 	<stylesheets>
 		<URL value="@styles.css" />
 	</stylesheets>
 
-	<fx:include fx:id="loopProjectView" source="LoopProjectView.fxml" />
+	<Button fx:id="addLoopButton" text="Add Loop" />
 
-	<HBox styleClass="play-bar-buttons" alignment="CENTER">
-		<Button fx:id="loadButton" text="Load" />
-		<Button fx:id="saveButton" text="Save" />
-		<Button fx:id="addLoopButton" text="+" />
+	<fx:include fx:id="loopProjectView" source="LoopProjectView.fxml" />
+	
+	<HBox styleClass="row">
+		<HBox styleClass="project-buttons, prepend">
+			<Button fx:id="loadButton" text="Load" />
+			<Button fx:id="saveButton" text="Save" />
+		</HBox>
 		<fx:include fx:id="playbar" source="PlayBar.fxml" />
 	</HBox>
 </VBox>

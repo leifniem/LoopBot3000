@@ -77,7 +77,7 @@ public class PlayBarController {
 			public void changed(ObservableValue<? extends Number> observable, Number previousNote, Number nextNote) {
 				for(Node node : noteStatusContainer.getChildren()){
 					if(node instanceof Button){
-						boolean isCurrentButton = Integer.parseInt(node.getId()) != (int)previousNote;
+						boolean isCurrentButton = Integer.parseInt(node.getId()) == (int)previousNote;
 						StyleHelper.applyStyleClass(isCurrentButton, node, RECT_BUTTON_ACTIVE_STYLE_CLASS);
 					}
 				}

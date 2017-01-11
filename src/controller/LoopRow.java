@@ -55,17 +55,7 @@ public class LoopRow extends HBox {
 
 	private void switchMute() {
 		loop.isMutedProperty().set(!loop.isMutedProperty().get());
-		applyStyleClass(loop.isMutedProperty().get(), muteButton, MUTE_BUTTON_ACTIVE_STYLE_CLASS);
-	}
-
-	private void applyStyleClass(boolean check, Node node, String styleClassName) {
-		ObservableList<String> styleClass = node.getStyleClass();
-		if(check){
-			if(styleClass.contains(styleClassName))
-				styleClass.remove(styleClassName);
-		} else {
-			styleClass.add(styleClassName);
-		}
+		StyleHelper.applyStyleClass(loop.isMutedProperty().get(), muteButton, MUTE_BUTTON_ACTIVE_STYLE_CLASS);
 	}
 
 	private void loadFxml() {
@@ -122,7 +112,7 @@ public class LoopRow extends HBox {
 				Button button = (Button)e.getSource();
 				int buttonId = Integer.parseInt(button.getId());
 				boolean buttonIsActive = loop.getNoteStatus().get(buttonId).get();
-				applyStyleClass(buttonIsActive, button, RECT_BUTTON_ACTIVE_STYLE_CLASS);
+				StyleHelper.applyStyleClass(buttonIsActive, button, RECT_BUTTON_ACTIVE_STYLE_CLASS);
 				
 				loop.getNoteStatus().get(buttonId).set(!buttonIsActive);
 			}

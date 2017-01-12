@@ -243,11 +243,11 @@
 	-fx-background-insets: 2px;
 }
 
-#bpmValue{
+#tempoValue{
 	-fx-pref-width: 30px;
 }
 
-.bpm-input{
+.tempo-input{
 	-fx-padding: 0px 0px 40px 0px;
 }
 

@@ -15,6 +15,10 @@ import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
 public class CreateProjectViewController {
+	private static final int MIN_TEMPO = 60;
+	private static final int MAX_TEMPO = 270;
+	private static final int DEFAULT_TEMPO = 120;
+	
 	private ObservableList<Integer> numberOfBeatsValues = FXCollections.<Integer> observableArrayList();
 	private ObjectProperty<ObservableList<Integer>> numberOfBeatsItems = new SimpleObjectProperty<ObservableList<Integer>>();
 	private ObservableList<Integer> noteValueValues = FXCollections.<Integer> observableArrayList();
@@ -28,9 +32,9 @@ public class CreateProjectViewController {
 	@FXML
 	private ComboBox<Integer> noteValueInput;
 	@FXML
-	private Slider bpmSlider;
+	private Slider tempoSlider;
 	@FXML
-	private Label bpmValue;
+	private Label tempoLabel;
 	@FXML
 	private Button submitButton;
 
@@ -45,19 +49,19 @@ public class CreateProjectViewController {
 
 	private void close() {
 		wasSubmitted = true;
-		((Stage) bpmSlider.getScene().getWindow()).close();
+		((Stage) tempoSlider.getScene().getWindow()).close();
 	}
 
 	private void initBpmValue() {
-		StringBinding bpmBinding = Bindings.createStringBinding(() -> (int) bpmSlider.getValue() + "",
-				bpmSlider.valueProperty());
-		bpmValue.textProperty().bind(bpmBinding);
+		StringBinding tempoBinding = Bindings.createStringBinding(() -> (int) tempoSlider.getValue() + "",
+				tempoSlider.valueProperty());
+		tempoLabel.textProperty().bind(tempoBinding);
 	}
 
 	private void initBpmSlider() {
-		bpmSlider.setMin(60);
-		bpmSlider.setMax(270);
-		bpmSlider.setValue(120);
+		tempoSlider.setMin(MIN_TEMPO);
+		tempoSlider.setMax(MAX_TEMPO);
+		tempoSlider.setValue(DEFAULT_TEMPO);
 	}
 
 	private void initNumberOfBeatsInput() {
@@ -85,7 +89,7 @@ public class CreateProjectViewController {
 	}
 
 	public int getTempo() {
-		return (int) bpmSlider.getValue();
+		return (int) tempoSlider.getValue();
 	}
 
 	public boolean getWasSubmitted() {

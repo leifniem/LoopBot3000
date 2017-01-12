@@ -26,9 +26,9 @@
 			<ComboBox fx:id="noteValueInput"></ComboBox>
 		</HBox>
 		<Label>Choose Beats per Minute</Label>
-		<HBox alignment="CENTER" styleClass="bpm-input">
-			<Slider fx:id="bpmSlider" />
-			<Label fx:id="bpmValue"/>
+		<HBox alignment="CENTER" styleClass="tempo-input">
+			<Slider fx:id="tempoSlider" />
+			<Label fx:id="tempoLabel"/>
 		</HBox>
 		<Button fx:id="submitButton" text="Submit"/>
 	</VBox>

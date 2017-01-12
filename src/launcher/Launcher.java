@@ -2,6 +2,9 @@ package launcher;
 
 import controller.MainViewController;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -42,6 +45,32 @@ public class Launcher extends Application {
 		addOnCloseRequestHandlerToPrimaryStage(stage);
 		stage.setTitle("Loop-Bot 3000");
 		stage.setScene(scene);
+		stage.focusedProperty().addListener(new ChangeListener<Boolean>(){
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				if(!newValue){
+					Platform.runLater(new Runnable(){
+
+						@Override
+						public void run() {
+							root.getStyleClass().add("dimmed");
+						}
+						
+					});
+				}else{
+					Platform.runLater(new Runnable(){
+
+						@Override
+						public void run() {
+							root.getStyleClass().remove("dimmed");
+						}
+						
+					});
+				}
+			}
+			
+		});
 		stage.show();
 	}
 

@@ -16,6 +16,10 @@
 	-fx-align: center;
 }
 
+.dimmed{
+	-fx-opacity: 0.3;
+}
+
 .button{
 	-fx-border-radius: 10px;
 }

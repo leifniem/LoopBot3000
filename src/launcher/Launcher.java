@@ -9,6 +9,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -45,6 +46,7 @@ public class Launcher extends Application {
 
 		addOnCloseRequestHandlerToPrimaryStage(stage);
 		stage.setTitle("Loop-Bot 3000");
+		stage.getIcons().add(new Image(Launcher.class.getResourceAsStream("/files/icon.png")));
 		stage.setScene(scene);
 		
 		addFocusListenerToStage(stage, root);

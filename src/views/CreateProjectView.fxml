@@ -21,12 +21,12 @@
 			<Label styleClass="red">3000</Label>
 		</VBox>
 		<Label>Choose Time Signature</Label>
-		<HBox alignment="CENTER">
+		<HBox alignment="CENTER" styleClass="time-input">
 			<ComboBox fx:id="numberOfBeatsInput"></ComboBox>
 			<ComboBox fx:id="noteValueInput"></ComboBox>
 		</HBox>
 		<Label>Choose Beats per Minute</Label>
-		<HBox alignment="CENTER">
+		<HBox alignment="CENTER" styleClass="bpm-input">
 			<Slider fx:id="bpmSlider" />
 			<Label fx:id="bpmValue"/>
 		</HBox>

@@ -44,6 +44,7 @@
 #addLoopButton,
 #newProjectButton{
 	-fx-background-color: #D8D8D8;
+	-fx-text-fill: #222;
 }
 
 .row .text-field{
@@ -236,4 +237,12 @@
 	-fx-border-radius: 100%;
 	-fx-background-radius: 100%;
 	-fx-background-insets: 2px;
+}
+
+#bpmValue{
+	-fx-pref-width: 30px;
+}
+
+.bpm-input{
+	-fx-padding: 0px 0px 40px 0px;
 }

@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -7,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Slider;
 
@@ -28,11 +31,10 @@ public class CreateProjectViewController {
 	@FXML
 	private Slider bpmSlider;
 	@FXML
+	private Label bpmValue;
+	@FXML
 	private Button submitButton;
 
-	public CreateProjectViewController() {
-
-	}
 
 	@FXML
 	private void initialize() {
@@ -47,6 +49,14 @@ public class CreateProjectViewController {
 		noteValueInput.itemsProperty().bind(noteValueItems);
 		selectedNoteValue.bind(noteValueInput.selectionModelProperty());
 		noteValueInput.getSelectionModel().selectFirst();
+		
+		// Slider
+		bpmSlider.setMin(60);
+		bpmSlider.setMax(270);
+		
+		StringBinding bpmAsString = Bindings.createStringBinding(() -> (int)bpmSlider.getValue() + "", bpmSlider.valueProperty());
+		
+		bpmValue.textProperty().bind(bpmAsString);
 	}
 	
 	public int getNumberOfBeats(){

@@ -1,23 +1,34 @@
 package controller;
 
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import models.LoopProjectExporter;
+
 public class InputController {
-	public InputController() {
-		/*controller.getScene().setOnKeyTyped(new EventHandler<KeyEvent>() {
+	public InputController(Scene scene, MainViewController mainViewController) {
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
 			@Override
 			public void handle(KeyEvent event) {
-				if (event.isControlDown()) {
-					if (event.getCode() == KeyCode.S) {
-						LoopProjectExporter.askUserToExportLoopProject(controller.getLoopProject());
-					} else if(event.getCode() == KeyCode.O){
-						controller.importLoopProject();
-					}
-				} else {
-					if(event.getCode() == KeyCode.SPACE){
-						playBarController.getCurrentLoopPlayer().play();
+				if(event.isMetaDown() || event.isControlDown()){
+					if (event.getCode() == KeyCode.S){
+						LoopProjectExporter.askUserToExportLoopProject(mainViewController.getLoopProject());
+					}else if(event.getCode() == KeyCode.O){
+						mainViewController.importLoopProject();
+					} else if(event.getCode() == KeyCode.N){
+						mainViewController.openCreateProjectDialog();
 					}
 				}
 			}
 		});
-		*/
+		
+		scene.addEventFilter(KeyEvent.KEY_PRESSED, event->{
+            if (event.getCode() == KeyCode.SPACE) {
+            	PlayBarController pbc = mainViewController.getPlayBarController();
+				pbc.switchPlaying();
+				event.consume();
+            }
+        });
 	}
 }

@@ -1,7 +1,7 @@
 package launcher;
 
+import controller.InputController;
 import controller.MainViewController;
-import controller.PlayBarController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -9,15 +9,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import models.LoopProjectExporter;
 
 public class Launcher extends Application {
 	private MainViewController mainViewController;
+	private InputController inputController;
 
 	public static void main(String[] args) {
 		// endProgramIfAlreadyStarted();
@@ -44,62 +42,38 @@ public class Launcher extends Application {
 		mainViewController = loader.getController();
 
 		Scene scene = new Scene(root, 1000, 500);
-		// hier k�nnte der InputManager initialisiert werden!
 
 		addOnCloseRequestHandlerToPrimaryStage(stage);
 		stage.setTitle("Loop-Bot 3000");
 		stage.setScene(scene);
-		stage.focusedProperty().addListener(new ChangeListener<Boolean>(){
+		
+		addFocusListenerToStage(stage, root);
+		inputController = new InputController(scene, mainViewController);
+		
+		stage.show();
+	}
 
+	private void addFocusListenerToStage(Stage stage, VBox root) {
+		stage.focusedProperty().addListener(new ChangeListener<Boolean>(){
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				if(!newValue){
 					Platform.runLater(new Runnable(){
-
 						@Override
 						public void run() {
 							root.getStyleClass().add("dimmed");
 						}
-						
 					});
 				}else{
 					Platform.runLater(new Runnable(){
-
 						@Override
 						public void run() {
 							root.getStyleClass().remove("dimmed");
-						}
-						
+						}	
 					});
 				}
 			}
-			
 		});
-		scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
-
-			@Override
-			public void handle(KeyEvent event) {
-				if(event.isMetaDown() || event.isControlDown()){
-					if (event.getCode() == KeyCode.S){
-						LoopProjectExporter.askUserToExportLoopProject(mainViewController.getLoopProject());
-					}else if(event.getCode() == KeyCode.O){
-						mainViewController.importLoopProject();
-					} else if(event.getCode() == KeyCode.N){
-						mainViewController.openCreateProjectDialog();
-					}
-				}
-			}
-			
-		});
-		
-		scene.addEventFilter(KeyEvent.KEY_PRESSED, event->{
-            if (event.getCode() == KeyCode.SPACE) {
-            	PlayBarController pbc = mainViewController.getPlayBarController();
-				pbc.switchPlaying();
-				event.consume();
-            }
-        });
-		stage.show();
 	}
 
 	private void addOnCloseRequestHandlerToPrimaryStage(Stage primaryStage) {

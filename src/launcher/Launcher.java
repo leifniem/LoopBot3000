@@ -79,11 +79,13 @@ public class Launcher extends Application {
 
 			@Override
 			public void handle(KeyEvent event) {
-				if(event.isMetaDown()){
+				if(event.isMetaDown() || event.isControlDown()){
 					if (event.getCode() == KeyCode.S){
 						LoopProjectExporter.askUserToExportLoopProject(mainViewController.getLoopProject());
 					}else if(event.getCode() == KeyCode.O){
 						mainViewController.importLoopProject();
+					} else if(event.getCode() == KeyCode.N){
+						mainViewController.openCreateProjectDialog();
 					}
 				}
 			}

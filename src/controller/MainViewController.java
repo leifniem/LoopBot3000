@@ -81,7 +81,7 @@ public class MainViewController {
 		addLoopsForTestPurposes();
 	}
 
-	private void openCreateProjectDialog() {
+	public void openCreateProjectDialog() {
 		try {
 			CreateProjectStage dialog = new CreateProjectStage();
 			dialog.showAndWait();

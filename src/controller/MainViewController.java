@@ -125,4 +125,8 @@ public class MainViewController {
 	public LoopProject getLoopProject() {
 		return loopProject;
 	}
+	
+	public PlayBarController getPlayBarController(){
+		return playbarController;
+	}
 }

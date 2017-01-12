@@ -59,16 +59,11 @@ public class PlayBarController {
 		addCurrentNoteDisplayListener(loopPlayer);
 	}
 
-	private void setPlayButtonAction(LoopPlayer loopManager) {
+	private void setPlayButtonAction(LoopPlayer loopPlayer) {
 		playButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				if (loopManager.isPlaying()) {
-					loopManager.stop();
-				} else {
-					loopManager.play();
-				}
-				StyleHelper.applyStyleClass(loopManager.isPlaying(), playButton, PLAY_BUTTON_ACTIVE_STYLE_CLASS);
+				switchPlaying();
 			}
 		});
 	}
@@ -90,5 +85,14 @@ public class PlayBarController {
 				}
 			}
 		});
+	}
+
+	public void switchPlaying(){
+		if (loopPlayer.isPlaying()) {
+			loopPlayer.stop();
+		} else {
+			loopPlayer.play();
+		}
+		StyleHelper.applyStyleClass(loopPlayer.isPlaying(), playButton, PLAY_BUTTON_ACTIVE_STYLE_CLASS);
 	}
 }

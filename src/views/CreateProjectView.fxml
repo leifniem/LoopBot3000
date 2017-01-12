@@ -22,14 +22,15 @@
 		</VBox>
 		<Label>Choose Time Signature</Label>
 		<HBox alignment="CENTER">
-			<ComboBox fx:id="numberOfBeats"></ComboBox>
-			<ComboBox fx:id="noteValue"></ComboBox>
+			<ComboBox fx:id="numberOfBeatsInput"></ComboBox>
+			<ComboBox fx:id="noteValueInput"></ComboBox>
 		</HBox>
 		<Label>Choose Beats per Minute</Label>
 		<HBox alignment="CENTER">
 			<Slider fx:id="bpmSlider" />
 			<Label fx:id="bpmValue"/>
 		</HBox>
+		<Button fx:id="submitButton" text="Submit"/>
 	</VBox>
 </VBox>
 

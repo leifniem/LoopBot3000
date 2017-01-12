@@ -88,16 +88,15 @@ public class LoopRow extends HBox {
 		TimeSignature timeSignature = loop.getTimeSignature();
 		
 		for (int currentBeat = 0; currentBeat < timeSignature.getNumberOfBeats(); currentBeat++) {
+			Button button = null;
 			for (int currentNoteInBeat = 0; currentNoteInBeat < timeSignature.getNoteValue(); currentNoteInBeat++) {
 				int currentNote = currentBeat * timeSignature.getNoteValue() + currentNoteInBeat;
 				boolean active = loop.getNoteStatus().get(currentNote).get();
-				Button button = createRectButton("" + currentNote, active);
+				button = createRectButton("" + currentNote, active);
 				noteStatusContainer.getChildren().add(button);
 			}
 
-			HBox spacer = new HBox();
-			spacer.getStyleClass().add("spacer");
-			noteStatusContainer.getChildren().add(spacer);
+			button.getStyleClass().add("space");
 		}
 	}
 

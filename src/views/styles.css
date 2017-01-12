@@ -114,6 +114,19 @@
 	-fx-text-fill: #889775;	
 }
 
+.space{
+	-fx-min-width: 45px;
+	-fx-max-width: 45px;
+	-fx-pref-width: 45px;
+	-fx-background-insets: 0px 20px 0px 0px;
+}
+
+.pb-spacer{
+	-fx-min-width: 105px;
+	-fx-max-width: 105px;
+	-fx-pref-width: 105px;
+}
+
 #playButton{
 	-fx-background-color: #D8D8D8;
 	-fx-shape: "M5,5 C5,2.24 6.9,1.19 9.24,2.645 L24.765,12.35 C27.1,13.8 27.1,16.19 24.765,17.647 L9.24,27.35 C6.9,28.81 5,27.77 5,25 L5,5 Z";

@@ -11,7 +11,7 @@ import javafx.stage.WindowEvent;
 public class Launcher extends Application {
 
 	public static void main(String[] args) {
-		endProgramIfAlreadyStarted();
+		//endProgramIfAlreadyStarted();
 
 		launch(args);
 	}
@@ -20,7 +20,7 @@ public class Launcher extends Application {
 		try {
 			java.net.ServerSocket ss = new java.net.ServerSocket(666);
 		} catch (java.net.BindException ex) {
-			System.out.println("Programm läuft bereits.");
+			System.out.println("Programm lÃ¤uft bereits.");
 			System.exit(1);
 		} catch (java.io.IOException ex) {
 			ex.printStackTrace();
@@ -33,7 +33,7 @@ public class Launcher extends Application {
 		VBox root = FXMLLoader.load(getClass().getResource("/views/MainView.fxml"));
 
 		Scene scene = new Scene(root, 1000, 500);
-		// hier könnte der InputManager initialisiert werden!
+		// hier kï¿½nnte der InputManager initialisiert werden!
 
 		addOnCloseRequestHandlerToPrimaryStage(stage);
 		stage.setTitle("Loop-Bot 3000");

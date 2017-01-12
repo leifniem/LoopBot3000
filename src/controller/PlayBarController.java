@@ -28,16 +28,15 @@ public class PlayBarController {
 	public void generateNoteStatusButtonsForTimeSignature(int numberOfBeats, int noteValue) {
 		noteStatusContainer.getChildren().clear();
 
-		for (int currentBeat = 0; currentBeat < numberOfBeats; currentBeat++) {
-			for (int currentNoteInBeat = 0; currentNoteInBeat < noteValue; currentNoteInBeat++) {
+		for (int currentBeat = 0; currentBeat < timeSignature.getNumberOfBeats(); currentBeat++) {
+			Button button = null;
+			for (int currentNoteInBeat = 0; currentNoteInBeat < timeSignature.getNoteValue(); currentNoteInBeat++) {
 				int currentNote = currentBeat * timeSignature.getNoteValue() + currentNoteInBeat;
-				Button button = createRectButton("" + currentNote);
+				button = createRectButton("" + currentNote);
 				noteStatusContainer.getChildren().add(button);
 			}
 
-			HBox spacer = new HBox();
-			spacer.getStyleClass().add("spacer");
-			noteStatusContainer.getChildren().add(spacer);
+			button.getStyleClass().add("space");
 		}
 
 		HBox spacer = new HBox();

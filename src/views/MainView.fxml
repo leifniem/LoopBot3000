@@ -5,6 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
 	fx:controller="controller.MainViewController" alignment="CENTER">
@@ -17,7 +18,7 @@
 	<Button fx:id="newProjectButton" text="New Project" />
 
 	<fx:include fx:id="loopProjectView" source="LoopProjectView.fxml" />
-	
+
 	<HBox styleClass="row">
 		<HBox styleClass="project-buttons, prepend">
 			<Button fx:id="loadButton" text="Load" />

@@ -82,8 +82,12 @@ public class MainViewController {
 	}
 	
 	private void openCreateProjectDialog() {
-		CreateProjectStage dialog = new CreateProjectStage();
-		dialog.showAndWait();
+		try{
+			CreateProjectStage dialog = new CreateProjectStage();
+			dialog.showAndWait();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}	
 
 	public void importLoopProject() {

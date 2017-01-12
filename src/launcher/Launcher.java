@@ -13,7 +13,7 @@ public class Launcher extends Application {
 	private MainViewController mainViewController;
 
 	public static void main(String[] args) {
-		endProgramIfAlreadyStarted();
+		// endProgramIfAlreadyStarted();
 
 		launch(args);
 	}

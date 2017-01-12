@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
+	fx:controller="controller.CreateProjectViewController" alignment="CENTER">
+
+	<stylesheets>
+		<URL value="@styles.css" />
+	</stylesheets>
+	
+	<VBox styleClass="intro" alignment="CENTER">
+		<VBox styleClass="logo">
+			<Label>LOOP-BOT</Label>
+			<Label styleClass="red">3000</Label>
+		</VBox>
+		<Label>Choose Time Signature</Label>
+		<HBox alignment="CENTER">
+			<ComboBox fx:id="numberOfBeats"></ComboBox>
+			<ComboBox fx:id="noteValue"></ComboBox>
+		</HBox>
+		<Label>Choose Beats per Minute</Label>
+		<HBox alignment="CENTER">
+			<Slider fx:id="bpmSlider" />
+			<Label fx:id="bpmValue"/>
+		</HBox>
+	</VBox>
+</VBox>
+

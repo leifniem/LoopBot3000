@@ -14,6 +14,7 @@
 	</stylesheets>
 
 	<Button fx:id="addLoopButton" text="Add Loop" />
+	<Button fx:id="newProjectButton" text="New Project" />
 
 	<fx:include fx:id="loopProjectView" source="LoopProjectView.fxml" />
 	

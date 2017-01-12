@@ -3,9 +3,12 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import models.LoopProject;
 import models.LoopProjectExporter;
+import views.CreateProjectStage;
 
 public class MainViewController {
 	private final static int DEFAULT_NUMBER_OF_BEATS = 4;
@@ -23,6 +26,8 @@ public class MainViewController {
 	private Button saveButton;
 	@FXML
 	private Button addLoopButton;
+	@FXML
+	private Button newProjectButton;
 
 	private LoopProject loopProject;
 
@@ -65,9 +70,21 @@ public class MainViewController {
 				}
 			}
 		});
+		
+		newProjectButton.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				openCreateProjectDialog();
+			}
+		});
 
 		addLoopsForTestPurposes();
 	}
+	
+	private void openCreateProjectDialog() {
+		CreateProjectStage dialog = new CreateProjectStage();
+		dialog.showAndWait();
+	}	
 
 	public void importLoopProject() {
 		LoopProject importedLoopProject = LoopProjectExporter.askUserToImportLoopProject();

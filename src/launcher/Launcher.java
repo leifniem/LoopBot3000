@@ -11,7 +11,7 @@ import javafx.stage.WindowEvent;
 public class Launcher extends Application {
 
 	public static void main(String[] args) {
-		//endProgramIfAlreadyStarted();
+		endProgramIfAlreadyStarted();
 
 		launch(args);
 	}

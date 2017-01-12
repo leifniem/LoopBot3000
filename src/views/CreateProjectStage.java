@@ -5,14 +5,17 @@ import java.io.IOException;
 import controller.CreateProjectViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import launcher.Launcher;
 
 public class CreateProjectStage extends Stage{
 	private CreateProjectViewController controller;
 	
 	public CreateProjectStage() throws IOException{	
+		getIcons().add(new Image(Launcher.class.getResourceAsStream("/files/icon.png")));
 		initOwner(new Stage());
 		initModality(Modality.APPLICATION_MODAL); 
 		

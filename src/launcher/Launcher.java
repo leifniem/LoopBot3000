@@ -19,14 +19,14 @@ public class Launcher extends Application {
 	private InputController inputController;
 
 	public static void main(String[] args) {
-		// endProgramIfAlreadyStarted();
+		endProgramIfAlreadyStarted();
 
 		launch(args);
 	}
 
 	private static void endProgramIfAlreadyStarted() {
 		try {
-			java.net.ServerSocket ss = new java.net.ServerSocket(666);
+			java.net.ServerSocket ss = new java.net.ServerSocket(1359);
 		} catch (java.net.BindException ex) {
 			System.out.println("Programm läuft bereits.");
 			System.exit(1);

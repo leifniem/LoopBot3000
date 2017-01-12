@@ -54,21 +54,21 @@ public class CreateProjectViewController {
 		bpmSlider.setMin(60);
 		bpmSlider.setMax(270);
 	}
-
-	private void initNoteValueInput() {
-		noteValueValues.add(4);
-		noteValueItems.set(noteValueValues);
-		noteValueInput.itemsProperty().bind(noteValueItems);
-		selectedNoteValue.bind(noteValueInput.selectionModelProperty());
-		noteValueInput.getSelectionModel().selectFirst();
-	}
-
+	
 	private void initNumberOfBeatsInput() {
-		numberOfBeatsValues.add(4);
+		numberOfBeatsValues.addAll(2, 3, 4, 5, 6, 7, 8);
 		numberOfBeatsItems.set(numberOfBeatsValues);
 		numberOfBeatsInput.itemsProperty().bind(numberOfBeatsItems);
 		selectedNumberOfBeats.bind(numberOfBeatsInput.selectionModelProperty());
-		numberOfBeatsInput.getSelectionModel().selectFirst();
+		numberOfBeatsInput.getSelectionModel().select(2);
+	}
+
+	private void initNoteValueInput() {
+		noteValueValues.addAll(1, 2, 3, 4, 8);
+		noteValueItems.set(noteValueValues);
+		noteValueInput.itemsProperty().bind(noteValueItems);
+		selectedNoteValue.bind(noteValueInput.selectionModelProperty());
+		noteValueInput.getSelectionModel().select(3);
 	}
 
 	public int getNumberOfBeats() {

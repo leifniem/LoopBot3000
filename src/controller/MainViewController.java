@@ -89,6 +89,11 @@ public class MainViewController {
 			int numberOfBeats = dialog.getController().getNumberOfBeats();
 			int noteValue = dialog.getController().getNoteValue();
 			int tempo = dialog.getController().getTempo();
+			
+			loopProject = new LoopProject(numberOfBeats, noteValue, tempo);
+			loopProject.addDefaultLoop();
+			initLoopProjectView();
+			initPlaybar();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

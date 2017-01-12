@@ -246,3 +246,10 @@
 .bpm-input{
 	-fx-padding: 0px 0px 40px 0px;
 }
+
+#submitButton{
+	-fx-pref-width: 350px;
+	-fx-background-color: #D7FBA7;
+	-fx-effect: dropshadow(three-pass-box, #D7FBA7, 10, 0, 0, 0);
+	-fx-text-fill: #889775;
+}

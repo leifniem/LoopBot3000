@@ -10,6 +10,7 @@ public class Loop {
 	private StringProperty name = new SimpleStringProperty();
 	private String soundFilename;
 	private Media soundMedia;
+	private FloatProperty volume = new SimpleFloatProperty();
 	private BooleanProperty isMuted = new SimpleBooleanProperty();
 	private BooleanProperty isSolo = new SimpleBooleanProperty();
 	private LoopProject loopProject;
@@ -17,6 +18,7 @@ public class Loop {
 
 	public Loop(String name, LoopProject loopProject) {
 		this.name.set(name);
+		this.volume.set(1f);
 		this.loopProject = loopProject;
 		initNoteStatus();
 	}
@@ -49,6 +51,10 @@ public class Loop {
 	public StringProperty nameProperty() {
 		return name;
 	}
+	
+	public FloatProperty volumeProperty(){
+		return volume;
+	}
 
 	public BooleanProperty isMutedProperty() {
 		return isMuted;
@@ -74,5 +80,9 @@ public class Loop {
 	
 	public Media getSoundMedia(){
 		return soundMedia;
+	}
+	
+	public float getVolume(){
+		return volume.get(); 
 	}
 }

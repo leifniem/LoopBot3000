@@ -18,6 +18,7 @@
 	<Button fx:id="recordButton" />
 	<HBox fx:id="noteStatusContainer" styleClass="loop-row" />
 	<HBox styleClass="solo-mute-delete">
+		<Slider fx:id="volumeSlider" />
 		<Button fx:id="soloButton" styleClass="rect-button" text="S" />
 		<Button fx:id="muteButton" styleClass="rect-button" text="M" />
 		<Button fx:id="removeButton" styleClass="rect-button" text="X" />

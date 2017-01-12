@@ -14,9 +14,10 @@ public class AudioPlayer {
 	private List<MediaPlayer> mediaPlayers = new LinkedList<MediaPlayer>();
 	private static ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
-	public void playShortSound(Media media) {
+	public void playShortSound(Media media, float volume) {
 		MediaPlayer mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.setOnEndOfMedia(() -> pool.execute(mediaPlayer::dispose));
+		mediaPlayer.setVolume(volume);
 		mediaPlayer.play();
 	}
 

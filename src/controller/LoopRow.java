@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import models.AudioRecorder;
@@ -31,6 +32,8 @@ public class LoopRow extends HBox {
 	@FXML
 	private HBox noteStatusContainer;
 	@FXML
+	private Slider volumeSlider;
+	@FXML
 	private Button soloButton;
 	@FXML
 	private Button muteButton;
@@ -45,6 +48,8 @@ public class LoopRow extends HBox {
 		loadFxml();		
 		chooseFileButton.setOnAction(e -> loadSample());
 		addEventsToRecordButton();
+		volumeSlider.setMax(1);
+		volumeSlider.valueProperty().bindBidirectional(loop.volumeProperty());
 		muteButton.setOnAction(e -> switchMute());
 		soloButton.setOnAction(e -> switchSolo());
 		removeButton.setOnAction(e -> loop.remove());

@@ -70,7 +70,7 @@ public class LoopPlayer {
 				
 				if (shouldPlay) {
 					if (loop.getSoundMedia() != null) {
-						audioPlayer.playShortSound(loop.getSoundMedia());
+						audioPlayer.playShortSound(loop.getSoundMedia(), loop.getVolume());
 					} else {
 						System.out.println("Kein Sound hinterlegt!");
 					}

@@ -70,8 +70,8 @@ public class MainViewController {
 				}
 			}
 		});
-		
-		newProjectButton.setOnAction(new EventHandler<ActionEvent>(){
+
+		newProjectButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				openCreateProjectDialog();
@@ -80,15 +80,19 @@ public class MainViewController {
 
 		addLoopsForTestPurposes();
 	}
-	
+
 	private void openCreateProjectDialog() {
-		try{
+		try {
 			CreateProjectStage dialog = new CreateProjectStage();
 			dialog.showAndWait();
-		}catch(Exception e){
+			
+			int numberOfBeats = dialog.getController().getNumberOfBeats();
+			int noteValue = dialog.getController().getNoteValue();
+			int tempo = dialog.getController().getTempo();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}	
+	}
 
 	public void importLoopProject() {
 		LoopProject importedLoopProject = LoopProjectExporter.askUserToImportLoopProject();

@@ -17,12 +17,11 @@ import javafx.stage.Stage;
 public class CreateProjectViewController {
 	private ObservableList<Integer> numberOfBeatsValues = FXCollections.<Integer> observableArrayList();
 	private ObjectProperty<ObservableList<Integer>> numberOfBeatsItems = new SimpleObjectProperty<ObservableList<Integer>>();
-
 	private ObservableList<Integer> noteValueValues = FXCollections.<Integer> observableArrayList();
 	private ObjectProperty<ObservableList<Integer>> noteValueItems = new SimpleObjectProperty<ObservableList<Integer>>();
-
 	private ObjectProperty<SingleSelectionModel<Integer>> selectedNumberOfBeats = new SimpleObjectProperty<SingleSelectionModel<Integer>>();
 	private ObjectProperty<SingleSelectionModel<Integer>> selectedNoteValue = new SimpleObjectProperty<SingleSelectionModel<Integer>>();
+	private boolean wasSubmitted;
 
 	@FXML
 	private ComboBox<Integer> numberOfBeatsInput;
@@ -41,7 +40,12 @@ public class CreateProjectViewController {
 		initNoteValueInput();
 		initBpmSlider();
 		initBpmValue();
-		submitButton.setOnAction(e -> ((Stage) bpmSlider.getScene().getWindow()).close());
+		submitButton.setOnAction(e -> close());
+	}
+
+	private void close() {
+		wasSubmitted = true;
+		((Stage) bpmSlider.getScene().getWindow()).close();
 	}
 
 	private void initBpmValue() {
@@ -53,8 +57,9 @@ public class CreateProjectViewController {
 	private void initBpmSlider() {
 		bpmSlider.setMin(60);
 		bpmSlider.setMax(270);
+		bpmSlider.setValue(120);
 	}
-	
+
 	private void initNumberOfBeatsInput() {
 		numberOfBeatsValues.addAll(2, 3, 4, 5, 6, 7, 8);
 		numberOfBeatsItems.set(numberOfBeatsValues);
@@ -78,8 +83,12 @@ public class CreateProjectViewController {
 	public int getNoteValue() {
 		return selectedNoteValue.getValue().getSelectedItem();
 	}
-	
-	public int getTempo(){
+
+	public int getTempo() {
 		return (int) bpmSlider.getValue();
+	}
+
+	public boolean getWasSubmitted() {
+		return wasSubmitted;
 	}
 }

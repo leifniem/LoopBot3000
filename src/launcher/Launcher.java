@@ -1,5 +1,6 @@
 package launcher;
 
+import controller.MainViewController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class Launcher extends Application {
+	private MainViewController mainViewController;
 
 	public static void main(String[] args) {
 		endProgramIfAlreadyStarted();
@@ -30,7 +32,9 @@ public class Launcher extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		VBox root = FXMLLoader.load(getClass().getResource("/views/MainView.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainView.fxml"));
+		VBox root = loader.load();
+		mainViewController = loader.getController();
 
 		Scene scene = new Scene(root, 1000, 500);
 		// hier k�nnte der InputManager initialisiert werden!

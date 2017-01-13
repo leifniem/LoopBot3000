@@ -2,6 +2,9 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import models.AudioRecorder;
 import models.FileManager;
 import models.Loop;
 import models.TimeSignature;
+import views.CircularSlider;
 
 public class LoopRow extends HBox {
 	private final static String RECT_BUTTON_STYLE_CLASS = "rect-button";
@@ -34,6 +38,8 @@ public class LoopRow extends HBox {
 	@FXML
 	private Slider volumeSlider;
 	@FXML
+	private CircularSlider pitchKnob;
+	@FXML
 	private Button soloButton;
 	@FXML
 	private Button muteButton;
@@ -50,11 +56,21 @@ public class LoopRow extends HBox {
 		addEventsToRecordButton();
 		volumeSlider.setMax(1);
 		volumeSlider.valueProperty().bindBidirectional(loop.volumeProperty());
+		initPitchKnob(loop);
 		muteButton.setOnAction(e -> switchMute());
 		soloButton.setOnAction(e -> switchSolo());
 		removeButton.setOnAction(e -> loop.remove());
 		nameText.textProperty().bindBidirectional(loop.nameProperty());
+		
 		generateNoteStatusButtonsForTimeSignature();
+	}
+
+	private void initPitchKnob(Loop loop) {
+		pitchKnob.setMax(1);
+		pitchKnob.setMin(-1);
+		pitchKnob.setValue(0);
+		//reverse roatating -> left smallest value - right highest value
+		loop.pitchProperty().bind(pitchKnob.valueProperty().multiply(-1f));
 	}
 
 	private void switchMute() {

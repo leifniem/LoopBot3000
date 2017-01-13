@@ -257,3 +257,19 @@
 	-fx-effect: dropshadow(three-pass-box, #D7FBA7, 10, 0, 0, 0);
 	-fx-text-fill: #889775;
 }
+
+#volumeSlider{
+	-fx-pref-width: 20px;
+}
+
+.circular_slider {
+    -fx-background-color: transparent;
+    -fx-padding: 0px 3px;
+}
+.circular_slider .knob {
+    -fx-background-image: url("../files/knob.png");
+    -fx-rotate: 90;
+    -fx-background-size: stretch;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}

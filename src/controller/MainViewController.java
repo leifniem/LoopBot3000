@@ -85,12 +85,12 @@ public class MainViewController {
 		try {
 			CreateProjectStage dialog = new CreateProjectStage();
 			dialog.showAndWait();
-			
-			if(dialog.getController().getWasSubmitted()){
+
+			if (dialog.getController().getWasSubmitted()) {
 				int numberOfBeats = dialog.getController().getNumberOfBeats();
 				int noteValue = dialog.getController().getNoteValue();
 				int tempo = dialog.getController().getTempo();
-				
+
 				loopProject = new LoopProject(numberOfBeats, noteValue, tempo);
 				loopProject.addDefaultLoop();
 				initLoopProjectView();
@@ -125,8 +125,8 @@ public class MainViewController {
 	public LoopProject getLoopProject() {
 		return loopProject;
 	}
-	
-	public PlayBarController getPlayBarController(){
+
+	public PlayBarController getPlayBarController() {
 		return playbarController;
 	}
 }

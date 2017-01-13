@@ -14,11 +14,30 @@ public class AudioPlayer {
 	private List<MediaPlayer> mediaPlayers = new LinkedList<MediaPlayer>();
 	private static ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
-	public void playShortSound(Media media, float volume) {
+	public void playShortSound(Media media, float volume, float pitch) {
 		MediaPlayer mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.setOnEndOfMedia(() -> pool.execute(mediaPlayer::dispose));
 		mediaPlayer.setVolume(volume);
+		float javaFXPitch = calculatePitch(pitch);
+		mediaPlayer.setRate(javaFXPitch);
 		mediaPlayer.play();
+	}
+
+	/**
+	 * Converts pitch between -1 and 1 into pitch between 0 and 8
+	 */
+	private float calculatePitch(float pitch) {
+		float rightPitch = pitch;
+
+		if(rightPitch > 0){
+			rightPitch *= 0.875;
+			rightPitch = 1 / (1-rightPitch);
+		} else {
+			rightPitch *= (-1);
+			rightPitch = 1-rightPitch;
+		}
+		
+		return rightPitch;
 	}
 
 	public void playLongSound(String filename) {

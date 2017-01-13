@@ -78,6 +78,8 @@ public class LoopProjectExporter {
 
 	private static Loop generateLoopForSimpleLoop(LoopProject loopProject, SimpleLoop simpleLoop) {
 		Loop loop = new Loop(simpleLoop.getName(), loopProject);
+		loop.volumeProperty().set(simpleLoop.getVolume());
+		loop.pitchProperty().set(simpleLoop.getPitch());
 		
 		if(fileExists(simpleLoop.getSoundFilename())){
 			loop.setSoundFile(simpleLoop.getSoundFilename());

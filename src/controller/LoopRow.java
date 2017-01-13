@@ -68,8 +68,8 @@ public class LoopRow extends HBox {
 	private void initPitchKnob(Loop loop) {
 		pitchKnob.setMax(1);
 		pitchKnob.setMin(-1);
-		pitchKnob.setValue(0);
 		//reverse roatating -> left smallest value - right highest value
+		pitchKnob.setValue(loop.getPitch()*(-1));
 		loop.pitchProperty().bind(pitchKnob.valueProperty().multiply(-1f));
 	}
 

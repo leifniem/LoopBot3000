@@ -11,6 +11,8 @@ public class SimpleLoop implements Serializable{
 	
 	private String name;
 	private String soundFilename;
+	private float volume;
+	private float pitch;
 	private boolean isMuted;
 	private boolean isSolo;
 	private List<Boolean> noteStatus = new ArrayList<Boolean>();
@@ -24,6 +26,8 @@ public class SimpleLoop implements Serializable{
 		setSoundFilename(loop.getSoundFilename());
 		setMuted(loop.isMutedProperty().get());
 		setSolo(loop.isSoloProperty().get());
+		setVolume(loop.getVolume());
+		setPitch(loop.getPitch());
 		
 		for(BooleanProperty active : loop.getNoteStatus()){
 			noteStatus.add(active.get());
@@ -68,5 +72,21 @@ public class SimpleLoop implements Serializable{
 	
 	public void setNoteStatus(List<Boolean> noteStatus){
 		this.noteStatus = noteStatus;
+	}
+
+	public float getVolume() {
+		return volume;
+	}
+
+	public void setVolume(float volume) {
+		this.volume = volume;
+	}
+
+	public float getPitch() {
+		return pitch;
+	}
+
+	public void setPitch(float pitch) {
+		this.pitch = pitch;
 	}
 }

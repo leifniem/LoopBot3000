@@ -20,7 +20,6 @@ public class Loop {
 	public Loop(String name, LoopProject loopProject) {
 		this.name.set(name);
 		this.volume.set(1f);
-		this.pitch.set(1f);
 		this.loopProject = loopProject;
 		initNoteStatus();
 	}

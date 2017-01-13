@@ -73,7 +73,7 @@ public class CreateProjectViewController {
 	}
 
 	private void initNoteValueInput() {
-		noteValueValues.addAll(1, 2, 3, 4, 8);
+		noteValueValues.addAll(2, 3, 4, 5, 6, 7, 8);
 		noteValueItems.set(noteValueValues);
 		noteValueInput.itemsProperty().bind(noteValueItems);
 		selectedNoteValue.bind(noteValueInput.selectionModelProperty());

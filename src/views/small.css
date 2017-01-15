@@ -10,7 +10,7 @@
 	-fx-background-size: 500px 700px;
 	-fx-background-repeat: repeat;
 	-fx-padding: 40px;
-	-fx-font-size: 16px;
+	-fx-font-size: 12px;
 	-fx-font-family: 'Roboto Mono';
 	-fx-font-weight: 700;
 	-fx-align: center;
@@ -25,23 +25,23 @@
 }
 
 .row{
-	-fx-padding: 5px 0px;
+	-fx-padding: 3px 0px;
 }
 
 .play-bar,
 .loop-row,
 .solo-mute-delete{
-	-fx-spacing: 10px;
+	-fx-spacing: 5px;
 }
 
 .project-buttons{
-	-fx-spacing: 10px;
+	-fx-spacing: 5px;
 }
 
 .prepend{
-	-fx-pref-width: 160px;
-	-fx-max-width: 160px;
-	-fx-min-width: 160px;
+	-fx-pref-width: 100px;
+	-fx-max-width: 100px;
+	-fx-min-width: 100px;
 }
 
 .project-buttons .button,
@@ -59,30 +59,30 @@
 }
 
 .solo-mute-delete{
-	-fx-padding: 0px 0px 0px 20px;
+	-fx-padding: 0px 0px 0px 10px;
 }
 
 #record{
 	-fx-background-color: #896260;
 	-fx-background-radius: 20px;
-	-fx-pref-width: 20px;
-	-fx-pref-height: 20px;
-	-fx-min-width: 20px;
-	-fx-max-width: 20px;
-	-fx-min-height: 20px;
-	-fx-max-height: 20px;
+	-fx-pref-width: 15px;
+	-fx-pref-height: 15px;
+	-fx-min-width: 15px;
+	-fx-max-width: 15px;
+	-fx-min-height: 15px;
+	-fx-max-height: 15px;
 }
 
 #recordButton{
 	-fx-background-color: #FF837D;
-	-fx-background-radius: 20px;
-	-fx-background-size: 25px 25px;
-	-fx-pref-width: 50px;
-	-fx-pref-height: 20px;
-	-fx-min-width: 50px;
-	-fx-max-width: 50px;
-	-fx-min-height: 20px;
-	-fx-max-height: 20px;
+	-fx-background-radius: 50%;
+	-fx-background-size: 15px 15px;
+	-fx-pref-width: 30px;
+	-fx-pref-height: 15px;
+	-fx-min-width: 30px;
+	-fx-max-width: 30px;
+	-fx-min-height: 15px;
+	-fx-max-height: 15px;
 	-fx-background-insets: 0px 15px;
 }
 
@@ -93,26 +93,26 @@
 #chooseFileButton{
 	-fx-background-color: transparent;
 	-fx-background-image: url(../files/open.png);
-	-fx-background-size: 25px 25px;
+	-fx-background-size: 15px 15px;
 	-fx-background-repeat: no-repeat;
-	-fx-pref-width: 25px;
-	-fx-pref-height: 25px;
-	-fx-min-width: 25px;
-	-fx-max-width: 25px;
-	-fx-min-height: 25px;
-	-fx-max-height: 25px;
+	-fx-pref-width: 15px;
+	-fx-pref-height: 15px;
+	-fx-min-width: 15px;
+	-fx-max-width: 15px;
+	-fx-min-height: 15px;
+	-fx-max-height: 15px;
 }
 
 .rect-button{
 	-fx-border: none;
-	-fx-pref-width: 25px;
-	-fx-pref-height: 25px;
-	-fx-min-width: 25px;
-	-fx-max-width: 25px;
-	-fx-min-height: 25px;
-	-fx-max-height: 25px;
+	-fx-pref-width: 15px;
+	-fx-pref-height: 15px;
+	-fx-min-width: 15px;
+	-fx-max-width: 15px;
+	-fx-min-height: 15px;
+	-fx-max-height: 15px;
 	-fx-text-fill: #4A4A4A;
-	-fx-font-size: 12px;
+	-fx-font-size: 10px;
 	-fx-background-color: #909092;
 }
 
@@ -123,29 +123,29 @@
 }
 
 .space{
-	-fx-min-width: 45px;
-	-fx-max-width: 45px;
-	-fx-pref-width: 45px;
-	-fx-background-insets: 0px 20px 0px 0px;
+	-fx-min-width: 25px;
+	-fx-max-width: 25px;
+	-fx-pref-width: 25px;
+	-fx-background-insets: 0px 10px 0px 0px;
 }
 
 .pb-spacer{
-	-fx-min-width: 105px;
-	-fx-max-width: 105px;
-	-fx-pref-width: 105px;
+	-fx-min-width: 65px;
+	-fx-max-width: 65px;
+	-fx-pref-width: 65px;
 }
 
 #playButton{
 	-fx-background-color: #D8D8D8;
 	-fx-shape: "M5,5 C5,2.24 6.9,1.19 9.24,2.645 L24.765,12.35 C27.1,13.8 27.1,16.19 24.765,17.647 L9.24,27.35 C6.9,28.81 5,27.77 5,25 L5,5 Z";
-	-fx-background-size: 25px 25px;
+	-fx-background-size: 15px 15px;
 	-fx-background-repeat: no-repeat;
-	-fx-pref-width: 50px;
-	-fx-min-width: 50px;
-	-fx-max-width: 50px;
-	-fx-pref-height: 25px;
-	-fx-min-height: 25px;
-	-fx-max-height: 25px;
+	-fx-pref-width: 30px;
+	-fx-min-width: 30px;
+	-fx-max-width: 30px;
+	-fx-pref-height: 15px;
+	-fx-min-height: 15px;
+	-fx-max-height: 15px;
 	-fx-background-insets: 0px 15px;
 }
 
@@ -165,6 +165,35 @@
 	-fx-effect: dropshadow(three-pass-box, #FF977D, 10, 0, 0, 0);
 	-fx-text-fill: #BE705D;
 }
+
+#volumeSlider{
+	-fx-pref-width: 10px;
+}
+
+#volumeSlider .track{
+	-fx-background-color: #909092;
+}
+
+#volumeSlider .thumb{
+	-fx-background-color: #909092;
+}
+
+.circular_slider {
+    -fx-max-height: 15px;
+    -fx-min-width: 20px;
+}
+.circular_slider .knob {
+    -fx-background-image: url("../files/knob.png");
+    -fx-background-position: center;
+    -fx-background-size: contain;
+    -fx-border-radius: 50%;
+    -fx-rotate: 90;
+    -fx-pref-width: 15px;
+    -fx-pref-height: 15px;
+    -fx-max-height: 15px;
+}
+
+
 
 /* Intro */
 
@@ -256,31 +285,4 @@
 	-fx-background-color: #D7FBA7;
 	-fx-effect: dropshadow(three-pass-box, #D7FBA7, 10, 0, 0, 0);
 	-fx-text-fill: #889775;
-}
-
-#volumeSlider{
-	-fx-pref-width: 20px;
-}
-
-#volumeSlider .track{
-	-fx-background-color: #909092;
-}
-
-#volumeSlider .thumb{
-	-fx-background-color: #909092;
-}
-
-.circular_slider {
-    -fx-max-height: 25px;
-    -fx-min-width: 30px;
-}
-.circular_slider .knob {
-    -fx-background-image: url("../files/knob.png");
-    -fx-background-position: center;
-    -fx-background-size: contain;
-    -fx-border-radius: 50%;
-    -fx-rotate: 90;
-    -fx-pref-width: 25px;
-    -fx-pref-height: 25px;
-    -fx-max-height: 25px;
 }

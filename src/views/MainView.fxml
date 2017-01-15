@@ -11,11 +11,13 @@
 	fx:controller="controller.MainViewController" alignment="CENTER">
 
 	<stylesheets>
-		<URL value="@styles.css" />
+		<URL value="@small.css" />
 	</stylesheets>
 
-	<Button fx:id="addLoopButton" text="Add Loop" />
-	<Button fx:id="newProjectButton" text="New Project" />
+	<HBox styleClass="row" spacing="10">
+		<Button fx:id="addLoopButton" text="Add Loop" />
+		<Button fx:id="newProjectButton" text="New Project" />
+	</HBox>
 
 	<fx:include fx:id="loopProjectView" source="LoopProjectView.fxml" />
 

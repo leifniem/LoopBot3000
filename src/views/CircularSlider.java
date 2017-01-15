@@ -18,7 +18,7 @@ public class CircularSlider extends Region {
 	public CircularSlider() {
 		super();
 		getStyleClass().add("circular_slider"); 
-		knob.setPrefSize(70, 70);
+		knob.setPrefSize(25, 25);
 		knob.setId("knob");
 		knob.getStyleClass().add("knob"); 
 		knob.getTransforms().add(rotate);
@@ -73,7 +73,7 @@ public class CircularSlider extends Region {
 	protected void layoutChildren() {
 		super.layoutChildren();
 		double knobX = (getWidth() - knob.getPrefWidth()) / 2.0;
-		double knobY = -getHeight() / 4;
+		double knobY = 0; // -getHeight() / 8;
 		knob.setLayoutX(knobX);
 		knob.setLayoutY(knobY);
 		double angle = valueToAngle(getValue());

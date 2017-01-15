@@ -18,6 +18,8 @@ public class CreateProjectViewController {
 	private static final int MIN_TEMPO = 60;
 	private static final int MAX_TEMPO = 270;
 	private static final int DEFAULT_TEMPO = 120;
+	private static final Integer DEFAULT_NUMBER_OF_BEATS = 4;
+	private static final Integer DEFAULT_NOTE_VALUE = 4;
 	
 	private ObservableList<Integer> numberOfBeatsValues = FXCollections.<Integer> observableArrayList();
 	private ObjectProperty<ObservableList<Integer>> numberOfBeatsItems = new SimpleObjectProperty<ObservableList<Integer>>();
@@ -69,7 +71,7 @@ public class CreateProjectViewController {
 		numberOfBeatsItems.set(numberOfBeatsValues);
 		numberOfBeatsInput.itemsProperty().bind(numberOfBeatsItems);
 		selectedNumberOfBeats.bind(numberOfBeatsInput.selectionModelProperty());
-		numberOfBeatsInput.getSelectionModel().select(2);
+		numberOfBeatsInput.getSelectionModel().select(DEFAULT_NUMBER_OF_BEATS);
 	}
 
 	private void initNoteValueInput() {
@@ -77,7 +79,7 @@ public class CreateProjectViewController {
 		noteValueItems.set(noteValueValues);
 		noteValueInput.itemsProperty().bind(noteValueItems);
 		selectedNoteValue.bind(noteValueInput.selectionModelProperty());
-		noteValueInput.getSelectionModel().select(3);
+		noteValueInput.getSelectionModel().select(DEFAULT_NOTE_VALUE);
 	}
 
 	public int getNumberOfBeats() {

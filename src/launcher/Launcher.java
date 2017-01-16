@@ -10,7 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -39,7 +39,7 @@ public class Launcher extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainView.fxml"));
-		VBox root = loader.load();
+		GridPane root = loader.load();
 		mainViewController = loader.getController();
 
 		Scene scene = new Scene(root, 1280, 600);
@@ -60,7 +60,7 @@ public class Launcher extends Application {
 		stage.show();
 	}
 
-	private void addFocusListenerToStage(Stage stage, VBox root) {
+	private void addFocusListenerToStage(Stage stage, GridPane root) {
 		stage.focusedProperty().addListener(new ChangeListener<Boolean>(){
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {

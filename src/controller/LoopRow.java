@@ -69,7 +69,7 @@ public class LoopRow extends HBox {
 		volumeKnob.setMin(0);
 		//reverse roatating -> left smallest value - right highest value
 		volumeKnob.setValue(1f - loop.getVolume());
-		loop.volumeProperty().bind(volumeKnob.valueProperty().subtract(1).multiply(-1f));
+		loop.volumeProperty().bind(volumeKnob.valueProperty().subtract(volumeKnob.getMin()+volumeKnob.getMax()).multiply(-1f));
 	}
 
 	private void initPitchKnob(Loop loop) {
@@ -78,6 +78,7 @@ public class LoopRow extends HBox {
 		//reverse roatating -> left smallest value - right highest value
 		pitchKnob.setValue(loop.getPitch()*(-1));
 		loop.pitchProperty().bind(pitchKnob.valueProperty().multiply(-1f));
+		loop.pitchProperty().bind(pitchKnob.valueProperty().subtract(pitchKnob.getMin()+pitchKnob.getMax()).multiply(-1f));
 	}
 
 	private void switchMute() {

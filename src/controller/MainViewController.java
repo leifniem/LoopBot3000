@@ -53,7 +53,7 @@ public class MainViewController {
 		saveButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				
+
 				LoopProjectExporter.askUserToExportLoopProject(loopProject, getParentStage());
 			}
 		});
@@ -83,9 +83,9 @@ public class MainViewController {
 
 		addLoopsForTestPurposes();
 	}
-	
-	private Stage getParentStage(){
-		Stage stage = (Stage)loadButton.getScene().getWindow();
+
+	private Stage getParentStage() {
+		Stage stage = (Stage) loadButton.getScene().getWindow();
 		return stage;
 	}
 
@@ -117,20 +117,21 @@ public class MainViewController {
 			initPlaybar();
 		}
 	}
-	
-	public void determineSize(){
+
+	public void determineSize() {
 		URL url;
-		if(loopProject.getTimeSignature().getAmountOfNotes() > 20){
+		if (loopProject.getTimeSignature().getAmountOfNotes() > 20) {
 			url = getClass().getResource("../views/small.css");
-		}else{
+		} else {
 			url = getClass().getResource("../views/styles.css");
 		}
-		
-		if(url != null){
+
+		if (url != null) {
 			String css = url.toExternalForm();
 			Scene scene = loadButton.getScene();
-			if (scene != null){
-				scene.getStylesheets().removeAll();
+			if (scene != null) {
+				if (scene.getStylesheets().size() > 0)
+					scene.getStylesheets().remove(0);
 				scene.getStylesheets().add(css);
 			}
 		}

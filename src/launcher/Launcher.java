@@ -53,6 +53,7 @@ public class Launcher extends Application {
 		
 		stage.setScene(scene);
 		
+		
 		addFocusListenerToStage(stage, root);
 		inputController = new InputController(scene, mainViewController, stage);
 		

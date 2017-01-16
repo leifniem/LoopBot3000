@@ -10,9 +10,9 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
 	fx:controller="controller.MainViewController" alignment="CENTER">
 
-	<stylesheets>
-		<URL value="@small.css" />
-	</stylesheets>
+<!-- 	<stylesheets> -->
+<!-- 		<URL value="@styles.css" /> -->
+<!-- 	</stylesheets> -->
 
 	<HBox styleClass="row" spacing="10">
 		<Button fx:id="addLoopButton" text="Add Loop" />

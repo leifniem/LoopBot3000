@@ -1,5 +1,7 @@
 package controller;
 
+import java.net.URL;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -115,9 +117,28 @@ public class MainViewController {
 			initPlaybar();
 		}
 	}
+	
+	public void determineSize(){
+		URL url;
+		if(loopProject.getTimeSignature().getAmountOfNotes() > 20){
+			url = getClass().getResource("../views/small.css");
+		}else{
+			url = getClass().getResource("../views/styles.css");
+		}
+		
+		if(url != null){
+			String css = url.toExternalForm();
+			Scene scene = loadButton.getScene();
+			if (scene != null){
+				scene.getStylesheets().removeAll();
+				scene.getStylesheets().add(css);
+			}
+		}
+	}
 
 	private void initLoopProjectView() {
 		loopProjectViewController.initLoopProjectContainer(loopProject);
+		determineSize();
 	}
 
 	private void addLoopsForTestPurposes() {

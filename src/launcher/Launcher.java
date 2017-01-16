@@ -28,7 +28,7 @@ public class Launcher extends Application {
 		try {
 			java.net.ServerSocket ss = new java.net.ServerSocket(1359);
 		} catch (java.net.BindException ex) {
-			System.out.println("Programm läuft bereits.");
+			System.out.println("Programm lï¿½uft bereits.");
 			System.exit(1);
 		} catch (java.io.IOException ex) {
 			ex.printStackTrace();
@@ -42,11 +42,15 @@ public class Launcher extends Application {
 		VBox root = loader.load();
 		mainViewController = loader.getController();
 
-		Scene scene = new Scene(root, 1400, 600);
+		Scene scene = new Scene(root, 1280, 600);
 
+		mainViewController.determineSize();
+		
 		addOnCloseRequestHandlerToPrimaryStage(stage);
 		stage.setTitle("Loop-Bot 3000");
 		stage.getIcons().add(new Image(Launcher.class.getResourceAsStream("/files/icon.png")));
+		stage.setResizable(false);
+		
 		stage.setScene(scene);
 		
 		addFocusListenerToStage(stage, root);

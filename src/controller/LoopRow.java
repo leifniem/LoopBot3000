@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import models.AudioRecorder;
 import models.FileManager;
 import models.Loop;
@@ -154,7 +155,8 @@ public class LoopRow extends HBox {
 	}
 	
 	public void loadSample(){
-		File audio = FileManager.askUserToLoadAudioFile();
+		Stage stage = (Stage)nameText.getScene().getWindow();
+		File audio = FileManager.askUserToLoadAudioFile(stage);
 		if(audio != null){
 			this.loop.setSoundFile(audio.getAbsolutePath());
 			this.loop.nameProperty().set(audio.getName());

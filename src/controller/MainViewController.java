@@ -51,7 +51,8 @@ public class MainViewController {
 		saveButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				LoopProjectExporter.askUserToExportLoopProject(loopProject);
+				
+				LoopProjectExporter.askUserToExportLoopProject(loopProject, getParentStage());
 			}
 		});
 
@@ -80,6 +81,11 @@ public class MainViewController {
 
 		addLoopsForTestPurposes();
 	}
+	
+	private Stage getParentStage(){
+		Stage stage = (Stage)loadButton.getScene().getWindow();
+		return stage;
+	}
 
 	public void openCreateProjectDialog() {
 		try {
@@ -102,7 +108,7 @@ public class MainViewController {
 	}
 
 	public void importLoopProject() {
-		LoopProject importedLoopProject = LoopProjectExporter.askUserToImportLoopProject();
+		LoopProject importedLoopProject = LoopProjectExporter.askUserToImportLoopProject(getParentStage());
 		if (importedLoopProject != null) {
 			loopProject = importedLoopProject;
 			initLoopProjectView();

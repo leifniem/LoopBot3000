@@ -9,11 +9,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+import javafx.stage.Stage;
+
 public class LoopProjectExporter {
 	
-	public static LoopProject askUserToImportLoopProject(){
+	public static LoopProject askUserToImportLoopProject(Stage parentStage){
 		LoopProject result = null;
-		File file = FileManager.askUserToLoadXMLFile();
+		File file = FileManager.askUserToLoadXMLFile(parentStage);
 		
 		if (file != null) {
 			result = LoopProjectExporter.importLoopProject(file.getAbsolutePath());	
@@ -22,8 +24,8 @@ public class LoopProjectExporter {
 		return result;
 	}
 	
-	public static void askUserToExportLoopProject(LoopProject loopProject){
-		File file = FileManager.askUserToSaveXMLFile();
+	public static void askUserToExportLoopProject(LoopProject loopProject, Stage parentStage){
+		File file = FileManager.askUserToSaveXMLFile(parentStage);
 		if (file != null) {
 			exportLoopProject(loopProject, file.getAbsolutePath());
 		}

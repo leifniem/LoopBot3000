@@ -13,17 +13,9 @@ public class FileManager {
 		return chooseFileToLoad(parentStage, extensionFilter);
 	}
 	
-	public static File askUserToLoadAudioFile() {
-		return askUserToLoadAudioFile(new Stage());
-	}
-	
 	public static File askUserToLoadXMLFile(Stage parentStage) {
 		ExtensionFilter extensionFilter = new ExtensionFilter("Loop Project", "*.lp");
 		return chooseFileToLoad(parentStage, extensionFilter);
-	}
-	
-	public static File askUserToLoadXMLFile(){
-		return askUserToLoadXMLFile(new Stage());
 	}
 	
 	private static File chooseFileToLoad(Stage parentStage, ExtensionFilter extensionFilter){
@@ -40,10 +32,6 @@ public class FileManager {
 	public static File askUserToSaveXMLFile(Stage parentStage){
 		ExtensionFilter extensionFilter = new ExtensionFilter("Loop Project", "*.lp");
 		return chooseFileToSave(parentStage, extensionFilter);
-	}
-	
-	public static File askUserToSaveXMLFile(){
-		return askUserToSaveXMLFile(new Stage());
 	}
 	
 	private static File chooseFileToSave(Stage parentStage, ExtensionFilter extensionFilter){

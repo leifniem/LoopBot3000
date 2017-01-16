@@ -13,7 +13,7 @@ import models.LoopProjectExporter;
 import views.CreateProjectStage;
 
 public class MainViewController {
-	private final static int DEFAULT_NUMBER_OF_BEATS = 4;
+	private final static int DEFAULT_NUMBER_OF_BEATS = 6;
 	private final static int DEFAULT_NOTE_VALUE = 4;
 	private final static int DEFAULT_TEMP = 120;
 	private final static int MAX_LOOPS = 9;

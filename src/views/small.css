@@ -78,14 +78,14 @@
 #recordButton{
 	-fx-background-color: #FF837D;
 	-fx-background-radius: 50%;
-	-fx-background-size: 15px 15px;
+	-fx-background-size: 14px 14px;
 	-fx-pref-width: 30px;
 	-fx-pref-height: 15px;
 	-fx-min-width: 30px;
 	-fx-max-width: 30px;
 	-fx-min-height: 15px;
 	-fx-max-height: 15px;
-	-fx-background-insets: 0px 15px;
+	-fx-background-insets: 0px 7.5px;
 }
 
 #recordButton:pressed{
@@ -151,7 +151,7 @@
 	-fx-pref-height: 15px;
 	-fx-min-height: 15px;
 	-fx-max-height: 15px;
-	-fx-background-insets: 0px 15px;
+	-fx-background-insets: 0px 9px;
 }
 
 .play-on{

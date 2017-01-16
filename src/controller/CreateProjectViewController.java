@@ -67,7 +67,7 @@ public class CreateProjectViewController {
 	}
 
 	private void initNumberOfBeatsInput() {
-		numberOfBeatsValues.addAll(2, 3, 4, 5, 6, 7, 8);
+		numberOfBeatsValues.addAll(2, 3, 4, 5);
 		numberOfBeatsItems.set(numberOfBeatsValues);
 		numberOfBeatsInput.itemsProperty().bind(numberOfBeatsItems);
 		selectedNumberOfBeats.bind(numberOfBeatsInput.selectionModelProperty());

@@ -36,7 +36,7 @@ public class LoopRow extends HBox {
 	@FXML
 	private HBox noteStatusContainer;
 	@FXML
-	private Slider volumeSlider;
+	private CircularSlider volumeKnob;
 	@FXML
 	private CircularSlider pitchKnob;
 	@FXML
@@ -54,8 +54,7 @@ public class LoopRow extends HBox {
 		loadFxml();		
 		chooseFileButton.setOnAction(e -> loadSample());
 		addEventsToRecordButton();
-		volumeSlider.setMax(1);
-		volumeSlider.valueProperty().bindBidirectional(loop.volumeProperty());
+		initVolumeKnob(loop);
 		initPitchKnob(loop);
 		muteButton.setOnAction(e -> switchMute());
 		soloButton.setOnAction(e -> switchSolo());
@@ -63,6 +62,14 @@ public class LoopRow extends HBox {
 		nameText.textProperty().bindBidirectional(loop.nameProperty());
 		
 		generateNoteStatusButtonsForTimeSignature();
+	}
+
+	private void initVolumeKnob(Loop loop) {
+		volumeKnob.setMax(1);
+		volumeKnob.setMin(0);
+		//reverse roatating -> left smallest value - right highest value
+		volumeKnob.setValue(1f - loop.getVolume());
+		loop.volumeProperty().bind(volumeKnob.valueProperty().subtract(1).multiply(-1f));
 	}
 
 	private void initPitchKnob(Loop loop) {

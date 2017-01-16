@@ -8,7 +8,7 @@ public class LoopPlayer {
 	private AudioPlayer audioPlayer;
 	private Timer playTimer;
 	private LoopProject loopProject;
-	
+
 	private IntegerProperty currentNote = new SimpleIntegerProperty();
 	private BooleanProperty isPlaying = new SimpleBooleanProperty();
 
@@ -21,16 +21,16 @@ public class LoopPlayer {
 	public BooleanProperty isPlayingProperty() {
 		return isPlaying;
 	}
-	
-	public boolean isPlaying(){
+
+	public boolean isPlaying() {
 		return isPlaying.get();
 	}
-	
-	public IntegerProperty currentNoteProperty(){
+
+	public IntegerProperty currentNoteProperty() {
 		return currentNote;
 	}
-	
-	public int getCurrentNote(){
+
+	public int getCurrentNote() {
 		return currentNote.get();
 	}
 
@@ -47,33 +47,29 @@ public class LoopPlayer {
 
 	private TimerTask createPlayLoopSoundsTask() {
 		int amountOfNotes = loopProject.getTimeSignature().getAmountOfNotes();
-		
+
 		return new TimerTask() {
 			@Override
 			public void run() {
 				for (Loop loop : loopProject.getLoops()) {
 					playLoopIfNecessary(loop);
 				}
-				
+
 				int nextNote = (currentNote.get() + 1) % amountOfNotes;
 				currentNote.set(nextNote);
 			}
 
 			private void playLoopIfNecessary(Loop loop) {
 				boolean shouldPlay;
-				
-				if(loopProject.getSoloLoop() > 0){
+
+				if (loopProject.getSoloLoop() > 0) {
 					shouldPlay = loop.isSoloProperty().get() && loop.getNoteStatus().get(currentNote.get()).get();
-				}else{
+				} else {
 					shouldPlay = !loop.isMutedProperty().get() && loop.getNoteStatus().get(currentNote.get()).get();
 				}
-				
-				if (shouldPlay) {
-					if (loop.getSoundMedia() != null) {
-						audioPlayer.playShortSound(loop.getSoundMedia(), loop.getVolume(), loop.getPitch());
-					} else {
-						System.out.println("Kein Sound hinterlegt!");
-					}
+
+				if (shouldPlay && loop.getSoundMedia() != null) {
+					audioPlayer.playShortSound(loop.getSoundMedia(), loop.getVolume(), loop.getPitch());
 				}
 			}
 		};

@@ -21,9 +21,9 @@ public class LoopRow extends HBox {
 	private final static String RECT_BUTTON_ACTIVE_STYLE_CLASS = "rect-on";
 	private final static String MUTE_BUTTON_ACTIVE_STYLE_CLASS = "mute-on";
 	private final static String SOLO_BUTTON_ACTIVE_STYLE_CLASS = "solo-on";
-	
+
 	private final AudioRecorder rec = new AudioRecorder();
-	
+
 	@FXML
 	private TextField nameText;
 	@FXML
@@ -48,7 +48,7 @@ public class LoopRow extends HBox {
 	public LoopRow(Loop loop) {
 		this.loop = loop;
 
-		loadFxml();		
+		loadFxml();
 		chooseFileButton.setOnAction(e -> loadSample());
 		addEventsToRecordButton();
 		initVolumeKnob(loop);
@@ -57,32 +57,34 @@ public class LoopRow extends HBox {
 		soloButton.setOnAction(e -> switchSolo());
 		removeButton.setOnAction(e -> loop.remove());
 		nameText.textProperty().bindBidirectional(loop.nameProperty());
-		
+
 		generateNoteStatusButtonsForTimeSignature();
 	}
 
 	private void initVolumeKnob(Loop loop) {
 		volumeKnob.setMax(1);
 		volumeKnob.setMin(0);
-		//reverse roatating -> left smallest value - right highest value
+		// reverse roatating -> left smallest value - right highest value
 		volumeKnob.setValue(1f - loop.getVolume());
-		loop.volumeProperty().bind(volumeKnob.valueProperty().subtract(volumeKnob.getMin()+volumeKnob.getMax()).multiply(-1f));
+		loop.volumeProperty()
+				.bind(volumeKnob.valueProperty().subtract(volumeKnob.getMin() + volumeKnob.getMax()).multiply(-1f));
 	}
 
 	private void initPitchKnob(Loop loop) {
 		pitchKnob.setMax(1);
 		pitchKnob.setMin(-1);
-		//reverse roatating -> left smallest value - right highest value
-		pitchKnob.setValue(loop.getPitch()*(-1));
+		// reverse roatating -> left smallest value - right highest value
+		pitchKnob.setValue(loop.getPitch() * (-1));
 		loop.pitchProperty().bind(pitchKnob.valueProperty().multiply(-1f));
-		loop.pitchProperty().bind(pitchKnob.valueProperty().subtract(pitchKnob.getMin()+pitchKnob.getMax()).multiply(-1f));
+		loop.pitchProperty()
+				.bind(pitchKnob.valueProperty().subtract(pitchKnob.getMin() + pitchKnob.getMax()).multiply(-1f));
 	}
 
 	private void switchMute() {
 		loop.isMutedProperty().set(!loop.isMutedProperty().get());
 		StyleHelper.applyStyleClass(loop.isMutedProperty().get(), muteButton, MUTE_BUTTON_ACTIVE_STYLE_CLASS);
 	}
-	
+
 	private void switchSolo() {
 		loop.isSoloProperty().set(!loop.isSoloProperty().get());
 		StyleHelper.applyStyleClass(loop.isSoloProperty().get(), soloButton, SOLO_BUTTON_ACTIVE_STYLE_CLASS);
@@ -104,7 +106,7 @@ public class LoopRow extends HBox {
 		recordButton.setOnMousePressed(e -> rec.startRecording());
 		recordButton.setOnMouseReleased(e -> stopRecordingAndApplySoundFile(loop));
 	}
-	
+
 	private void stopRecordingAndApplySoundFile(Loop loop) {
 		rec.stopRecording();
 		loop.setSoundFile(rec.getNewestRecording());
@@ -112,7 +114,7 @@ public class LoopRow extends HBox {
 
 	private void generateNoteStatusButtonsForTimeSignature() {
 		TimeSignature timeSignature = loop.getTimeSignature();
-		
+
 		for (int currentBeat = 0; currentBeat < timeSignature.getNumberOfBeats(); currentBeat++) {
 			Button button = null;
 			for (int currentNoteInBeat = 0; currentNoteInBeat < timeSignature.getNoteValue(); currentNoteInBeat++) {
@@ -130,30 +132,30 @@ public class LoopRow extends HBox {
 		Button button = new Button();
 		button.setId(id);
 		button.getStyleClass().add(RECT_BUTTON_STYLE_CLASS);
-		
-		if(active){
+
+		if (active) {
 			button.getStyleClass().add(RECT_BUTTON_ACTIVE_STYLE_CLASS);
 		}
 
-		button.setOnAction(new EventHandler<ActionEvent>(){
+		button.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				Button button = (Button)e.getSource();
+				Button button = (Button) e.getSource();
 				int buttonId = Integer.parseInt(button.getId());
 				boolean buttonIsActive = loop.getNoteStatus().get(buttonId).get();
 				StyleHelper.applyStyleClass(!buttonIsActive, button, RECT_BUTTON_ACTIVE_STYLE_CLASS);
-				
+
 				loop.getNoteStatus().get(buttonId).set(!buttonIsActive);
 			}
 		});
-		
+
 		return button;
 	}
-	
-	public void loadSample(){
-		Stage stage = (Stage)nameText.getScene().getWindow();
+
+	public void loadSample() {
+		Stage stage = (Stage) nameText.getScene().getWindow();
 		File audio = FileManager.askUserToLoadAudioFile(stage);
-		if(audio != null){
+		if (audio != null) {
 			this.loop.setSoundFile(audio.getAbsolutePath());
 			this.loop.nameProperty().set(audio.getName());
 		}

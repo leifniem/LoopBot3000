@@ -1,7 +1,7 @@
 package launcher;
 
-import controller.InputController;
 import controller.MainViewController;
+import controller.PlayBarController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -10,13 +10,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import models.LoopProjectExporter;
 
 public class Launcher extends Application {
 	private MainViewController mainViewController;
-	private InputController inputController;
 
 	public static void main(String[] args) {
 		endProgramIfAlreadyStarted();
@@ -49,7 +51,7 @@ public class Launcher extends Application {
 		stage.setResizable(false);
 		stage.setScene(scene);
 		addFocusListenerToStage(stage, root);
-		inputController = new InputController(scene, mainViewController, stage);
+		addKeyEventsToScene(scene, stage);
 
 		stage.show();
 	}
@@ -72,12 +74,37 @@ public class Launcher extends Application {
 		});
 	}
 
-	private void addOnCloseRequestHandlerToPrimaryStage(Stage primaryStage) {
-		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+	private void addOnCloseRequestHandlerToPrimaryStage(Stage stage) {
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent e) {
 				System.exit(0);
 			}
 		});
+	}
+	
+	private void addKeyEventsToScene(Scene scene, Stage stage){
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.isMetaDown() || event.isControlDown()){
+					if (event.getCode() == KeyCode.S){
+						LoopProjectExporter.askUserToExportLoopProject(mainViewController.getLoopProject(), stage);
+					}else if(event.getCode() == KeyCode.O){
+						mainViewController.importLoopProject();
+					} else if(event.getCode() == KeyCode.N){
+						mainViewController.openCreateProjectDialog();
+					}
+				}
+			}
+		});
+		
+		scene.addEventFilter(KeyEvent.KEY_PRESSED, event->{
+            if (event.getCode() == KeyCode.SPACE) {
+            	PlayBarController pbc = mainViewController.getPlayBarController();
+				pbc.switchPlaying();
+				event.consume();
+            }
+        });
 	}
 }

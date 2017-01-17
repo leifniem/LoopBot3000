@@ -81,7 +81,7 @@ public class CircularSlider extends Region {
 	protected void layoutChildren() {
 		super.layoutChildren();
 		double knobX = (getWidth() - knob.getPrefWidth()) / 2.0;
-		double knobY = 0; // -getHeight() / 8;
+		double knobY = 0; 
 		knob.setLayoutX(knobX);
 		knob.setLayoutY(knobY);
 		double angle = valueToAngle(getValue());
@@ -93,14 +93,14 @@ public class CircularSlider extends Region {
 		}
 	}
 
-	double valueToAngle(double value) {
+	private double valueToAngle(double value) {
 		double maxValue = getMax();
 		double minValue = getMin();
 		double angle = minAngle + (maxAngle - minAngle) * (value - minValue) / (maxValue - minValue);
 		return angle;
 	}
 
-	double angleToValue(double angle) {
+	private double angleToValue(double angle) {
 		double maxValue = getMax();
 		double minValue = getMin();
 		double value = minValue + (maxValue - minValue) * (angle - minAngle) / (maxAngle - minAngle);

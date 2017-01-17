@@ -20,7 +20,6 @@ public class Launcher extends Application {
 
 	public static void main(String[] args) {
 		endProgramIfAlreadyStarted();
-
 		launch(args);
 	}
 
@@ -41,44 +40,34 @@ public class Launcher extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainView.fxml"));
 		GridPane root = loader.load();
 		mainViewController = loader.getController();
-
 		Scene scene = new Scene(root, 1280, 600);
-
 		mainViewController.determineSize();
 		
 		addOnCloseRequestHandlerToPrimaryStage(stage);
 		stage.setTitle("Loop-Bot 3000");
 		stage.getIcons().add(new Image(Launcher.class.getResourceAsStream("/files/icon.png")));
 		stage.setResizable(false);
-		
 		stage.setScene(scene);
-		
-		
 		addFocusListenerToStage(stage, root);
 		inputController = new InputController(scene, mainViewController, stage);
-		
+
 		stage.show();
 	}
 
 	private void addFocusListenerToStage(Stage stage, GridPane root) {
-		stage.focusedProperty().addListener(new ChangeListener<Boolean>(){
+		stage.focusedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-				if(!newValue){
-					Platform.runLater(new Runnable(){
-						@Override
-						public void run() {
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						if (!newValue) {
 							root.getStyleClass().add("dimmed");
-						}
-					});
-				}else{
-					Platform.runLater(new Runnable(){
-						@Override
-						public void run() {
+						} else {
 							root.getStyleClass().remove("dimmed");
-						}	
-					});
-				}
+						}
+					}
+				});
 			}
 		});
 	}

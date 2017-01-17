@@ -15,14 +15,45 @@ public class CircularSlider extends Region {
 	private final double maxAngle = 200;
 	private Rotate rotate = new Rotate();
 
+	private final DoubleProperty value = new SimpleDoubleProperty(this, "value", 0);
+	private final DoubleProperty min = new SimpleDoubleProperty(this, "min", 0);
+	private final DoubleProperty max = new SimpleDoubleProperty(this, "max", 100);
+
 	public CircularSlider() {
 		super();
-		getStyleClass().add("circular_slider"); 
+		getStyleClass().add("circular_slider");
+		
 		knob.setPrefSize(25, 25);
 		knob.setId("knob");
-		knob.getStyleClass().add("knob"); 
+		knob.getStyleClass().add("knob");
 		knob.getTransforms().add(rotate);
 
+		setOnMouseDragged();
+		getChildren().add(knob);
+
+		valueProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+				requestLayout();
+			}
+		});
+		
+		minProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+				requestLayout();
+			}
+		});
+		
+		maxProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+				requestLayout();
+			}
+		});
+	}
+
+	private void setOnMouseDragged() {
 		setOnMouseDragged(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -44,29 +75,6 @@ public class CircularSlider extends Region {
 				setValue(value);
 			}
 		});
-
-		getChildren().add(knob);
-		valueProperty().addListener(new ChangeListener<Number>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-				requestLayout();
-			}
-		});
-		minProperty().addListener(new ChangeListener<Number>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-				requestLayout();
-			}
-		});
-		maxProperty().addListener(new ChangeListener<Number>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-				requestLayout();
-			}
-		});
 	}
 
 	@Override
@@ -77,7 +85,7 @@ public class CircularSlider extends Region {
 		knob.setLayoutX(knobX);
 		knob.setLayoutY(knobY);
 		double angle = valueToAngle(getValue());
-		
+
 		if (minAngle <= angle && angle <= maxAngle) {
 			rotate.setPivotX(knob.getWidth() / 2.0);
 			rotate.setPivotY(knob.getHeight() / 2.0);
@@ -101,8 +109,6 @@ public class CircularSlider extends Region {
 		return value;
 	}
 
-	private final DoubleProperty value = new SimpleDoubleProperty(this, "value", 0); // NOI18N.
-
 	public final void setValue(double v) {
 		value.set(v);
 	}
@@ -115,8 +121,6 @@ public class CircularSlider extends Region {
 		return value;
 	}
 
-	private final DoubleProperty min = new SimpleDoubleProperty(this, "min", 0); // NOI18N.
-
 	public final void setMin(double v) {
 		min.set(v);
 	}
@@ -128,8 +132,6 @@ public class CircularSlider extends Region {
 	public final DoubleProperty minProperty() {
 		return min;
 	}
-
-	private final DoubleProperty max = new SimpleDoubleProperty(this, "max", 100); // NOI18N.
 
 	public final void setMax(double v) {
 		max.set(v);

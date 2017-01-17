@@ -10,20 +10,24 @@ import javafx.scene.layout.Region;
 import javafx.scene.transform.Rotate;
 
 public class CircularSlider extends Region {
+	private final static double DEFAULT_MIN_VALUE = 0;
+	private final static double DEFAULT_MAX_VALUE = 100;
+	private final static double MIN_ANGLE = -20;
+	private final static double MAX_ANGLE = 200;
+	private final static double PREF_KNOB_SIZE = 25;
+
 	private Region knob = new Region();
-	private final double minAngle = -20;
-	private final double maxAngle = 200;
 	private Rotate rotate = new Rotate();
 
 	private final DoubleProperty value = new SimpleDoubleProperty(this, "value", 0);
-	private final DoubleProperty min = new SimpleDoubleProperty(this, "min", 0);
-	private final DoubleProperty max = new SimpleDoubleProperty(this, "max", 100);
+	private final DoubleProperty min = new SimpleDoubleProperty(this, "min", DEFAULT_MIN_VALUE);
+	private final DoubleProperty max = new SimpleDoubleProperty(this, "max", DEFAULT_MAX_VALUE);
 
 	public CircularSlider() {
 		super();
 		getStyleClass().add("circular_slider");
 		
-		knob.setPrefSize(25, 25);
+		knob.setPrefSize(PREF_KNOB_SIZE, PREF_KNOB_SIZE);
 		knob.setId("knob");
 		knob.getStyleClass().add("knob");
 		knob.getTransforms().add(rotate);
@@ -86,7 +90,7 @@ public class CircularSlider extends Region {
 		knob.setLayoutY(knobY);
 		double angle = valueToAngle(getValue());
 
-		if (minAngle <= angle && angle <= maxAngle) {
+		if (MIN_ANGLE <= angle && angle <= MAX_ANGLE) {
 			rotate.setPivotX(knob.getWidth() / 2.0);
 			rotate.setPivotY(knob.getHeight() / 2.0);
 			rotate.setAngle(-angle);
@@ -96,17 +100,19 @@ public class CircularSlider extends Region {
 	private double valueToAngle(double value) {
 		double maxValue = getMax();
 		double minValue = getMin();
-		double angle = minAngle + (maxAngle - minAngle) * (value - minValue) / (maxValue - minValue);
+		double revertedValue = (value - (minValue + maxValue)) * (-1);
+		double angle = MIN_ANGLE + (MAX_ANGLE - MIN_ANGLE) * (revertedValue - minValue) / (maxValue - minValue);
 		return angle;
 	}
 
 	private double angleToValue(double angle) {
 		double maxValue = getMax();
 		double minValue = getMin();
-		double value = minValue + (maxValue - minValue) * (angle - minAngle) / (maxAngle - minAngle);
+		double value = minValue + (maxValue - minValue) * (angle - MIN_ANGLE) / (MAX_ANGLE - MIN_ANGLE);
 		value = Math.max(minValue, value);
 		value = Math.min(maxValue, value);
-		return value;
+		double revertedValue = (value - (minValue + maxValue)) * (-1);
+		return revertedValue;
 	}
 
 	public final void setValue(double v) {

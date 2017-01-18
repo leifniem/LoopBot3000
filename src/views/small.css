@@ -64,6 +64,10 @@
 	-fx-padding: 0px 0px 0px 10px;
 }
 
+.solo-mute-delete .label{
+	-fx-text-fill: #D8D8D8; 
+}
+
 #record{
 	-fx-background-color: #896260;
 	-fx-background-radius: 20px;

@@ -59,7 +59,11 @@
 }
 
 .solo-mute-delete{
-	-fx-padding: 0px 0px 0px 20px;
+	-fx-padding: 0px 0px 0px 20px; 
+}
+
+.solo-mute-delete .label{
+	-fx-text-fill: #D8D8D8; 
 }
 
 #record{
@@ -166,6 +170,33 @@
 	-fx-text-fill: #BE705D;
 }
 
+#volumeSlider{
+	-fx-pref-width: 20px;
+}
+
+#volumeSlider .track{
+	-fx-background-color: #909092;
+}
+
+#volumeSlider .thumb{
+	-fx-background-color: #909092;
+}
+
+.circular_slider {
+    -fx-max-height: 25px;
+    -fx-min-width: 30px;
+}
+.circular_slider .knob {
+    -fx-background-image: url("../files/knob.png");
+    -fx-background-position: center;
+    -fx-background-size: contain;
+    -fx-border-radius: 50%;
+    -fx-rotate: 90;
+    -fx-pref-width: 25px;
+    -fx-pref-height: 25px;
+    -fx-max-height: 25px;
+}
+
 /* Intro */
 
 .intro{
@@ -256,31 +287,4 @@
 	-fx-background-color: #D7FBA7;
 	-fx-effect: dropshadow(three-pass-box, #D7FBA7, 10, 0, 0, 0);
 	-fx-text-fill: #889775;
-}
-
-#volumeSlider{
-	-fx-pref-width: 20px;
-}
-
-#volumeSlider .track{
-	-fx-background-color: #909092;
-}
-
-#volumeSlider .thumb{
-	-fx-background-color: #909092;
-}
-
-.circular_slider {
-    -fx-max-height: 25px;
-    -fx-min-width: 30px;
-}
-.circular_slider .knob {
-    -fx-background-image: url("../files/knob.png");
-    -fx-background-position: center;
-    -fx-background-size: contain;
-    -fx-border-radius: 50%;
-    -fx-rotate: 90;
-    -fx-pref-width: 25px;
-    -fx-pref-height: 25px;
-    -fx-max-height: 25px;
 }

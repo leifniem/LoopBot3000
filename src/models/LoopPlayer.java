@@ -69,7 +69,7 @@ public class LoopPlayer {
 				}
 
 				if (shouldPlay && loop.getSoundMedia() != null) {
-					audioPlayer.playShortSound(loop.getSoundMedia(), loop.getVolume(), loop.getPitch());
+					audioPlayer.playSound(loop.getSoundMedia(), loop.getVolume(), loop.getPitch());
 				}
 			}
 		};

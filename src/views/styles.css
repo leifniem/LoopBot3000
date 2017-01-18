@@ -1,5 +1,5 @@
 @font-face {
-    src: url("../files/RobotoMono700.ttf");
+    -fx-src: url("../files/RobotoMono700.ttf");
 }
 
 /* Main View */

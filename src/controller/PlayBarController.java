@@ -22,7 +22,7 @@ public class PlayBarController {
 	@FXML
 	private HBox noteStatusContainer;
 
-	protected LoopPlayer loopPlayer;
+	private LoopPlayer loopPlayer;
 	private TimeSignature timeSignature;
 
 	public void generateNoteStatusButtonsForTimeSignature(int numberOfBeats, int noteValue) {
@@ -94,5 +94,9 @@ public class PlayBarController {
 			loopPlayer.play();
 		}
 		StyleHelper.applyStyleClass(loopPlayer.isPlaying(), playButton, PLAY_BUTTON_ACTIVE_STYLE_CLASS);
+	}
+	
+	public void stopPlaying(){
+		loopPlayer.stop();
 	}
 }

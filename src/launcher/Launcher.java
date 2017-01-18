@@ -29,7 +29,7 @@ public class Launcher extends Application {
 		try {
 			java.net.ServerSocket ss = new java.net.ServerSocket(1359);
 		} catch (java.net.BindException ex) {
-			System.out.println("Programm l�uft bereits.");
+			System.out.println("Programm läuft bereits.");
 			System.exit(1);
 		} catch (java.io.IOException ex) {
 			ex.printStackTrace();

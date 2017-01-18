@@ -17,7 +17,6 @@ public class AudioPlayer {
 	private static ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 	
 	public void playSound(Media media, float volume, float pitch){
-		System.out.println("media: " + media.getDuration().toMillis());
 		if(media.getDuration().greaterThan(MIN_LONG_SOUND_DURATION)){
 			playLongSound(media, volume, pitch);
 		} else {
@@ -53,7 +52,6 @@ public class AudioPlayer {
 
 	public void playLongSound(Media media, float volume, float pitch) {
 		if (mediaPlayers.size() < LONG_SOUND_LIMIT) {
-			System.out.println(mediaPlayers.size());
 			MediaPlayer mediaPlayer = new MediaPlayer(media);
 			mediaPlayers.add(mediaPlayer);
 			mediaPlayer.setOnEndOfMedia(() -> pool.execute(createRemoveMediaPlayerRunnable(mediaPlayer)));
@@ -65,7 +63,7 @@ public class AudioPlayer {
 		}
 	}
 
-	public void stopAll() {
+	public synchronized void stopAll() {
 		for (MediaPlayer mp : mediaPlayers) {
 			mp.stop();
 		}

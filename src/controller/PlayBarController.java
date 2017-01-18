@@ -55,11 +55,11 @@ public class PlayBarController {
 		loopPlayer = new LoopPlayer(loopProject);
 		timeSignature = loopProject.getTimeSignature();
 		generateNoteStatusButtonsForTimeSignature(timeSignature.getNumberOfBeats(), timeSignature.getNoteValue());
-		setPlayButtonAction(loopPlayer);
-		addCurrentNoteDisplayListener(loopPlayer);
+		setPlayButtonAction();
+		addCurrentNoteDisplayListener();
 	}
 
-	private void setPlayButtonAction(LoopPlayer loopPlayer) {
+	private void setPlayButtonAction() {
 		playButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
@@ -68,35 +68,47 @@ public class PlayBarController {
 		});
 	}
 
-	private void addCurrentNoteDisplayListener(LoopPlayer loopManager) {
-		loopManager.currentNoteProperty().addListener(new ChangeListener<Number>() {
+	private void addCurrentNoteDisplayListener() {
+		loopPlayer.currentNoteProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number previousNote, Number nextNote) {
-				for (Node node : noteStatusContainer.getChildren()) {
-					if (node instanceof Button) {
-						boolean isCurrentButton = Integer.parseInt(node.getId()) == (int) previousNote;
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								StyleHelper.applyStyleClass(isCurrentButton, node, RECT_BUTTON_ACTIVE_STYLE_CLASS);
-							}
-						});
+				Button previousButton = (Button)noteStatusContainer.getChildren().get((int) previousNote);
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						StyleHelper.applyStyleClass(false, previousButton, RECT_BUTTON_ACTIVE_STYLE_CLASS);
 					}
+				});
+				
+				Button currentButton = (Button)noteStatusContainer.getChildren().get((int) nextNote);
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						StyleHelper.applyStyleClass(true, currentButton, RECT_BUTTON_ACTIVE_STYLE_CLASS);
+					}
+				});
+				
+				if(!loopPlayer.isPlaying()){
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							StyleHelper.applyStyleClass(false, currentButton, RECT_BUTTON_ACTIVE_STYLE_CLASS);
+						}
+					});
 				}
 			}
 		});
 	}
 
-	public void switchPlaying(){
+	public void switchPlaying() {
 		if (loopPlayer.isPlaying()) {
-			loopPlayer.stop();
+			stopPlaying();
 		} else {
 			loopPlayer.play();
-		}
-		StyleHelper.applyStyleClass(loopPlayer.isPlaying(), playButton, PLAY_BUTTON_ACTIVE_STYLE_CLASS);
+		}	
 	}
-	
-	public void stopPlaying(){
+
+	public void stopPlaying() {
 		loopPlayer.stop();
 	}
 }

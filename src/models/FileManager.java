@@ -9,6 +9,7 @@ public class FileManager {
 	private final static String INITIAL_FOLTER_PATH = ".";
 	
 	public static File askUserToLoadAudioFile(Stage parentStage) {
+		
 		ExtensionFilter extensionFilter = new ExtensionFilter("Sound", "*.mp3", "*.wav", "*.ogg", "*.wma");
 		return chooseFileToLoad(parentStage, extensionFilter);
 	}

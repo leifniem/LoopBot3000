@@ -22,7 +22,7 @@ public class PlayBarController {
 	@FXML
 	private HBox noteStatusContainer;
 
-	private LoopPlayer loopPlayer;
+	protected LoopPlayer loopPlayer;
 	private TimeSignature timeSignature;
 
 	public void generateNoteStatusButtonsForTimeSignature(int numberOfBeats, int noteValue) {

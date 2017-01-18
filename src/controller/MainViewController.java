@@ -53,7 +53,7 @@ public class MainViewController {
 		saveButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-
+				playbarController.loopPlayer.stop();
 				LoopProjectExporter.askUserToExportLoopProject(loopProject, getParentStage());
 			}
 		});
@@ -61,6 +61,7 @@ public class MainViewController {
 		loadButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
+				playbarController.loopPlayer.stop();
 				importLoopProject();
 			}
 		});
@@ -91,6 +92,7 @@ public class MainViewController {
 
 	public void openCreateProjectDialog() {
 		try {
+			playbarController.loopPlayer.stop();
 			CreateProjectStage dialog = new CreateProjectStage();
 			dialog.showAndWait();
 

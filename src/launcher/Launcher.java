@@ -89,7 +89,7 @@ public class Launcher extends Application {
 			public void handle(KeyEvent event) {
 				if(event.isMetaDown() || event.isControlDown()){
 					if (event.getCode() == KeyCode.S){
-						LoopProjectExporter.askUserToExportLoopProject(mainViewController.getLoopProject(), stage);
+						mainViewController.exportLoopProject();
 					}else if(event.getCode() == KeyCode.O){
 						mainViewController.importLoopProject();
 					} else if(event.getCode() == KeyCode.N){

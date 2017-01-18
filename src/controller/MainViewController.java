@@ -53,15 +53,13 @@ public class MainViewController {
 		saveButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				playbarController.stopPlaying();
-				LoopProjectExporter.askUserToExportLoopProject(loopProject, getParentStage());
+				exportLoopProject();
 			}
 		});
 
 		loadButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				playbarController.stopPlaying();
 				importLoopProject();
 			}
 		});
@@ -112,12 +110,18 @@ public class MainViewController {
 	}
 
 	public void importLoopProject() {
+		playbarController.stopPlaying();
 		LoopProject importedLoopProject = LoopProjectExporter.askUserToImportLoopProject(getParentStage());
 		if (importedLoopProject != null) {
 			loopProject = importedLoopProject;
 			initLoopProjectView();
 			initPlaybar();
 		}
+	}
+	
+	public void exportLoopProject() {
+		playbarController.stopPlaying();
+		LoopProjectExporter.askUserToExportLoopProject(loopProject, getParentStage());
 	}
 
 	public void determineSize() {

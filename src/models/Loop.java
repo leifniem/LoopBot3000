@@ -78,9 +78,7 @@ public class Loop {
 	}
 	
 	public void remove(){
-		if(loopProject.getLoops().size() > 1){
-			loopProject.removeLoop(this);			
-		}
+		loopProject.removeLoop(this);			
 	}	
 	
 	public Media getSoundMedia(){

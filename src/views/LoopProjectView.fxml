@@ -9,5 +9,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" 
 	fx:controller="controller.LoopProjectViewController">
 	
+	<fx:include fx:id="emptyProjectView" source="EmptyView.fxml" />
+	
 	<VBox fx:id="loopRowContainer" styleClass="row" />
 </VBox>

@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.IntegerBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -14,7 +16,9 @@ public class LoopProjectViewController {
 
 	private LoopProject loopProject;
 	private ObservableList<LoopRow> loopRows = FXCollections.<LoopRow> observableArrayList();
-
+	private IntegerBinding numOfLoops = Bindings.size(loopRows);
+	
+	
 	public LoopProjectViewController() {
 
 	}

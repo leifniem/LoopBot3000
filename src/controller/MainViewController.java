@@ -80,7 +80,6 @@ public class MainViewController {
 			}
 		});
 
-		addLoopsForTestPurposes();
 	}
 
 	private Stage getParentStage() {
@@ -146,10 +145,6 @@ public class MainViewController {
 	private void initLoopProjectView() {
 		loopProjectViewController.initLoopProjectContainer(loopProject);
 		determineSize();
-	}
-
-	private void addLoopsForTestPurposes() {
-		loopProject.addDefaultLoop();
 	}
 
 	private void initPlaybar() {

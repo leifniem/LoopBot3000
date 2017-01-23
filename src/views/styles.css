@@ -188,8 +188,8 @@
 }
 
 .play-position-button{
-	-fx-background-color:  #66ccff;
-	-fx-effect: dropshadow(three-pass-box, #66ccff, 10, 0, 0, 0);
+	-fx-background-color:  #cce6ff;
+	-fx-effect: dropshadow(three-pass-box, #cce6ff, 10, 0, 0, 0);
 }
 
 .space{
@@ -220,7 +220,7 @@
 }
 
 .play-on{
-	-fx-effect: dropshadow(three-pass-box, #66ccff, 10, 0, 0, 0);
+	-fx-effect: dropshadow(three-pass-box, #cce6ff, 10, 0, 0, 0);
 }
 
 .solo-on{

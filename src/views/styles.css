@@ -346,3 +346,7 @@
 	-fx-effect: dropshadow(three-pass-box, #D7FBA7, 10, 0, 0, 0);
 	-fx-text-fill: #889775;
 }
+
+.drag_entered_row{
+	-fx-effect: dropshadow(three-pass-box, #FF837D, 10.0, 0.0, 0.0, 0.0);	
+}

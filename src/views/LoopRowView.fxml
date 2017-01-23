@@ -25,7 +25,7 @@
 		<CircularSlider fx:id="pitchKnob" />
 		<Button fx:id="soloButton" styleClass="rect-button" text="S" />
 		<Button fx:id="muteButton" styleClass="rect-button" text="M" />
-		<Button fx:id="removeButton" styleClass="rect-button" text="X" />
+		<Button fx:id="removeButton" />
 	</HBox>
 </fx:root>
 

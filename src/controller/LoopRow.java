@@ -8,7 +8,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.AudioRecorder;
 import models.FileManager;
@@ -21,6 +25,7 @@ public class LoopRow extends HBox {
 	private final static String RECT_BUTTON_ACTIVE_STYLE_CLASS = "rect-on";
 	private final static String MUTE_BUTTON_ACTIVE_STYLE_CLASS = "mute-on";
 	private final static String SOLO_BUTTON_ACTIVE_STYLE_CLASS = "solo-on";
+	private final static String DRAG_ENTERED_ROW_STYLE_CLASS = "drag_entered_row";
 
 	private final AudioRecorder rec = new AudioRecorder();
 
@@ -57,8 +62,84 @@ public class LoopRow extends HBox {
 		soloButton.setOnAction(e -> switchSolo());
 		removeButton.setOnAction(e -> loop.remove());
 		nameText.textProperty().bindBidirectional(loop.nameProperty());
-
+		addDragEvents();
 		generateNoteStatusButtonsForTimeSignature();
+	}
+
+	private void addDragEvents() {
+		setOnDragOver(new EventHandler<DragEvent>() {
+			@Override
+			public void handle(DragEvent event) {
+				Dragboard db = event.getDragboard();
+				boolean success = isValidDragboardContent(db);
+
+				if(success){
+					event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+				}
+				
+				event.consume();
+			}
+		});
+
+		setOnDragEntered(new EventHandler<DragEvent>() {
+			@Override
+			public void handle(DragEvent event) {
+				Dragboard db = event.getDragboard();
+				boolean success = isValidDragboardContent(db);
+
+				if(success){
+					getStyleClass().add(DRAG_ENTERED_ROW_STYLE_CLASS);
+				}
+
+				event.consume();
+			}
+		});
+
+		setOnDragExited(new EventHandler<DragEvent>() {
+			@Override
+			public void handle(DragEvent event) {
+				if(getStyleClass().contains(DRAG_ENTERED_ROW_STYLE_CLASS))
+					getStyleClass().remove(DRAG_ENTERED_ROW_STYLE_CLASS);
+
+				event.consume();
+			}
+		});
+
+		setOnDragDropped(new EventHandler<DragEvent>() {
+			@Override
+			public void handle(DragEvent event) {
+				Dragboard db = event.getDragboard();
+				boolean success = isValidDragboardContent(db);
+
+				if(success){
+					File file = db.getFiles().get(0);
+					
+					if (file.isFile() && (file.getName().endsWith(".mp3") || file.getName().endsWith(".wav"))) {
+						loop.setSoundFile(file.getAbsolutePath());
+						loop.nameProperty().set(file.getName());
+					}
+				}
+
+				event.setDropCompleted(success);
+				event.consume();
+			}
+		});
+	}
+	
+	private boolean isValidDragboardContent(Dragboard db){
+		boolean success = true;
+		
+		if (db.getFiles().isEmpty()) {
+			success = false;
+		} else {
+			for (File file : db.getFiles()) {
+				if (!file.isFile() || (!file.getName().endsWith(".mp3") && !file.getName().endsWith(".wav"))) {
+					success = false;
+				}
+			}
+		}
+
+		return success;
 	}
 
 	private void initVolumeKnob(Loop loop) {

@@ -46,8 +46,6 @@ public class LoopPlayer {
 	}
 
 	private TimerTask createPlayLoopSoundsTask() {
-		int amountOfNotes = loopProject.getTimeSignature().getAmountOfNotes();
-
 		return new TimerTask() {
 			@Override
 			public void run() {
@@ -55,11 +53,16 @@ public class LoopPlayer {
 					playLoopIfNecessary(loop);
 				}
 
-				int nextNote = (currentNote.get() + 1) % amountOfNotes;
-				currentNote.set(nextNote);
+				increaseNotePosition();
 			}
 
 			private void playLoopIfNecessary(Loop loop) {
+				if (shouldLoopPlay(loop)) {
+					audioPlayer.playSound(loop.getSoundMedia(), loop.getVolume(), loop.getPitch());
+				}
+			}
+
+			private boolean shouldLoopPlay(Loop loop) {
 				boolean shouldPlay;
 
 				if (loopProject.getSoloLoop() > 0) {
@@ -67,10 +70,14 @@ public class LoopPlayer {
 				} else {
 					shouldPlay = !loop.isMutedProperty().get() && loop.getNoteStatus().get(currentNote.get()).get();
 				}
-
-				if (shouldPlay && loop.getSoundMedia() != null) {
-					audioPlayer.playSound(loop.getSoundMedia(), loop.getVolume(), loop.getPitch());
-				}
+				
+				return shouldPlay && loop.getSoundMedia() != null;
+			}
+			
+			private void increaseNotePosition() {
+				int amountOfNotes = loopProject.getTimeSignature().getAmountOfNotes();
+				int nextNote = (currentNote.get() + 1) % amountOfNotes;
+				currentNote.set(nextNote);
 			}
 		};
 	}
@@ -82,5 +89,13 @@ public class LoopPlayer {
 			isPlaying.set(false);
 			currentNote.set(0);
 		}
+	}
+	
+	public void switchPlaying(){
+		if (isPlaying()) {
+			stop();
+		} else {
+			play();
+		}	
 	}
 }

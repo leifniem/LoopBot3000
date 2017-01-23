@@ -7,6 +7,6 @@
 	fx:controller="controller.PlayBarController">
 	<children>
 		<Button fx:id="playButton"/>
-		<HBox fx:id="noteStatusContainer" styleClass="play-bar"/>
+		<HBox fx:id="playPositionButtonContainer" styleClass="play-bar"/>
 	</children>
 </HBox>

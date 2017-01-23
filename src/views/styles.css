@@ -220,8 +220,7 @@
 }
 
 .play-on{
-	-fx-background-color: #FFF;
-	-fx-effect: dropshadow(three-pass-box, #FFF, 10, 0, 0, 0);
+	-fx-effect: dropshadow(three-pass-box, #66ccff, 10, 0, 0, 0);
 }
 
 .solo-on{

@@ -20,20 +20,28 @@ public class PlayBarController {
 	@FXML
 	private Button playButton;
 	@FXML
-	private HBox noteStatusContainer;
+	private HBox playPositionButtonContainer;
 
 	private LoopPlayer loopPlayer;
 	private TimeSignature timeSignature;
+	
+	public void init(LoopProject loopProject) {
+		loopPlayer = new LoopPlayer(loopProject);
+		timeSignature = loopProject.getTimeSignature();
+		generateNoteStatusButtonsForTimeSignature(timeSignature.getNumberOfBeats(), timeSignature.getNoteValue());
+		setPlayButtonAction();
+		addCurrentPlayPositionListener();
+	}
 
 	public void generateNoteStatusButtonsForTimeSignature(int numberOfBeats, int noteValue) {
-		noteStatusContainer.getChildren().clear();
+		playPositionButtonContainer.getChildren().clear();
 
 		for (int currentBeat = 0; currentBeat < timeSignature.getNumberOfBeats(); currentBeat++) {
 			Button button = null;
 			for (int currentNoteInBeat = 0; currentNoteInBeat < timeSignature.getNoteValue(); currentNoteInBeat++) {
 				int currentNote = currentBeat * timeSignature.getNoteValue() + currentNoteInBeat;
 				button = createRectButton("" + currentNote);
-				noteStatusContainer.getChildren().add(button);
+				playPositionButtonContainer.getChildren().add(button);
 			}
 
 			button.getStyleClass().add("space");
@@ -41,7 +49,7 @@ public class PlayBarController {
 
 		HBox spacer = new HBox();
 		spacer.getStyleClass().add("pb-spacer");
-		noteStatusContainer.getChildren().add(spacer);
+		playPositionButtonContainer.getChildren().add(spacer);
 	}
 
 	private Button createRectButton(String id) {
@@ -51,28 +59,21 @@ public class PlayBarController {
 		return button;
 	}
 
-	public void init(LoopProject loopProject) {
-		loopPlayer = new LoopPlayer(loopProject);
-		timeSignature = loopProject.getTimeSignature();
-		generateNoteStatusButtonsForTimeSignature(timeSignature.getNumberOfBeats(), timeSignature.getNoteValue());
-		setPlayButtonAction();
-		addCurrentNoteDisplayListener();
-	}
-
 	private void setPlayButtonAction() {
 		playButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
 				switchPlaying();
+				StyleHelper.applyStyleClass(loopPlayer.isPlaying(), playButton, PLAY_BUTTON_ACTIVE_STYLE_CLASS);
 			}
 		});
 	}
 
-	private void addCurrentNoteDisplayListener() {
+	private void addCurrentPlayPositionListener() {
 		loopPlayer.currentNoteProperty().addListener(new ChangeListener<Number>() {
 			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number previousNote, Number nextNote) {
-				Button previousButton = (Button)noteStatusContainer.getChildren().get((int) previousNote);
+			public void changed(ObservableValue<? extends Number> observable, Number previousNote, Number currentNote) {
+				Button previousButton = (Button)playPositionButtonContainer.getChildren().get((int) previousNote);
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
@@ -80,7 +81,7 @@ public class PlayBarController {
 					}
 				});
 				
-				Button currentButton = (Button)noteStatusContainer.getChildren().get((int) nextNote);
+				Button currentButton = (Button)playPositionButtonContainer.getChildren().get((int) currentNote);
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
@@ -101,11 +102,7 @@ public class PlayBarController {
 	}
 
 	public void switchPlaying() {
-		if (loopPlayer.isPlaying()) {
-			stopPlaying();
-		} else {
-			loopPlayer.play();
-		}	
+		loopPlayer.switchPlaying();
 	}
 
 	public void stopPlaying() {

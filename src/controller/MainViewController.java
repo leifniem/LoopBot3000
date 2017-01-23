@@ -99,7 +99,6 @@ public class MainViewController {
 				int tempo = dialog.getController().getTempo();
 
 				loopProject = new LoopProject(numberOfBeats, noteValue, tempo);
-				loopProject.addDefaultLoop();
 				initLoopProjectView();
 				initPlaybar();
 			}

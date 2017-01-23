@@ -185,6 +185,11 @@
 	-fx-text-fill: #889775;	
 }
 
+.play-position-button{
+	-fx-background-color:  #66ccff;
+	-fx-effect: dropshadow(three-pass-box, #66ccff, 10, 0, 0, 0);
+}
+
 .space{
 	-fx-pref-height: 15px;
 	-fx-min-height: 15px;

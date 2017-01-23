@@ -14,7 +14,7 @@ import models.LoopProject;
 import models.TimeSignature;
 
 public class PlayBarController {
-	private final static String RECT_BUTTON_ACTIVE_STYLE_CLASS = "rect-on";
+	private final static String PLAY_POSITION_BUTTON_STYLE_CLASS = "play-position-button";
 	private final static String PLAY_BUTTON_ACTIVE_STYLE_CLASS = "play-on";
 
 	@FXML
@@ -76,7 +76,7 @@ public class PlayBarController {
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						StyleHelper.applyStyleClass(false, previousButton, RECT_BUTTON_ACTIVE_STYLE_CLASS);
+						StyleHelper.applyStyleClass(false, previousButton, PLAY_POSITION_BUTTON_STYLE_CLASS);
 					}
 				});
 				
@@ -84,7 +84,7 @@ public class PlayBarController {
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						StyleHelper.applyStyleClass(true, currentButton, RECT_BUTTON_ACTIVE_STYLE_CLASS);
+						StyleHelper.applyStyleClass(true, currentButton, PLAY_POSITION_BUTTON_STYLE_CLASS);
 					}
 				});
 				
@@ -92,7 +92,7 @@ public class PlayBarController {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-							StyleHelper.applyStyleClass(false, currentButton, RECT_BUTTON_ACTIVE_STYLE_CLASS);
+							StyleHelper.applyStyleClass(false, currentButton, PLAY_POSITION_BUTTON_STYLE_CLASS);
 						}
 					});
 				}

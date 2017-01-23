@@ -7,7 +7,6 @@
 <?import javafx.scene.text.*?>
 
 <HBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER">
-	
 	<VBox alignment="CENTER">
 		<Pane fx:id="dragImage"></Pane>
 		<Label>
@@ -20,7 +19,5 @@
 			Or add loops to record sounds
 		</Label>
 	</VBox>
-	
-	
 </HBox>
 

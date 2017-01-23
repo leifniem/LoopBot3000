@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.binding.IntegerBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -13,11 +14,11 @@ import models.LoopProject;
 public class LoopProjectViewController {
 	@FXML
 	private VBox loopRowContainer;
+	@FXML
+	private HBox emptyProjectView;
 
 	private LoopProject loopProject;
 	private ObservableList<LoopRow> loopRows = FXCollections.<LoopRow> observableArrayList();
-	private IntegerBinding numOfLoops = Bindings.size(loopRows);
-	
 	
 	public LoopProjectViewController() {
 
@@ -34,6 +35,9 @@ public class LoopProjectViewController {
 		}
 		
 		addChangeListenerToLoopProject();
+		
+		BooleanBinding noLoops = Bindings.createBooleanBinding(() -> loopProject.getLoops().size() == 0, loopProject.getLoops());
+		emptyProjectView.visibleProperty().bind(noLoops);
 	}
 
 	private void addChangeListenerToLoopProject() {

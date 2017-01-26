@@ -162,8 +162,8 @@ public class MainViewController {
 
 	private void addDragEventsToNode(Node node) {
 		node.setOnDragOver(new AddLoopDragOverEventHandler());
-		node.setOnDragEntered(new AddLoopDragEnteredEventHandler());
-		node.setOnDragExited(new AddLoopDragExitedEventHandler());
+		node.setOnDragEntered(new AddLoopDragEnteredEventHandler(node));
+		node.setOnDragExited(new AddLoopDragExitedEventHandler(node));
 		node.setOnDragDropped(new AddLoopDragDroppedEventHandler());
 	}
 
@@ -182,7 +182,11 @@ public class MainViewController {
 	}
 	
 	private class AddLoopDragEnteredEventHandler implements EventHandler<DragEvent> {
+		private Node node;
 		
+		public AddLoopDragEnteredEventHandler(Node node){
+			this.node = node;
+		}
 		
 		@Override
 		public void handle(DragEvent event) {
@@ -190,7 +194,7 @@ public class MainViewController {
 			boolean success = isValidDragboardContent(db);
 
 			if (success) {
-				emptyProjectView.getStyleClass().add(DRAG_ENTERED_PROJECT_STYLE_CLASS);
+				node.getStyleClass().add(DRAG_ENTERED_PROJECT_STYLE_CLASS);
 			}
 
 			event.consume();
@@ -198,10 +202,16 @@ public class MainViewController {
 	}
 	
 	private class AddLoopDragExitedEventHandler implements EventHandler<DragEvent> {
+		private Node node;
+		
+		public AddLoopDragExitedEventHandler(Node node){
+			this.node = node;
+		}
+		
 		@Override
 		public void handle(DragEvent event) {
-			if (emptyProjectView.getStyleClass().contains(DRAG_ENTERED_PROJECT_STYLE_CLASS))
-				emptyProjectView.getStyleClass().remove(DRAG_ENTERED_PROJECT_STYLE_CLASS);
+			if (node.getStyleClass().contains(DRAG_ENTERED_PROJECT_STYLE_CLASS))
+				node.getStyleClass().remove(DRAG_ENTERED_PROJECT_STYLE_CLASS);
 
 			event.consume();
 		}

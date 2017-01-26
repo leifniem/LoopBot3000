@@ -12,7 +12,7 @@
 	fx:controller="controller.CreateProjectViewController" alignment="CENTER">
 
 	<stylesheets>
-		<URL value="@styles.css" />
+		<URL value="@/stylesheets/styles.css" />
 	</stylesheets>
 	
 	<VBox styleClass="intro" alignment="CENTER">

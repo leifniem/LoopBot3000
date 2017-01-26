@@ -155,9 +155,9 @@ public class MainViewController {
 	private URL getStylesheetURLToUse() {
 		URL url;
 		if (loopProject.getTimeSignature().getAmountOfNotes() > 20) {
-			url = getClass().getResource("../views/small.css");
+			url = getClass().getResource("/stylesheets/small.css");
 		} else {
-			url = getClass().getResource("../views/styles.css");
+			url = getClass().getResource("/stylesheets/styles.css");
 		}
 		return url;
 	}
@@ -195,14 +195,14 @@ public class MainViewController {
 			event.consume();
 		}
 	}
-	
+
 	private class AddLoopDragEnteredEventHandler implements EventHandler<DragEvent> {
 		private Node node;
-		
-		public AddLoopDragEnteredEventHandler(Node node){
+
+		public AddLoopDragEnteredEventHandler(Node node) {
 			this.node = node;
 		}
-		
+
 		@Override
 		public void handle(DragEvent event) {
 			Dragboard db = event.getDragboard();
@@ -215,14 +215,14 @@ public class MainViewController {
 			event.consume();
 		}
 	}
-	
+
 	private class AddLoopDragExitedEventHandler implements EventHandler<DragEvent> {
 		private Node node;
-		
-		public AddLoopDragExitedEventHandler(Node node){
+
+		public AddLoopDragExitedEventHandler(Node node) {
 			this.node = node;
 		}
-		
+
 		@Override
 		public void handle(DragEvent event) {
 			if (node.getStyleClass().contains(DRAG_ENTERED_PROJECT_STYLE_CLASS))
@@ -231,7 +231,7 @@ public class MainViewController {
 			event.consume();
 		}
 	}
-	
+
 	private class AddLoopDragDroppedEventHandler implements EventHandler<DragEvent> {
 		@Override
 		public void handle(DragEvent event) {

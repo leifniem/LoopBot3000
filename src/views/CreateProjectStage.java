@@ -18,7 +18,7 @@ public class CreateProjectStage extends Stage{
 	private CreateProjectViewController controller;
 	
 	public CreateProjectStage() throws IOException{	
-		getIcons().add(new Image(Launcher.class.getResourceAsStream("/files/icon.png")));
+		getIcons().add(new Image(Launcher.class.getResourceAsStream("/images/icon.png")));
 		initOwner(new Stage());
 		initModality(Modality.APPLICATION_MODAL); 
 		

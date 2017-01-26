@@ -49,7 +49,7 @@ public class Launcher extends Application {
 		
 		addOnCloseRequestHandlerToPrimaryStage(stage);
 		stage.setTitle("Loop-Bot 3000");
-		stage.getIcons().add(new Image(Launcher.class.getResourceAsStream("/files/icon.png")));
+		stage.getIcons().add(new Image(Launcher.class.getResourceAsStream("/images/icon.png")));
 		stage.setResizable(false);
 		stage.setScene(scene);
 		addFocusListenerToStage(stage, root);

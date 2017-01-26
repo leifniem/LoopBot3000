@@ -15,7 +15,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import models.LoopProjectExporter;
 
 /**
  * @author Micha Lanvers, Leif Niemczik

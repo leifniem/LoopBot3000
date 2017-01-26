@@ -378,6 +378,11 @@ position: relative;
   z-index: 2;
 }
 
+header[role="main-header"]{
+  position: fixed;
+  opacity: .5;
+}
+
 .frame,.shadow {
   padding: 2.4rem;
 }

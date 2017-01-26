@@ -18,6 +18,7 @@
 		<Button fx:id="newProjectButton" text="New Project" />
 	</HBox>
 
+	<fx:include fx:id="emptyProjectView" source="EmptyView.fxml" />
 	<fx:include fx:id="loopProjectView" source="LoopProjectView.fxml" />
 
 	<HBox styleClass="row">

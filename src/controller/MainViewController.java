@@ -1,13 +1,22 @@
 package controller;
 
+import java.io.File;
 import java.net.URL;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import models.Loop;
 import models.LoopProject;
 import models.LoopProjectExporter;
 import views.CreateProjectStage;
@@ -17,6 +26,7 @@ public class MainViewController {
 	private final static int DEFAULT_NOTE_VALUE = 4;
 	private final static int DEFAULT_TEMP = 120;
 	private final static int MAX_LOOPS = 9;
+	private final static String DRAG_ENTERED_PROJECT_STYLE_CLASS = "drag_entered_row";
 
 	@FXML
 	private LoopProjectViewController loopProjectViewController;
@@ -30,6 +40,8 @@ public class MainViewController {
 	private Button addLoopButton;
 	@FXML
 	private Button newProjectButton;
+	@FXML
+	private HBox emptyProjectView;
 
 	private LoopProject loopProject;
 
@@ -80,6 +92,13 @@ public class MainViewController {
 			}
 		});
 
+		BooleanBinding noLoops = Bindings.createBooleanBinding(() -> loopProject.getLoops().size() == 0,
+				loopProject.getLoops());
+		emptyProjectView.visibleProperty().bind(noLoops);
+		emptyProjectView.managedProperty().bind(noLoops);
+
+		addDragEventsToNode(emptyProjectView);
+		addDragEventsToNode(addLoopButton);
 	}
 
 	private Stage getParentStage() {
@@ -116,7 +135,7 @@ public class MainViewController {
 			initPlaybar();
 		}
 	}
-	
+
 	public void exportLoopProject() {
 		playbarController.stopPlaying();
 		LoopProjectExporter.askUserToExportLoopProject(loopProject, getParentStage());
@@ -139,6 +158,90 @@ public class MainViewController {
 				scene.getStylesheets().add(css);
 			}
 		}
+	}
+
+	private void addDragEventsToNode(Node node) {
+		node.setOnDragOver(new AddLoopDragOverEventHandler());
+		node.setOnDragEntered(new AddLoopDragEnteredEventHandler());
+		node.setOnDragExited(new AddLoopDragExitedEventHandler());
+		node.setOnDragDropped(new AddLoopDragDroppedEventHandler());
+	}
+
+	private class AddLoopDragOverEventHandler implements EventHandler<DragEvent> {
+		@Override
+		public void handle(DragEvent event) {
+			Dragboard db = event.getDragboard();
+			boolean success = isValidDragboardContent(db);
+
+			if (success) {
+				event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+			}
+
+			event.consume();
+		}
+	}
+	
+	private class AddLoopDragEnteredEventHandler implements EventHandler<DragEvent> {
+		
+		
+		@Override
+		public void handle(DragEvent event) {
+			Dragboard db = event.getDragboard();
+			boolean success = isValidDragboardContent(db);
+
+			if (success) {
+				emptyProjectView.getStyleClass().add(DRAG_ENTERED_PROJECT_STYLE_CLASS);
+			}
+
+			event.consume();
+		}
+	}
+	
+	private class AddLoopDragExitedEventHandler implements EventHandler<DragEvent> {
+		@Override
+		public void handle(DragEvent event) {
+			if (emptyProjectView.getStyleClass().contains(DRAG_ENTERED_PROJECT_STYLE_CLASS))
+				emptyProjectView.getStyleClass().remove(DRAG_ENTERED_PROJECT_STYLE_CLASS);
+
+			event.consume();
+		}
+	}
+	
+	private class AddLoopDragDroppedEventHandler implements EventHandler<DragEvent> {
+		@Override
+		public void handle(DragEvent event) {
+			Dragboard db = event.getDragboard();
+			boolean success = isValidDragboardContent(db);
+
+			if (success) {
+				for (File file : db.getFiles()) {
+					if (file.isFile() && (file.getName().endsWith(".mp3") || file.getName().endsWith(".wav"))) {
+						Loop loop = new Loop(file.getName(), loopProject);
+						loop.setSoundFile(file.getAbsolutePath());
+						loopProject.addLoop(loop);
+					}
+				}
+			}
+
+			event.setDropCompleted(success);
+			event.consume();
+		}
+	}
+
+	private boolean isValidDragboardContent(Dragboard db) {
+		boolean success = true;
+
+		if (db.getFiles().isEmpty()) {
+			success = false;
+		} else {
+			for (File file : db.getFiles()) {
+				if (!file.isFile() || (!file.getName().endsWith(".mp3") && !file.getName().endsWith(".wav"))) {
+					success = false;
+				}
+			}
+		}
+
+		return success;
 	}
 
 	private void initLoopProjectView() {

@@ -101,4 +101,14 @@ public class LoopPlayer {
 			play();
 		}	
 	}
+	
+	public void playNote(int note){
+		for (Loop loop : loopProject.getLoops()) {
+			boolean shouldPlay = loop.getNoteStatus().get(note).get() && loop.getSoundMedia() != null;
+
+			if(shouldPlay){
+				audioPlayer.playSound(loop.getSoundMedia(), loop.getVolume(), loop.getPitch());
+			}
+		}
+	}
 }

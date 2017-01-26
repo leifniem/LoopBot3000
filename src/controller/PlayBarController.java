@@ -43,6 +43,14 @@ public class PlayBarController {
 			for (int currentNoteInBeat = 0; currentNoteInBeat < timeSignature.getNoteValue(); currentNoteInBeat++) {
 				int currentNote = currentBeat * timeSignature.getNoteValue() + currentNoteInBeat;
 				button = createRectButton("" + currentNote);
+				
+				button.setOnAction(new EventHandler<ActionEvent>(){
+					@Override
+					public void handle(ActionEvent event) {
+						loopPlayer.playNote(currentNote);
+					}
+				});
+				
 				playPositionButtonContainer.getChildren().add(button);
 			}
 

@@ -4,6 +4,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javafx.beans.property.*;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class LoopPlayer {
 	private AudioPlayer audioPlayer;
 	private Timer playTimer;

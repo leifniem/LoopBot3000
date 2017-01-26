@@ -3,6 +3,9 @@ package models;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class TimeSignature {
 	private final ReadOnlyIntegerWrapper numberOfBeats = new ReadOnlyIntegerWrapper();
 	private final ReadOnlyIntegerWrapper noteValue = new ReadOnlyIntegerWrapper();

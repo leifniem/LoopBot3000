@@ -8,6 +8,9 @@ import javafx.scene.layout.VBox;
 import models.Loop;
 import models.LoopProject;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class LoopProjectViewController {
 	@FXML
 	private VBox loopRowContainer;

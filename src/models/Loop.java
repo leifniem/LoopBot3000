@@ -6,6 +6,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.media.Media;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class Loop {
 	private StringProperty name = new SimpleStringProperty();
 	private String soundFilename;

@@ -9,6 +9,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.transform.Rotate;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class CircularSlider extends Region {
 	private final static double DEFAULT_MIN_VALUE = 0;
 	private final static double DEFAULT_MAX_VALUE = 100;

@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Paths;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -21,6 +23,9 @@ import models.LoopProject;
 import models.LoopProjectExporter;
 import views.CreateProjectStage;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class MainViewController {
 	private final static int DEFAULT_NUMBER_OF_BEATS = 4;
 	private final static int DEFAULT_NOTE_VALUE = 4;
@@ -142,21 +147,33 @@ public class MainViewController {
 	}
 
 	public void determineSize() {
+		URL url = getStylesheetURLToUse();
+
+		if (url != null) {
+			tryToAddStylesheetToScene(url);
+		}
+	}
+
+	private URL getStylesheetURLToUse() {
 		URL url;
 		if (loopProject.getTimeSignature().getAmountOfNotes() > 20) {
 			url = getClass().getResource("../views/small.css");
 		} else {
 			url = getClass().getResource("../views/styles.css");
 		}
+		return url;
+	}
 
-		if (url != null) {
-			String css = url.toExternalForm();
+	private void tryToAddStylesheetToScene(URL url) {
+		try {
+			String css = url.toURI().toString();
 			Scene scene = loadButton.getScene();
 			if (scene != null) {
-				if (scene.getStylesheets().size() > 0)
-					scene.getStylesheets().remove(0);
+				scene.getStylesheets().clear();
 				scene.getStylesheets().add(css);
 			}
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
 		}
 	}
 

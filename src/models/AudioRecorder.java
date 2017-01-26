@@ -13,6 +13,9 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class AudioRecorder {
 	private final static int SAMPLERATE = 44100;
 	private final static int SAMPLE_SIZE_IN_BITS = 16;

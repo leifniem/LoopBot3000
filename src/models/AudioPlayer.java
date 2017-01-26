@@ -9,6 +9,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class AudioPlayer {
 	private final static int LONG_SOUND_LIMIT = 24;
 	private final static Duration MIN_LONG_SOUND_DURATION = new Duration(1000);

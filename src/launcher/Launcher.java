@@ -17,6 +17,9 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import models.LoopProjectExporter;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class Launcher extends Application {
 	private MainViewController mainViewController;
 

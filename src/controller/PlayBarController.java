@@ -13,6 +13,9 @@ import models.LoopPlayer;
 import models.LoopProject;
 import models.TimeSignature;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class PlayBarController {
 	private final static String PLAY_POSITION_BUTTON_STYLE_CLASS = "play-position-button";
 	private final static String PLAY_BUTTON_ACTIVE_STYLE_CLASS = "play-on";

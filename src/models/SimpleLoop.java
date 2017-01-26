@@ -6,6 +6,9 @@ import java.util.List;
 
 import javafx.beans.property.BooleanProperty;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class SimpleLoop implements Serializable{
 	private static final long serialVersionUID = -5833733316394246363L;
 	

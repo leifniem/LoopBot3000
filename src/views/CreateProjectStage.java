@@ -11,6 +11,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import launcher.Launcher;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class CreateProjectStage extends Stage{
 	private CreateProjectViewController controller;
 	

@@ -20,6 +20,9 @@ import models.Loop;
 import models.TimeSignature;
 import views.CircularSlider;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class LoopRow extends HBox {
 	private final static String RECT_BUTTON_STYLE_CLASS = "rect-button";
 	private final static String RECT_BUTTON_ACTIVE_STYLE_CLASS = "rect-on";

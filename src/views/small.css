@@ -1,5 +1,5 @@
 @font-face {
-    src: url("../files/RobotoMono700.ttf");
+    -fx-src: url("../files/RobotoMono700.ttf");
 }
 
 /* Main View */
@@ -12,7 +12,6 @@
 	-fx-padding: 40.0px;
 	-fx-font-size: 12.0px;
 	-fx-font-family: 'Roboto Mono';
-	-fx-font-weight: 700.0;
 	-fx-align: center;
 }
 

@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class SimpleLoopProject implements Serializable{
 	private static final long serialVersionUID = 7248543067960648347L;
 	

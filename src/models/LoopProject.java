@@ -4,6 +4,9 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class LoopProject {
 	private final static String DEFAULT_LOOP_NAME = "Empty";
 	private final static int MAX_AMOUNT_OF_LOOPS = 10;

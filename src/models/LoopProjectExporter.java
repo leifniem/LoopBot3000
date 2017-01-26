@@ -11,6 +11,9 @@ import java.io.FileOutputStream;
 
 import javafx.stage.Stage;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class LoopProjectExporter {
 
 	public static LoopProject askUserToImportLoopProject(Stage parentStage) {

@@ -14,6 +14,9 @@ import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class CreateProjectViewController {
 	private static final int MIN_TEMPO = 60;
 	private static final int MAX_TEMPO = 270;

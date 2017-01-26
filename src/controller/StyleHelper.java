@@ -3,6 +3,9 @@ package controller;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class StyleHelper {
 	public static void applyStyleClass(boolean check, Node node, String styleClassName) {
 		ObservableList<String> styleClass = node.getStyleClass();

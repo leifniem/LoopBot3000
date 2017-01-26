@@ -5,6 +5,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
+/**
+ * @author Micha Lanvers, Leif Niemczik
+ */
 public class FileManager {
 	private final static String INITIAL_FOLTER_PATH = ".";
 	

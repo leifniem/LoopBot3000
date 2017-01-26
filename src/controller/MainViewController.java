@@ -62,8 +62,7 @@ public class MainViewController {
 
 	@FXML
 	private void initialize() {
-		initLoopProjectView();
-		initPlaybar();
+		initLoopProjectComponents();
 
 		saveButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -94,14 +93,21 @@ public class MainViewController {
 				openCreateProjectDialog();
 			}
 		});
+	}
 
+	private void initLoopProjectComponents() {
+		initLoopProjectView();
+		initPlaybar();
+		initEmptyProjectBinding();
+		addDragEventsToNode(emptyProjectView);
+		addDragEventsToNode(addLoopButton);
+	}
+
+	private void initEmptyProjectBinding() {
 		BooleanBinding noLoops = Bindings.createBooleanBinding(() -> loopProject.getLoops().size() == 0,
 				loopProject.getLoops());
 		emptyProjectView.visibleProperty().bind(noLoops);
 		emptyProjectView.managedProperty().bind(noLoops);
-
-		addDragEventsToNode(emptyProjectView);
-		addDragEventsToNode(addLoopButton);
 	}
 
 	private Stage getParentStage() {
@@ -121,8 +127,7 @@ public class MainViewController {
 				int tempo = dialog.getController().getTempo();
 
 				loopProject = new LoopProject(numberOfBeats, noteValue, tempo);
-				initLoopProjectView();
-				initPlaybar();
+				initLoopProjectComponents();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -134,8 +139,7 @@ public class MainViewController {
 		LoopProject importedLoopProject = LoopProjectExporter.askUserToImportLoopProject(getParentStage());
 		if (importedLoopProject != null) {
 			loopProject = importedLoopProject;
-			initLoopProjectView();
-			initPlaybar();
+			initLoopProjectComponents();
 		}
 	}
 

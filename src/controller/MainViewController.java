@@ -36,7 +36,7 @@ public class MainViewController {
 	@FXML
 	private LoopProjectViewController loopProjectViewController;
 	@FXML
-	private PlayBarController playbarController;
+	private PlayBarViewController playbarController;
 	@FXML
 	private Button loadButton;
 	@FXML
@@ -288,7 +288,7 @@ public class MainViewController {
 		return loopProject;
 	}
 
-	public PlayBarController getPlayBarController() {
+	public PlayBarViewController getPlayBarController() {
 		return playbarController;
 	}
 }

@@ -1,7 +1,7 @@
 package launcher;
 
 import controller.MainViewController;
-import controller.PlayBarController;
+import controller.PlayBarViewController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -103,7 +103,7 @@ public class Launcher extends Application {
 		
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, event->{
             if (event.getCode() == KeyCode.SPACE) {
-            	PlayBarController pbc = mainViewController.getPlayBarController();
+            	PlayBarViewController pbc = mainViewController.getPlayBarController();
 				pbc.switchPlaying();
 				event.consume();
             }

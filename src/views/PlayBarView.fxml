@@ -4,7 +4,7 @@
 <?import javafx.scene.text.*?>
 
 <HBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
-	fx:controller="controller.PlayBarController">
+	fx:controller="controller.PlayBarViewController">
 	<children>
 		<Button fx:id="playButton"/>
 		<HBox fx:id="playPositionButtonContainer" styleClass="play-bar"/>

@@ -29,7 +29,7 @@
 				<Button fx:id="loadButton" text="Load" />
 				<Button fx:id="saveButton" text="Save" />
 			</HBox>
-			<fx:include fx:id="playbar" source="PlayBar.fxml" />
+			<fx:include fx:id="playbar" source="PlayBarView.fxml" />
 		</HBox>
 	</VBox>
 

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
  * @author Micha Lanvers, Leif Niemczik
  */
 public class FileManager {
-	private final static String INITIAL_FOLTER_PATH = ".";
+	private final static String INITIAL_FOLDER_PATH = ".";
 	
 	public static File askUserToLoadAudioFile(Stage parentStage) {
 		
@@ -52,7 +52,7 @@ public class FileManager {
 	private static FileChooser createFileChooser(ExtensionFilter extensionFilter) {
 		FileChooser fc = new FileChooser();
 		fc.getExtensionFilters().add(extensionFilter);
-		fc.setInitialDirectory(new File(INITIAL_FOLTER_PATH));
+		fc.setInitialDirectory(new File(INITIAL_FOLDER_PATH));
 		return fc;
 	}
 }

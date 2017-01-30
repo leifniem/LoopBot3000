@@ -12,6 +12,7 @@
 	-fx-padding: 40px;
 	-fx-font-size: 16px;
 	-fx-font-family: 'Roboto Mono';
+	-fx-font-weight: 700;
 	-fx-align: center;
 }
 
@@ -362,5 +363,5 @@
 }
 
 .drag_entered_row{
-	-fx-effect: dropshadow(three-pass-box, #FF837D, 10.0, 0.0, 0.0, 0.0);	
+	-fx-background-color: rgba(255, 255, 255, 0.25);	
 }

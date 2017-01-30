@@ -736,19 +736,19 @@ Tables
 table td,
 th,
 thead {
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(216, 216, 216, 0.5);
 }
 
 thead {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(216, 216, 216, 0.3);
 }
 
 tr:nth-child(even)>td {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(216, 216, 216, 0.1);
 }
 
 tr>td {
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(216, 216, 216, 0.5);
 }
 
 td:hover,

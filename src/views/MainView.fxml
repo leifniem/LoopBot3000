@@ -10,24 +10,27 @@
 
 <GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
 	fx:controller="controller.MainViewController" alignment="center">
+	
+	<stylesheets>
+		<URL value="@/stylesheets/styles.css" />
+	</stylesheets>
 
-<VBox >
-
-	<HBox styleClass="row" spacing="10">
-		<Button fx:id="addLoopButton" text="Add Loop" />
-		<Button fx:id="newProjectButton" text="New Project" />
-	</HBox>
-
-	<fx:include fx:id="emptyProjectView" source="EmptyView.fxml" />
-	<fx:include fx:id="loopProjectView" source="LoopProjectView.fxml" />
-
-	<HBox styleClass="row">
-		<HBox styleClass="project-buttons, prepend">
-			<Button fx:id="loadButton" text="Load" />
-			<Button fx:id="saveButton" text="Save" />
+	<VBox fx:id="contentVBox">
+		<HBox styleClass="row" spacing="10">
+			<Button fx:id="addLoopButton" text="Add Loop" />
+			<Button fx:id="newProjectButton" text="New Project" />
 		</HBox>
-		<fx:include fx:id="playbar" source="PlayBar.fxml" />
-	</HBox>
-</VBox>
+
+		<fx:include fx:id="emptyProjectView" source="EmptyView.fxml" />
+		<fx:include fx:id="loopProjectView" source="LoopProjectView.fxml" />
+
+		<HBox styleClass="row">
+			<HBox styleClass="project-buttons, prepend">
+				<Button fx:id="loadButton" text="Load" />
+				<Button fx:id="saveButton" text="Save" />
+			</HBox>
+			<fx:include fx:id="playbar" source="PlayBar.fxml" />
+		</HBox>
+	</VBox>
 
 </GridPane>

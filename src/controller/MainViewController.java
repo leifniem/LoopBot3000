@@ -15,6 +15,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Loop;
 import models.LoopProject;
@@ -29,6 +30,7 @@ public class MainViewController {
 	private final static int DEFAULT_NOTE_VALUE = 4;
 	private final static int DEFAULT_TEMP = 120;
 	private final static int MAX_LOOPS = 9;
+	private final static int MAX_NOTES_FOR_DEFAULT_CSS = 20;
 	private final static String DRAG_ENTERED_PROJECT_STYLE_CLASS = "drag_entered_row";
 
 	@FXML
@@ -45,6 +47,8 @@ public class MainViewController {
 	private Button newProjectButton;
 	@FXML
 	private HBox emptyProjectView;
+	@FXML
+	private VBox contentVBox;
 
 	private LoopProject loopProject;
 
@@ -149,34 +153,32 @@ public class MainViewController {
 	}
 
 	public void determineSize() {
-		URL url = getStylesheetURLToUse();
+		String css = getSmallCSSURIAsString();
+
+		if (contentVBox != null) {
+			if (loopProject.getTimeSignature().getAmountOfNotes() > MAX_NOTES_FOR_DEFAULT_CSS) {
+				if (!contentVBox.getStylesheets().contains(css))
+					contentVBox.getStylesheets().add(css);
+			} else {
+				if (contentVBox.getStylesheets().contains(css))
+					contentVBox.getStylesheets().remove(css);
+			}
+		}
+	}
+
+	private String getSmallCSSURIAsString() {
+		URL url = getClass().getResource("/stylesheets/small.css");
+		String result = "";
 
 		if (url != null) {
-			tryToAddStylesheetToScene(url);
-		}
-	}
-
-	private URL getStylesheetURLToUse() {
-		URL url;
-		if (loopProject.getTimeSignature().getAmountOfNotes() > 20) {
-			url = getClass().getResource("/stylesheets/small.css");
-		} else {
-			url = getClass().getResource("/stylesheets/styles.css");
-		}
-		return url;
-	}
-
-	private void tryToAddStylesheetToScene(URL url) {
-		try {
-			String css = url.toURI().toString();
-			Scene scene = loadButton.getScene();
-			if (scene != null) {
-				scene.getStylesheets().clear();
-				scene.getStylesheets().add(css);
+			try {
+				result = url.toURI().toString();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
 			}
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
 		}
+
+		return result;
 	}
 
 	private void addDragEventsToNode(Node node) {

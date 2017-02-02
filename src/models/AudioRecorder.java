@@ -22,7 +22,7 @@ public class AudioRecorder {
 	private final static int STEREO = 2;
 	private final static int FRAME_SIZE_IN_BYTES = 4;
 	private final static int FRAMERATE = 44100;
-	private final static String OUTPUT_PATH = "tempRecordings/";
+	private final static String OUTPUT_PATH = "LB3KSoundFiles/";
 	private final static String RECORDING_PREFIX = "recording";
 	private final static String OUTPUT_FORMAT = "wav";
 
@@ -37,6 +37,8 @@ public class AudioRecorder {
 		if (!AudioSystem.isLineSupported(info)) {
 			throw new UnsupportedOperationException("line not supported!");
 		}
+		
+		createRecordingFolder();
 	}
 
 	public void startRecording() {
@@ -147,9 +149,19 @@ public class AudioRecorder {
 		return splittedFileName.length == 3 && splittedFileName[0].equals(RECORDING_PREFIX)
 				&& splittedFileName[2].equals(OUTPUT_FORMAT);
 	}
+	
+	private void createRecordingFolder() {
+		File dir = new File(OUTPUT_PATH);
+		try{
+			dir.mkdir();
+		}catch(SecurityException e){
+			e.printStackTrace();
+		}
+	}
 
 	private File getRecordingFolderPath() {
 		Path relativeFolderPath = Paths.get(OUTPUT_PATH);
+		
 		String absoluteFolderPath = relativeFolderPath.toAbsolutePath().toString();
 		File folder = new File(absoluteFolderPath);
 		return folder;

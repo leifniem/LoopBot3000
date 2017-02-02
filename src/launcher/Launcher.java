@@ -27,8 +27,10 @@ public class Launcher extends Application {
 		launch(args);
 	}
 
+	@SuppressWarnings("resource")
 	private static void endProgramIfAlreadyStarted() {
 		try {
+			@SuppressWarnings("unused")
 			java.net.ServerSocket ss = new java.net.ServerSocket(1359);
 		} catch (java.net.BindException ex) {
 			System.out.println("Programm läuft bereits.");

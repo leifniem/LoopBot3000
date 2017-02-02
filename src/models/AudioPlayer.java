@@ -2,6 +2,7 @@ package models;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -16,7 +17,7 @@ public class AudioPlayer {
 	private final static int LONG_SOUND_LIMIT = 24;
 	private final static Duration MIN_LONG_SOUND_DURATION = new Duration(1000);
 
-	private List<MediaPlayer> mediaPlayers = new LinkedList<MediaPlayer>();
+	private CopyOnWriteArrayList<MediaPlayer> mediaPlayers = new CopyOnWriteArrayList<MediaPlayer>();
 	private static ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 	
 	public void playSound(Media media, float volume, float pitch){
